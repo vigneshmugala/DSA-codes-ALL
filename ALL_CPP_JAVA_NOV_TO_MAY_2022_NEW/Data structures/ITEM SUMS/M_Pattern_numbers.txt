@@ -1,0 +1,54 @@
+/*Pattern
+
+n=4;
+1     1
+12   21
+123 321
+1234321
+
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout<<"Enter n:" << endl;
+	cin>>n;
+	int val=0;
+	int val2=0;
+	int size=2*n-1;
+	for(int i=1;i<=n;i++)
+	{
+		val=1;
+		val2=i;
+		if(i==n){val2=n-1;
+		}
+		for(int j=1;j<=size;j++)
+		{
+			if(j<=i)
+			{
+				cout<<val<<" ";
+				val++;
+			}
+			else if(j>(abs(size-i)))
+			{
+				cout<<val2<< " ";
+				val2--;
+			}
+		 	else
+		 	{
+		 		cout<<"  ";
+		    }
+		}
+	  cout<<endl;
+	}
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,45 @@
+/* Create a java program that takes an input of increasing letters and return the missing letter.
+
+Examples
+a,b,c,e,f,g
+d
+
+O,Q,R,S
+P
+
+Notes
+--Tests will always have exactly one letter missing.
+--The length of the input will always be at least two.
+--Tests will be in one particular case (upper or lower but never both).
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        String str;
+        Scanner sc = new Scanner(System.in);
+        str=sc.next();
+        int prev=str.charAt(0);
+        int diff=0;
+        char ans=' ';
+        for(int i=1;i<str.length();i++)
+        {
+            if(str.charAt(i)!=',')
+            {
+                diff=str.charAt(i)-prev;
+                if(diff>1)
+                {
+                    ans=(char)(str.charAt(i)-1);
+                    break;
+                }
+                else
+                {
+                    prev=str.charAt(i);
+                    diff=0;
+                }
+            }
+        }
+     System.out.println(ans);
+    }
+}

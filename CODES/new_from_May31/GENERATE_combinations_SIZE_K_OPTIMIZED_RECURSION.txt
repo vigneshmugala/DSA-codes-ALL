@@ -1,0 +1,55 @@
+// Generate all combinations of an vector(array) from 1 to n of size k 
+// RUNTIME OPTIMIZED SOL'N
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void generate(int num, int size, int bound, vector<int> &subset, vector<vector<int>> &ans)
+{
+   if(num>bound)
+   {
+      return;
+   }
+   
+   if(size==0)
+   {
+   	  ans.push_back(subset);
+   	  return;
+   }
+   
+   if(bound-num+1<size)
+   {
+   	  return;
+   }
+	
+   subset.push_back(num);
+   generate(num+1,size-1,bound,subset,ans);
+   
+   subset.pop_back();
+   generate(num+1,size,bound,subset,ans);	
+}
+int main()
+{
+	int n;
+	cout<<"Enter upper bound : "<<endl;
+	
+	cin>>n;
+	
+	int k;
+	cout<<"Enter size of combination: "<<endl;
+	cin>>k;
+	
+	vector<int> subset;
+	vector<vector<int>>ans;
+	
+	generate(1,k,n,subset,ans);
+	
+	for(vector<int> x: ans)
+	{
+		for(int k: x)
+		{
+			cout<<k<<" ";
+		}
+	  cout<<endl;
+	}
+}

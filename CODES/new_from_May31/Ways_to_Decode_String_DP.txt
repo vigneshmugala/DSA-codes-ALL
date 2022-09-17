@@ -1,0 +1,33 @@
+class Solution {
+public:
+    
+    int help(int i , string &s, vector<int> &dp)
+    {
+        int op1 = 0;
+        int op2 = 0;
+        if(dp[i]!=-1) return dp[i];
+        if(i==s.length()) return 1;
+        if(i>s.length()) return 0;
+        if(s[i]=='0') return 0;
+        else{
+        op1 = help(i+1,s,dp);
+        
+        if(s[i]=='1'|| s[i]=='2'&&s[i+1]>='0'&&s[i+1]<='6')
+        {
+            if(i<s.length())
+            {
+                op2 = help(i+2,s,dp);
+            }
+        }
+        
+        return dp[i]=op1+op2;
+        }
+    }
+    
+    
+    int numDecodings(string s) {
+          vector<int>dp(s.size(),-1);
+          if(s.size() == 0) return 0;
+          else return help(0,s,dp);
+    }
+};

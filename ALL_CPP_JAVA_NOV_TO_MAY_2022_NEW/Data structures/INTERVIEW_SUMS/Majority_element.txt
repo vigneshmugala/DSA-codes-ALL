@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int majorityElement(int a[],int size)
+{
+	int maj=size/2;
+	sort(a,a+size);
+	int count=1;int maxcount=0;int majele=0;
+	for(int i=0;i<size-1;i++)
+	{
+		if(a[i]==a[i+1])
+		{
+			count++;
+		}
+		else
+		{
+		   if(count>=maxcount)
+		   {
+		   	  maxcount=count;
+		   	  majele=a[i];
+		   }
+		   count=1;
+		}
+	}
+	if(count>=maxcount){
+		maxcount=count;
+		majele=a[size-1];
+	}
+	if(maxcount>maj)
+	{
+		return majele;
+	}
+	else
+	{
+		return -1;
+	}
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	  cin>>a[i];
+	
+	int k=majorityElement(a,n);
+	cout<<k<<endl;
+}

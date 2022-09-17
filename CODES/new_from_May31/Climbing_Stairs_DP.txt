@@ -1,0 +1,40 @@
+/* Climbing Stairs number of ways to climb N steps with either climbing 1 or 2 steps at a time
+
+   example : total steps => 2 
+        no of ways  => 2
+                     (1,1) (2) 
+                     
+  DYNAMIC PROGRAMMING APPROACH
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int climbStairs(int n, vector<int> &dp)
+{
+	if(n==0) return 1; //if we have no remaining steps left then that is one unique way to climb stairs
+	if(n<0)  return 0; // if we climb stairs such that we overstep then it's not a unique way (ex: n=3 but we climb 2+2 steps it's not a soln)
+	if(dp[n]!=-1) return dp[n]; //if we already have one of the solution stored in the DP array then return that soln instead of doing recursion
+	else
+	{
+		int op1 = climbStairs(n-1,dp);  // we climb 1 step at a time
+		int op2 = climbStairs(n-2,dp);  // we climb 2 stpe at a time
+		
+		dp[n]=op1+op2;  //we store the subproblme result in DP Array
+		return dp[n]; // return that ans;
+	}
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter total number of steps: "<<'\n';
+	cin>>n;
+	
+	vector<int> dp(1000,-1); // DP Array to store values of subproblems at each step
+	
+	cout<<"Number of unique distinct ways to Climb Stairs : "<<'\n';
+	int answer = climbStairs(n,dp);
+	
+	cout<<answer;
+}

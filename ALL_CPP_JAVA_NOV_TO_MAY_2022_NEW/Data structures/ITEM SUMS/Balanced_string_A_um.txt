@@ -1,0 +1,122 @@
+/*
+Scott is given a word 'W'. Now he is supposed to see, the word is a Balanced Word or Not .
+
+A word is said to be Balanced word if it contains all characters same number of times. 
+He can also make the word Balanced by removing  only one occurence of a character at any index in the word. 
+
+If he is able to do so print "true" else print "false"
+
+
+Sample Test Case-1
+
+input = xyz
+output = true
+
+This is Balanced because (x-1,y-1,z-1)
+
+Sample Test Case-2
+
+input = xyzz
+output = true
+
+This is Balanced because (x-1,y-1,z-2)
+He can remove one occurence of z, It results in (x-1,y-1,z-1)
+
+Sample Test Case-3
+
+input = xxyyzzzz
+output = false
+
+This is not Balanced because (x-2,y-2,z-4)
+By removing once occurence of z, It results in (x-2,y-2,z-3)
+So this is not Balanced
+
+Sample Test Case-4
+
+input = xzxyzxz
+output = true
+
+This is Balanced because (x-3,y-1,z-3)
+By removing once occurence of y, It results in (x-3,z-3)
+So this is  Balanced
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"Enter string:"<<endl;
+	cin>>str;
+	map<char,int>occ;
+	bool pos=true;
+	for(int i=0;i<str.length();i++)
+	{
+		int j=i;
+		int count=0;
+		while(j<str.length())
+		{
+		  if(str[j]==str[i])
+		  {
+		  	 count++;
+		  	 j++;
+		  	 
+		  }	
+		  else
+		  {
+		  	j++;
+		  }
+			
+		}
+		occ.insert(pair<char,int>(str[i],count));	
+	}
+	int arr[occ.size()];
+	int k=0;
+	for(auto x:occ)
+	{
+		arr[k]=x.second;
+		k++;
+	}
+    
+    sort(arr,arr+k);
+    int ct=1;
+    int hol=0;
+    for(int i=0;i<k;i++)
+    {
+    	if((arr[i]!=arr[i+1])&&i!=k-1)
+    	{
+    		ct++;
+    		hol=arr[i+1];
+    		if(ct>2)
+    		{
+    			pos=false;
+    			break;
+			}
+		}
+		if(arr[k-1]!=arr[k-2])
+		{
+			ct++;
+		}
+    	
+	}
+	if(ct==2&&hol==arr[0]+1)
+	{
+		pos=true;
+	}
+	else if(ct==2&&arr[0]==1&&arr[1]!=1)
+	{
+		pos=true;
+	}
+	else if(ct==1)
+	{
+		pos=true;
+	}
+	
+	if(pos)
+	{
+		cout<<"true";
+	}
+	else{
+		cout<<"false";
+	}
+}

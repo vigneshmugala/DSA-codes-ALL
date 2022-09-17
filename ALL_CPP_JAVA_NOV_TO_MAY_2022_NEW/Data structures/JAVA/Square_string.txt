@@ -1,0 +1,69 @@
+/*
+A string is called square if it is some string written twice in a row. 
+For example, the strings "aa", "abcabc", "abab" and "baabaa" are square.
+But the strings "aaa", "abaaab" and "abcdabc" are not square.
+
+For a given string s determine if it is square.
+
+1st line indicates input and second line indicates output
+Example:
+a
+NO
+
+aa
+YES
+
+abab
+YES
+
+abcabc
+YES
+
+abacaba
+NO
+
+
+*/
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args)
+    {
+       String str;
+       Scanner sc = new Scanner(System.in);
+       str=sc.next();
+       String temp="";
+       String temp1="";
+       int len=str.length();
+       boolean square=true;
+       if(len%2!=0)
+       {
+           System.out.println("NO");
+       }
+       else{
+           for(int i=0;i<len;i++)
+           {
+               if(i<len/2)
+               {
+                   temp+=str.charAt(i);
+               }
+               else
+               {
+                   temp1+=str.charAt(i);
+               }
+           }
+           boolean flag=false;
+           for(int i=0;i<temp.length();i++)
+           {
+               if(temp.charAt(i)!=temp1.charAt(i))
+               {
+                   flag=true;
+                   System.out.println("NO");
+               }
+           }
+          if(!flag){
+              System.out.println("YES");
+          }
+       }
+    }
+}

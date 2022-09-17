@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int total_teams;
+	cout<<"Enter number of Teams in Tournament: "<<endl;
+	
+	cin>>total_teams;
+	
+	string teams[total_teams];
+	cout<<"Enter team names: "<<endl;
+	
+	for(int i=0;i<total_teams;i++)
+	{
+		cin>>teams[i];
+	}
+    
+    set<vector<string>> matches;
+    vector<string> temp;
+    for(int i=0;i<total_teams;i++)
+    {
+    	for(int j=0;j<total_teams;j++)
+    	{
+    		if(teams[i]!=teams[j])
+    		{
+    			temp.push_back(teams[i]);
+    			temp.push_back(teams[j]);
+    			sort(temp.begin(),temp.end());
+    			matches.insert(temp);
+    			temp.clear();
+			}
+		}
+	}
+	vector<vector<string>>final;
+	for(vector<string> m: matches)
+	{	
+	    final.push_back(m);
+	}
+	random_shuffle(final.begin(),final.end());
+	//placeinOrder(final,total_teams-1);
+	for(vector<string> vs: final)
+	{
+		cout<<vs[0]<<" vs "<<vs[1]<<endl;
+	}
+}

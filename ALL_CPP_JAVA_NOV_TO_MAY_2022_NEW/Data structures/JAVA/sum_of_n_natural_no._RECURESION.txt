@@ -1,0 +1,38 @@
+/* Write a java Function that takes an integer n  and return 
+sum of n natural numbers using "**recursion**"  
+For example: given integer is 5 
+ must return 5+ 4+ 3+ 2+ 1 i.e 15
+ 
+ so sample input/output would be
+ 5
+ 15
+ 
+ 4
+ 10     //output
+ */
+ 
+import java.util.*;
+public class Test
+{
+    static int sum(int n)
+    {
+       if(n==0)
+       {
+           return 0;
+       }
+       
+       else{
+           return(sum(n-1)+n);
+       }
+    }
+    
+    
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc=new Scanner(System.in);
+        n=sc.nextInt();
+        int res = sum(n);
+        System.out.println(res);
+    }
+}

@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int partition(int arr[], int start, int end)
+{
+	int pivot = arr[end]; //Assume pivot is Last element in a given array
+	int i = start-1; //i indicates index of right pivot position found so far.. 
+	
+	for(int j=start;j<=end-1;j++) //iterate from left to right
+	{
+		if(arr[j]<pivot) // if any element is less than pivot
+		{
+			i++;   //move i pointer to right
+			swap(arr[i],arr[j]); // swap those elements
+		}
+	}
+	swap(arr[i+1],arr[end]); //after end of iteration, swap pivot(arr[end]) with current i+1 position, now, elements will be in correct order, left to the pivot are all less than pivot, right are all grater than pivot.
+	return (i+1); // return that position where pivot is currently placed;
+}
+void quickSort(int arr[],int start, int end)
+{
+	if(start<end) // do quicksort till there is only one element left in each subarray divided(start=end);
+	{
+		int p=partition(arr,start,end); //find pivot position in array
+		quickSort(arr,start,p-1); // do quicksort for left subarray to the pivot
+		quickSort(arr,p+1,end); // do quicksort for right subarray to the pivot
+	}
+ //this happens recursively...
+}
+int main()
+{
+	int n;
+	cout<<"Enter no.of elements:"<<endl;
+	cin>>n;
+	
+	int arr[n];
+	cout<<"Enter array elements: "<<endl;
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	quickSort(arr,0,n-1);
+	cout<<"After sorting with QuickSort"<<endl;
+	for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}

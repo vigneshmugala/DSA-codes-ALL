@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool match(string s, string pat,int unq)
+{
+   if(s.length()!=pat.length())
+   {
+       return false;
+   }
+   
+   else
+   {
+       map<char,char>m;
+       
+       for(int i=0;i<s.length();i++)
+       {
+           m.insert(pair<char,char>(s[i],pat[i]));
+       }
+       //for(auto x: m){cout<<x.first<<"--->"<<x.second<<endl;}
+       if(m.size()!=unq){return false;}
+       else{return true;}
+   }
+    
+    
+}
+int main()
+{
+    string word;
+    string pat;
+    
+    getline(cin,word);
+    
+    cin>>pat;
+    
+    
+    vector<string>words;
+    string temp="";
+    for(int i=0;i<word.length();i++)
+    {
+        if(word[i]!=' ')
+        {
+            temp+=word[i];
+        }
+        else
+        {
+            words.push_back(temp);
+            temp="";
+        }
+    }
+    words.push_back(temp);
+    sort(words.begin(),words.end());
+
+    int unq = 0;
+    set<char> st;
+    
+    for(int i=0;i<pat.length();i++)
+    {
+        st.insert(pat[i]);
+    }
+    unq=st.size();
+
+    for(string x: words)
+    {
+        if(match(x,pat,unq)){
+            cout<<x<<endl;
+        }
+    }
+}

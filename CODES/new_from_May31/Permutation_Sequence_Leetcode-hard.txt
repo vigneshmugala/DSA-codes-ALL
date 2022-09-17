@@ -1,0 +1,90 @@
+/*
+The set [1, 2, 3, ..., n] contains a total of n! unique permutations.
+
+By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+
+"123"
+"132"
+"213"
+"231"
+"312"
+"321"
+Given n and k, return the kth permutation sequence.
+
+ 
+
+Example 1:
+
+Input: n = 3, k = 3
+Output: "213"
+Example 2:
+
+Input: n = 4, k = 9
+Output: "2314"
+Example 3:
+
+Input: n = 3, k = 1
+Output: "123"
+LEETCODE HARD 
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int fac(int n)
+{
+	if(n==1)return 1;
+	return n*fac(n-1);
+}
+
+void getkthPermutation(int k, int n, vector<int> &v, vector<int> &fact, string &ans)
+{
+	if(n==1)   //base case: if size is 1 then append the remaining element into the soln
+	{
+		ans += to_string(v[v.size()-1]);
+		return;
+	}
+	else
+	{
+	int index = k/fact[n-2];    //we Find index in [1..n] block where the current permutation is
+	
+	if(k%fact[n-2]==0)
+	{
+		index--;    //if there is a collision we will subtract by one
+	}
+	
+	ans+=to_string(v[index]);   // append that index to answer 
+	k -= index*fact[n-2];    // subtract k 
+	v.erase(v.begin()+index);  // remove that index from the vector
+	n--;   
+	 
+	getkthPermutation(k,n,v,fact,ans);  //Recursively call till we finish all elements in the vector v
+   }
+}
+
+
+int main()
+{
+	int n;
+	cout<<"Enter value of N :"<<'\n';
+	cin>>n;
+	
+	int k;
+	cout<<"Enter which no.th of permutation you want to Return: "<<'\n';
+	cin>>k;
+	
+	vector<int> v; //Vector to Store 1 to N values 
+	for(int i=1;i<=n;i++) v.push_back(i);
+	
+	string ans = ""; //Append final answer to String
+	
+	vector<int> fact;
+	for(int i=1;i<=n;i++)
+	{
+		fact.push_back(fac(i));   //Vector to Store all factorial values from 1 to N
+	}	
+	
+	getkthPermutation(k,n,v,fact,ans);
+	
+	cout<<ans<<endl;
+}

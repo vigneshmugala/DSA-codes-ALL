@@ -1,0 +1,51 @@
+#include<iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+int main()
+{
+	int n;
+	int first_l,second_l,third_l;
+	
+	cout <<"enter array size:" << endl;
+	cin >> n;
+	
+	
+	int arr[n];
+	
+	cout << "enter elements in the array bro:" << endl;
+	
+	first_l = second_l = third_l = INT_MIN;
+	
+	for(int i=0;i < n; i++)
+	{
+		cin >> arr[i];
+	}
+	
+	for(int i=0;i < n; i++)
+	{
+		if(arr[i] > first_l)
+		{
+			third_l = second_l;
+			second_l = first_l;
+			first_l = arr[i];
+		}
+		
+		else if(arr[i] > second_l)
+		{
+			
+			third_l = second_l;
+			second_l= arr[i];
+
+		}
+		
+		else if(arr[i] > third_l)
+		{
+			third_l = arr[i];
+		}
+	}
+	
+	cout << "The first largest element in array is: " <<  "  " << first_l << endl;
+	cout << "The second largest element in array is:" << "  " << second_l << endl;
+	cout << "The third largest element in array is:" << "  " << third_l << endl;	
+}

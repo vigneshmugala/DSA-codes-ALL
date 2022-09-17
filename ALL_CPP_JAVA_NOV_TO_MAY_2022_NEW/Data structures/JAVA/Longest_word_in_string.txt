@@ -1,0 +1,50 @@
+/* Write a Java program that finds the longest word in a sentence. 
+If two or more words are found, return the first longest word. 
+Characters such as apostrophe, comma, period (and the like) count 
+as part of the word (e.g. O'Connor is 8 characters long).
+
+Examples input/output
+Margaret's toy is a pretty doll.
+Margaret's
+
+A thing of beauty is a joy forever.
+forever.
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String str;
+        str=sc.nextLine();
+        String maxstr="";
+        String st="";
+        int maxlen=0;
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)==' ')
+            {
+                if(st.length()>=maxlen)
+                {
+                    maxlen=st.length();
+                    maxstr=st;
+                    st="";
+                }
+                else{
+                    st="";
+                }
+                
+            }
+            else{
+                st+=str.charAt(i);
+            }
+        
+        }
+        if(st.length()>=maxlen)
+        {
+            maxstr=st;
+        }
+        System.out.println(maxstr);
+    }
+}

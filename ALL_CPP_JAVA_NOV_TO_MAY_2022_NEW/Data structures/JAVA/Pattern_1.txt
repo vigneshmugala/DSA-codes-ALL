@@ -1,0 +1,54 @@
+/*input=7
+output=
+ooooooo
+oo   oo
+o o o o
+o  o  o
+o o o o
+oo   oo
+ooooooo*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	    int n;
+	    Scanner sc = new Scanner(System.in);
+	    n=sc.nextInt();
+	    int k=0;
+	   
+	    for(int i=1;i<=n;i++)
+	    {
+	        for(int j=1;j<=n;j++)
+	        {
+	            if(i==1 ||i==n)
+	            {
+	                System.out.print("o");
+	            }
+	            else{
+	                if(j==i||j==1||j==n)
+	                {
+	                    System.out.print("o");
+	                }
+	                else if(j==(n-k))
+	                {
+	                    System.out.print("o");
+	                    
+	                }
+	                else{
+	                    System.out.print(" ");
+	                }
+	                
+	            }
+	            
+	            
+	        }
+	      k++;
+	      System.out.println();
+	    }
+	   
+	   
+	   
+	   
+	}
+}

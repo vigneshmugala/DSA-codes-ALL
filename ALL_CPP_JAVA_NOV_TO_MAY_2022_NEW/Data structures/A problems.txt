@@ -1,0 +1,806 @@
+----------------------------------------------------------------------
+[PENDING]
+Steve is Designing a New email system.Where he wants to eliminate the gamil  based on few conditions. 
+
+Every valid email consists of a local name and a domain name, in between '@'; 
+For example, in "alice@gmail.com" , "alice" is the local name, and "gmail.com" is the domain name.
+
+Besides lowercase letters, the email may contain one or more '.' or '+' .
+
+If you add periods '.' between some characters in the local name part of an email address, mail sent there will be forwarded to
+the same address without dots in the local name. 
+
+
+For example, "alice.z@gmail.com" and "alicez@gmail.com" forward to the same email address.
+If you add a plus '+' in the local name, everything after the first plus sign will be ignored. 
+This allows certain emails to be eliminated.
+This rule will not be applicable to  to domain names.
+
+
+For example, "m.y+name@email.com" will be forwarded to "my@email.com" .
+It is possible to use both of these rules at the same time.
+
+
+Help Steve to solve the problem 
+He will be given an group of email-ids where we send one email to each emails[i], return the number of different addresses that
+actually receive mails.
+
+
+Sample Test Case 
+Input =test.email+alex@gmail.com  test.e.mail+bob.cathy@gmail.com  testemail+david@gm.ail.com
+Output: 2
+
+Explanation: "testemail@gmail.com" and "testemail@gm.ail.com" actually receive mails.
+
+
+Example 2:
+Input: emails =a@gmail.com b@gmail.com c@gmail.com
+Output: 3
+
+-----------------------------------------
+
+
+A Gold  merchant, announced an offer that they will charge the minimum price to make all the 
+gold coins into one.
+
+Customers who has different weights of gold coins wants to utilize the offer.
+
+The processing charge to make two coins into one is calculated as follows:
+	- To make two coins of weights A and B into one coin, 
+	  you have to pay the amount 'A + B'. 
+
+Your task is to help Gold Merchant to keep his promise and 
+to charge the minimum amount to  gold coins
+into one gold coin
+
+Input Format:
+-------------
+Single line of space separated integers, number on the boxes.
+
+Output Format:
+--------------
+Print an integer, minimum amount to be paid by Customer
+
+
+Sample Input-1:
+---------------
+4 3 6
+
+Sample Output-1:
+----------------
+20
+
+
+Sample Input-2:
+---------------
+5 2 4 3 6
+
+Sample Output-2:
+----------------
+45
+
+-----------------------------------------------------------
+
+You are given a sequence A of N integers: A1,A2,A3... AN.
+
+You would like to make all elements in A different.
+
+To do so, you may perform operations 
+of two types:
+
+Remove an element. The cost of this operation is X coins.
+Decrease the value of an element by one. The cost is Y coins.
+
+You may perform as many operations as you wish.
+It is possible and allowed that some elements will become negative
+(after you decrease an element multiple times).
+
+Your task is to find the minimum number of coins you would need in order to 
+make A pairwise distinct.
+
+Input Format
+------------
+The first line contains three space-separated integers N, X, and Y 
+		— the size of the sequence and costs of operations.
+The second line contains N space-separated integers A1,A2,A3...AN
+		— the initial sequence.
+
+Output Format
+-------------
+Print one integer — the minimum number of coins needed to make A pairwise distinct.
+
+
+
+Sample Input :
+6 10 3
+5 2 5 3 5 2
+
+Sample Output :
+16
+
+Explanation :
+we are given a sequence of size n=6.
+The cost of removing and decreasing by one are 10 and 3 respectively.
+
+The initial sequence is (5 2 5 3 5 2).
+One optimal strategy is:
+
+Remove one of three fives, e.g. the middle one. The remaining sequence is (5 2 3 5 2).
+Decrease the second element by one, to get (5 1 3 5 2).
+Decrease the first element by one, to get (4 1 3 5 2).
+This way, you need to spend 10+3+3 =16 coins. 
+The resulting sequence(4 1 3 5 2) is indeed pairwise distinct.
+
+-------------------------------------------------------
+
+
+Amazon fire tv stick keyboard wanted to be operated on number pad. 
+You will be given the below pad. 
+You are supposed to print all possible words in alphabetic order for a given number (0-9)
+
+	1		2		3
+		   abc	   def
+		 
+	4		5		6
+   ghi             jkl     mno
+  
+	7		8		9
+  pqrs           tuv    wxyz
+	
+	*		0		#
+
+
+You will be given a string S which contains (2-9)  only  
+For example: S = "3", then the possible words are "d", "e", "f".
+
+Input Format:
+-------------
+String(2-9)
+
+Output Format:
+--------------
+Print the list of words in alphabetical order
+
+
+Sample Input-1:
+---------------
+2
+
+Sample Output-1:
+----------------
+a b c
+
+
+Sample Input-2:
+---------------
+24
+
+Sample Output-2:
+----------------
+ag ah ai bg bh bi cg ch ci
+
+----------------------------------------------
+
+Sunder a Military Research Team wants to decode a message(A-1,B-2...Z-26). 
+If Sunder is given a Number he wants to check in how many ways the number can be written into Characters. 
+
+For Example - 123 can be assumed as 
+
+ABC (A-1,B-2,C-3)  
+AW  (A-1,W-23)
+ LC    (L-12,C-3)
+
+Total Ways are 3. He wants to write the code to get the number of ways . Help Sunder solve the problem.
+
+Assume the Input number will be a valid word. 
+
+For all Invalid Outputs print 0 
+
+input = 100
+output = 0
+
+
+-----------------------------------------------------------
+
+There are N players, playing a game.
+
+You are given the scores of the N players as scores[] array,
+where i-th player score is score[i].
+
+You are given P chances to modify the score of the players.
+
+In each chance you can modify the score of i-th player as follows:
+	- You are allowed increment the score of i-th player by 1.
+
+You have to perform these increments, in order to maximize the occurances of any score.
+
+Your task is to maximize occurances of a score, after utlizing atmost P chances.
+
+Input Format:
+-------------
+First line of input consists of the scores followed by the number of chances(P)
+
+Output Format:
+--------------
+Print an integer, maximum occurances of a score!
+
+
+Input = 1 2 4 
+5
+Output = 3
+
+Explanation: Increment the first score three times and the second score two times to make scores = [4,4,4].
+4 has a maximum of 3 occurances
+
+
+
+Example 2:
+Input  = 1 4 8 13
+5
+Output: 2
+
+Explanation: There are multiple optimal solutions:
+
+- Increment the first score three times to make scores = [4,4,8,13]. 4 has a maximum occurance of 2.
+- Increment the second score four times to make scores = [1,8,8,13]. 8 has a maximum occurance of 2.
+- Increment the third score five times to make scores = [1,4,13,13]. 13 has a maximum occurance of 2.
+
+---------------------------------------------------------------------------------------------
+
+
+
+True Or False 
+
+Shyam is given series of  Statements
+T represents True, F represents False. 
+
+Initially all the statements will be False.
+He can change from T to F or F to T . 
+If he starts at one Statement, the process has to continue upto end of the statement.
+He can start at any part of the Statement. 
+If it is 'F' it changes to 'T' and if it is 'T' it changes to 'F'. 
+He has to do minimum number of swaps on the Initial Statement to reach the given target state
+
+
+Input = TFTTT
+output = 3
+
+Explanation - Initially FFFFF
+Change from the Third Statement FFTTT
+Change from the First Statement TTFFF
+Change from the Second Statement  TFTTT
+
+
+
+---------------------------------------------------------------------------------------
+
+
+(ABOVE PROGRAM UPDATED VERSION)
+True Or False 
+
+Shyam is given series of  Statements
+T represents True, F represents False. 
+
+Initially all the statements will be False.
+He can change from T to F or F to T . 
+If he starts at one Statement, the process has to continue upto end of the statement.
+He can start at any part of the Statement. 
+If it is 'F' it changes to 'T' and if it is 'T' it changes to 'F'. 
+He has to do minimum number of swaps on the Initial Statement to reach the given target state
+
+
+Input = TFTTT
+output = 3
+
+Explanation - Initially FFFFF
+Change from the Third Statement FFTTT
+Change from the First Statement TTFFF
+Change from the Second Statement  TFTTT
+
+-----------------------------------------------------------------
+
+
+
+Kalpana a third class student is playing with numbers. 
+She has given her brother the same set of numbers and asked him to find the 
+next greatest nearest number which contains the same set of digits same number of times. 
+
+If no such number exists print -1 
+
+input = 121
+output = 211
+
+input = 653
+output = -1
+
+
+input = 456
+output = 465
+
+
+-----------------------------------------------------------------------------------------------------------
+
+Pythagoras a mathematicians is playing with a group of numbers which contains distinct numbers(>0),
+He finds the number of valid quadruples that can be formed with the given numbers.
+
+The rules to check if it is a valid qudraples are as follows:
+    - It contains 4 numbers a, b, c, d
+    where a*b = c*d  and a != b != c != d
+
+If He is not able to do so, he prints 0 
+
+
+Write the code to check if the Pythagoras is correct or not. 
+
+The first line of input consists of the group size followed by group numbers 
+
+Input =5
+3 2 4 1 6
+output= 16
+
+Explanation:
+-------------
+There are 16 valid Quadrules:
+(2,3,1,6) , (2,3,6,1) , (6,1,3,2) , (6,1,2,3)
+(3,2,1,6) , (3,2,6,1) , (1,6,3,2) , (1,6,2,3)
+(2,6,3,4) , (2,6,4,3) , (6,2,3,4) , (6,2,4,3)
+(3,4,2,6) , (4,3,2,6) , (3,4,6,2) , (4,3,6,2)
+
+
+Sample Input-2:
+---------------
+4
+2 3 5 7
+
+Sample Output-2:
+----------------
+0
+
+
+------------------------------------------------------------------------------------------------
+
+
+In a South Africa Class room, each student has a name with a single character. 
+Initally all the students names will be given. The teacher now wants the students 
+to be shuffled, so that two students names that are adjacent to each other are not same. 
+
+If the names can be shuffled in such a way print yes else  prints no. 
+
+input=ddt
+output=yes
+
+
+Explanation -the student names can be shuffled as dtd
+
+
+input=rrrt
+output=no
+
+Explanation - the studens names after shuffling will have same student names adjacent to each other 
+
+
+-------------------------------------------------------------------------------------------------------
+
+A Group of Monsters has few powers. 
+The powers are represented in numbers both positive and negative. 
+Each Member of the monster prays to get some power. 
+God sanctions only one member of the Monster Group. 
+The power can be performed only once on only one member of the monster. 
+God will multipy the monster power with the same power. 
+After  performing the above action, a sub-group of monsters check the power they have.
+We have to now see which sub-group has the highest power. Print the Highest Sub-Power.
+
+
+The first line of input contains the powers of the monsters. 
+
+input = 4 -1 -5 -3
+output = 28
+
+The power operation is performed on the third monster, -5 * -5 which is 25 
+
+Now the sub group with highest power is 4+(-1)+25 = 28 
+
+-----------------------------------------------------------------------------------------------------------
+
+
+Scott a Third class is given the scores of the students. He is the leader of the class. 
+His teachers calls him and asks him to call the nth smallest Score secured by the student. 
+Help scott solve the problem. 
+
+If no such thing exists print -1. 
+
+input = 47912478
+3
+output = 4
+
+in the above test case we have 4 as the third smallest score secured by the student.
+
+input = 1111
+2
+output = -1
+
+in the above test case we dont have any second smallest score secured by the student so output is -1
+
+
+input = 100
+1
+output = 0
+
+in the above test case we have 0 as the first smallest score by the student so the output is 0 
+
+---------------------------------------------------------------------
+write a  java program to count the GrandChild/Child for given name 
+
+Assume the relations here limit only to child and grandChild only 
+all the inputs will be given in lower case characters(a-z) and are valid relations 
+
+the first line of input consists of number of relations followed by child name and fathers name seperated by ',' 
+followed by a name. 
+
+
+
+Where the first string is "Child", second string is "Father".
+If the given name is Father print the count of his children
+If the given name is GrandFather print the count of his GrandChildren
+
+Print -1 for any other boundary conditions 
+
+for given input like this
+
+input =
+5
+kishore,ramesh
+dev,gopal
+gopal,ramu
+srinu,gopal
+praveen,ranjit
+ramu
+output = 2
+
+And given input "ramu" we have to find his no of grandchildren/child
+Here "ramu" has one direct child gopal and gopal has 2 children(dev,srinu).
+So ramu has 2 grand children dev,srinu. so output is 2
+
+example:2 
+
+input =
+5
+ranjit,knr
+ramesh,pradeep
+kittu,ranjit
+yogesh,ranjit
+praveen,ranjit
+knr
+output=
+3
+
+//given data for knr we need print the count of grand children . 
+here knr direct child is ranjit and ranjit has three children   ---- kittu,yogesh,praveen so print 3
+
+
+input = 
+8
+a,b
+c,b
+d,b
+f,a
+g,a
+e,a
+m,c
+z,d
+b
+output =
+5
+----------------------------------------------------------------------------------
+The bomb grid is filled with danger values, with both positive and negative integers.
+positive means you will lose power of grid[i][j], 
+negative means you will gain power of grid[i][j].
+
+Naresh wants to cross the bridge, with the minimum loss of power.
+He can cross the grid in the following way:
+	- He can start at any bomb cell in the first row.
+	- He can step on the next bomb cell in the next row that 
+	  is either directly below of the current cell or diagonally left/right. 
+	- Specifically, the next bomb cell from position grid(i, j) will be grid(i+1,j-1),
+	(i + 1, j) , or (i + 1, j + 1) .
+
+Can you help Naresh to lose the minimum power after crossing the bomb grid.
+
+Input Format:
+-------------
+Line-1: An integer N, size of N*N grid 
+Next N lines: N space separated  integers, values in the grid.
+
+Output Format:
+--------------
+Print an integer, minimum sum of TopDown path.
+
+
+Sample Input-1:
+---------------
+3
+1 3 2
+5 4 6
+9 8 7
+
+Sample Output-1:
+----------------
+12
+
+Explanation:
+-------------
+Minimum lose of power is as follows:
+start from bomb cell	1 -> 4 -> 7
+Total lose is 12.
+
+
+Sample Input-2:
+---------------
+3
+32 10 23
+-15 14 -16
+19 -18 17
+
+Sample Output-2:
+----------------
+-24
+
+Explanation:
+-------------
+Minimum lose of power is as follows:
+start from bomb cell	10 -> -16 -> -18
+Total lose is -24.
+-------------------------------------------------------------
+
+Given two Integer ArrayList, add their elements to a new ArrayList by satisfying following conditions 
+
+1. Addition should be done starting from 0th index of both ArrayList.
+2. Split the sum if it is a not a single digit number and store the digits in adjacent locations
+3. Output ArrayList should accommodate any remaining digits of larger input ArrayList.
+4.Assume the input contains only positive numbers
+
+Examples:
+First line contains the size of first ArrayList followed by first ArrayList elements followed by second ArrayList size followed by 
+second ArrayList elements 
+
+
+input =
+6
+9 2 3 7 9 6
+8
+3 1 4 7 8 7 6 9
+output =
+1 2 3 7 1 4 1 7 1 3 6 9
+
+input = 
+6
+9343 2 3 7 9 6
+8
+34 11 4 7 8 7 6 99
+output =
+9 3 7 7 1 3 7 1 4 1 7 1 3 6 9 9
+
+input = 
+3
+345 124 54
+5
+123 221 325 4234 5167
+output = 
+4 6 8 3 4 5 3 7 9 4 2 3 4 5 1 6 7
+----------------------------------------------------------------------------
+
+Shyam is given a group of numbers and a value(k),Now he wants to see if the group of numbers 
+can be arranged into sets of k consecutive groups. 
+
+if he can do print yes else print no 
+
+The first line of input consists of the group of numbers followed by a value (k) 
+
+input = 1,2,3,3,4,4,5,6
+4
+output = yes
+
+Explanation: Group can be arranged into (1,2,3,4) and (3,4,5,6)
+
+
+Input = 3 2 1 2 3 4 3 4 5 9 10 11
+3
+output = yes
+
+Explanation: Group can be arranged into (1,2,3) , (2,3,4) , (3,4,5) and (9,10,11).
+
+Input = 1 2 3 4 
+3
+output = no
+
+
+Explanation: Each group should be arranged in sub-group of size 3.
+
+
+
+---------------------------------------------------------------------------------------------------
+
+Three Friends are given three rows of the keyboard, The first row is given to Shyam,second row is given to gopal, third row is given to ramu. 
+
+Teacher has given them few lines of words and asked each individual if they can print the words that can be printed using the letters of the rows given to them 
+
+Shyam has given the row -   QWERTYUIOP/qwertyuiop
+Gopal has given the row -    ASDFGHIJKL/asdfghjkl
+Ramu has given the row -   ZXCVBNM/zxcvbnm
+
+Teacher also gave the following rules in addition ;
+    You may use one character in the row more than once.
+    You may assume the input string will only contain letters of alphabet(A-Z/a-z).
+    Assume the alphabets are case sensitive 
+
+    Print -1 for all Boundary Conditions 
+
+Example:
+
+input =hello Alaska Dad Peace
+output = 
+Alaska 
+Dad
+
+
+Here the words Alaska and Dad are the characters of second student gopal only 
+
+
+input =asdf qwer zxcv
+output =
+asdf
+qwer
+zxcv
+
+input =Dad hAS the Key
+output = Dad
+hAS
+
+input =to be or not TO be 
+output = to
+or
+TO
+
+
+----------------------------------------
+------------------------------
+
+
+
+Ragav is working with strings, which contain digits from [0-9] only.
+he has to find if given string is a downgraded string or not.
+
+A string is said to be a downgraded string, if the string follows the below rules:
+	- Divide the string S into two or more substrings, like sub[0],sub[1], sub[2],..,sub[n-1]. 
+	  If you append all the substrings should result in S,sub[0]+sub[1]+ sub[2]+..+sub[n-1] = S
+	  
+	- The numeric values of the substrings should be in decreasing order.
+	  i.e., sub[0] > sub[1] > .. > sub[n-1].
+	- The difference between each consecutive pair should be 1 only.
+	  i.e., sub[0]-sub[1] = sub[1]-sub[2] = .. = sub[n-2]-sub[n-1] = 1.
+
+Your task is to help Ragav to check the given numeric string is downgraded string or not. 
+If yes, print "true", Otherwise print "false".
+
+Input Format:
+-------------
+A String, numeric word.
+
+Output Format:
+--------------
+Print a boolean result.
+
+
+Sample Input-1:
+---------------
+004567
+
+Sample Output-1:
+----------------
+false
+
+Explanation:
+------------
+Numeric Word can be divided as follows: "004","5","6","7"
+Given word is not a downgraded string. 
+
+
+Sample Input-2:
+---------------
+1201100010
+
+Sample Output-2:
+----------------
+true
+
+Explanation:
+------------
+Numeric Word can be divided as follows: "12","011","00010"
+The numeric value of substrings are: 12, 11, 10
+
+
+Sample Input-3:
+---------------
+5040301
+
+Sample Output-3:
+----------------
+false
+
+Explanation:
+------------
+Numeric Word can be divided as follows: "5","04","03","01"
+The numeric value of substrings are: 5,4,3,1
+Rule-1 and Rule-2 are followed but Rule-3 is not followed.
+
+
+
+Sample Input-4:
+---------------
+99999998
+
+Sample Output-4:
+----------------
+true
+
+Explanation:
+------------
+Numeric Word can be divided as follows: "9999","9998".
+
+
+
+----------------
+
+
+Shanmukha creating a special strings.
+A string is said to be a special string, if all the letters appeared 
+even number of times, or only one letter appeared odd number of times.
+
+For example: "adda" and "iaaff" are special strings.
+but "iaf" is not a special string.
+
+You are given a word W, where W conatins the letters from a to j.
+Our task is to findout, the number of non-empty special strings, 
+which are substrings of word W can be formed.
+if a substring appeared more than once, count each appearance separately.
+
+NOTE: subsequences are not allowed.
+
+Input Format:
+-------------
+A String W, the word.
+
+Output Format:
+--------------
+Print an integer, number of special strings.
+
+
+Sample Input-1:
+---------------
+egg
+
+Sample Output-1:
+----------------
+5
+
+Explanation:
+------------
+The special strings formed from the word "egg" are:
+'e'gg, e'g'g, eg'g', e'gg', 'egg'.
+
+
+Sample Input-2:
+---------------
+bajaj
+
+Sample Output-2:
+----------------
+9
+
+Explanation:
+------------
+The special strings formed from the word "bajaj" are:
+'b'ajaj, b'a'jaj, baj'a'j, ba'j'aj, baja'j', b'aja'j, ba'jaj', b'ajaj', 'bajaj'.
+
+----------------------------------------
+

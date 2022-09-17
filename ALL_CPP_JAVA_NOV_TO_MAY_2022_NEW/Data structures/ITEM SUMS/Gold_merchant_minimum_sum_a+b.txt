@@ -1,0 +1,81 @@
+/*
+A Gold  merchant, announced an offer that they will charge the minimum price to make all the 
+gold coins into one.
+
+Customers who has different weights of gold coins wants to utilize the offer.
+
+The processing charge to make two coins into one is calculated as follows:
+	- To make two coins of weights A and B into one coin, 
+	  you have to pay the amount 'A + B'. 
+
+Your task is to help Gold Merchant to keep his promise and 
+to charge the minimum amount to  gold coins
+into one gold coin
+
+Input Format:
+-------------
+Single line of space separated integers, number on the boxes.
+
+Output Format:
+--------------
+Print an integer, minimum amount to be paid by Customer
+
+Sample Input-1:
+---------------
+5 2 4 3 6
+
+Sample Output-1:
+----------------
+45
+
+explanation:
+sort - 2 3 4 5 6 
+2+3= 5
+5 4 5 6
+sort= 4 5 5 6 
+4+5= 9
+9 5 6 
+sort- 5 6 9
+5+6=11
+11  9
+sort- 9 11
+9+11= 20
+
+minimum cost -> 5+9+11+20 = 45.. 
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	cout<<"Enter vector size:"<<endl;
+	cin>>n;
+    vector<int>res;
+	vector<int>temps;
+	int input=0;
+    cout<<"Enter vector Elements:"<<endl;
+    for(int i=0;i<n;i++)
+    {
+    	cin>>input;
+    	temps.push_back(input);
+	}
+	int ptr=0;
+	int sizechange=1;
+	while(sizechange<n)
+	{
+		sort(temps.begin(),temps.end());
+		int temp=temps[ptr]+temps[ptr+1];
+		res.push_back(temp);
+		temps.push_back(temp);
+		ptr+=2;
+		sizechange++;
+	}
+	int sum=0;
+	for(auto x:res)
+	{
+		sum += x;
+	}
+	cout<<"The sum is:"<<endl;
+	cout<<sum<<endl;
+}

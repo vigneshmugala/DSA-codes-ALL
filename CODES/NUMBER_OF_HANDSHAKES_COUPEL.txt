@@ -1,0 +1,36 @@
+// Total N Couples
+// Only male can handshake with male and females
+// female can only handshake with males not females
+
+// 1 male can handshake with n-1 males and n-1 females
+// 1 female can handshake with n-1 males (except his partner)
+
+// so one couple can shake hands 3(n-1) times 
+// so recursive intiuion is 3*n-1 + rec(n-1) gives total handshakes..
+
+
+import java.util.*;
+
+class Main
+{
+    static int coupleHandshakes(int n)
+    {
+        if(n<=1)
+        {
+            return 0;
+        }
+        else
+        {
+            return 3*(n-1) + coupleHandshakes(n-1);
+        }
+        
+    }
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        
+        System.out.println(coupleHandshakes(n));
+    }
+}

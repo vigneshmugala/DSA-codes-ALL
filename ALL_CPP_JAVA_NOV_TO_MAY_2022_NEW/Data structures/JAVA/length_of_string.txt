@@ -1,0 +1,38 @@
+/* Write a function that returns the length of a string. 
+Make your function recursive.
+
+sample input/output:
+apple    
+5
+
+make
+4
+
+Keshav Memorial Institute of Technology
+39
+*/
+import java.util.*;
+public class Test
+{
+   static int len(String s, int i)
+   { 
+       if(s.charAt(i)=='\0')
+       {
+           return 0;
+       }
+       else
+       {
+           return(1+len(s,i+1));
+       }
+   }
+   public static void main(String[] args)
+   {
+       String str;
+       Scanner sc = new Scanner(System.in);
+       str=sc.nextLine();
+       str+='\0';
+       int i=0;
+       int length= len(str,i);
+       System.out.println(length);
+   }
+}

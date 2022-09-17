@@ -1,0 +1,103 @@
+In special MATHS where there is no rule of operator precedence. 
+All operators have equal precedence. 
+
+If + comes before * then + should perform before *.
+
+for given input 1-2*3 
+
+in general maths gives -5 as answer , but in special MATHS it is -3
+Evaluate the given string 
+
+string has only numbers (1 to 9) , operators(+,-,*,/)
+Between every number there will be a operator
+
+input =1-2*3
+output =-3
+
+input =
+1+2-3*4
+output =0
+
+
+-----------------------------------------------------------------------------------------
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int eval(string s)
+{
+   int val=0;
+   int val2=0;
+   char op=' ';
+   int res = 0;
+   for(int i=0;i<s.length();i++)
+   {
+      if(isdigit(s[i])&&op==' ')
+      {
+          val*=10;
+          val+=s[i]-'0';
+      }
+      if(isdigit(s[i])&&op!=' ')
+      {
+          val2*=10;
+          val2+=s[i]-'0';
+      }
+      else if(s[i]=='+'||s[i]=='/'||s[i]=='-'||s[i]=='*')
+      {
+          if(op!=' ')
+          {
+              switch(op)
+              {
+                  case '+':
+                     res=(val+val2);
+                     break;
+                  case '-':
+                     res=(val-val2);
+                     break;
+                  case '*':
+                     res=(val*val2);
+                     break;
+                  case '/':
+                     res=(val/val2);
+                     break;
+              }
+              //cout<<"VAL now is: "<<val<<"-->"<<"VAL 2 now is:"<<val2<<endl;
+              //cout<<res<<endl;
+              val=res;
+              val2=0;
+              op=s[i];
+          }
+          else
+          {
+              op=s[i];
+          }
+      }
+   }
+  switch(op)
+  {
+      case '+':
+        res= (val+val2);
+        break;
+      case '-':
+        res= (val-val2);
+        break;
+      case '*':
+        res= (val*val2);
+        break;
+      case '/':
+        res= (val/val2);
+        break;
+  }
+  //cout<<"VAL now is: "<<val<<"-->"<<"VAL 2 now is:"<<val2<<endl;
+  //cout<<res<<endl;
+  return res;
+}
+int main()
+{
+    string expr;
+    
+    cin>>expr;
+    
+    cout<<eval(expr)<<endl;
+}

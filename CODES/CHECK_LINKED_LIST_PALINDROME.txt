@@ -1,0 +1,37 @@
+class Solution{
+  public:
+   bool pal(string str)
+   {
+       for(int i=0;i<str.length();i++)
+       {
+           if(str[i]!=str[str.length()-1-i])
+           {
+               return false;
+           }
+       }
+      return true;
+   }
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        string str;
+        
+        if(head == NULL)
+        {
+            return 0;
+        }
+        
+        Node *temp = head;
+        
+        while(temp!=NULL)
+        {
+            str+= (temp->data)-'0';
+            temp=temp->next;
+        }
+        
+        if(pal(str)){return 1;}
+        else{return 0;}
+    }
+    
+};
+

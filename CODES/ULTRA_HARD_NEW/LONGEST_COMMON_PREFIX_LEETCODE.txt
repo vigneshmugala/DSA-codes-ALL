@@ -1,0 +1,54 @@
+class Solution {
+public:
+    
+    int maxlim(vector<string> &strs)
+    {
+        int ct = 0;
+        int ans = INT_MIN;
+        
+        for(int i=0;i<strs.size();i++)
+        {
+            for(char z:strs[i])
+            {
+                ct++;
+            }
+            ans = max(ans,ct);
+            ct=0;
+        }
+        return ans;
+    }
+    
+    
+    string longestCommonPrefix(vector<string>& strs) {
+        
+        int i = 0;
+        
+        set<int> hol;
+        
+        string com = "";
+        
+        int lim = maxlim(strs);
+        if(strs.size() == 0) return "";
+        
+        else if(strs.size() == 1) return strs[0];
+        
+        while(true)
+        {
+           for(int j=0;j<strs.size();j++)
+           {
+               if(strs[j].size() == 0) return "";
+               hol.insert(strs[j][i]);
+               
+           }
+            
+           if(hol.size() > 1) return com;
+           
+           com+=strs[0][i];
+           i++;
+           if(i>=lim) return com;
+           hol.clear();
+            
+        }
+    
+    }
+};

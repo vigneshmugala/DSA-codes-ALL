@@ -1,0 +1,81 @@
+Given a sorted integer array without duplicates, return the summary of its ranges.
+
+Example 1:
+Input:  [0,1,2,4,5,7]
+Output: ["0->2","4->5","7"]
+Explanation: 0,1,2 form a continuous range; 4,5 form a continuous range.
+
+input format:
+input =
+6
+0 1 2 4 5 7
+output =
+0->2
+4->5
+7
+first read the size of the array , followed by elements
+
+Example 2:
+Input:  [0,2,3,4,6,8,9]
+Output: ["0","2->4","6","8->9"]
+Explanation: 2,3,4 form a continuous range; 8,9 form a continuous range.
+
+input = 
+7
+0 2 3 4 6 8 9
+output =
+0
+2->4
+6
+8->9
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    int first=-1000; //0,2,3,4,6,8,9
+    int last=-5000; int flag=0;
+    for(int i=0;i<n-1;i++)
+    {
+        //if(i==(n-2)&&first!=-1000){cout<<first<<"->"<<arr[n-1]<<endl;flag=1;}
+        if(abs(arr[i]-arr[i+1])==1&&first==-1000)
+        {
+            first=arr[i];
+            /*if(i==(n-2))
+            {
+                flag=1;
+                cout<<arr[i]<<"->"<<arr[i+1]<<endl;
+            }*/
+        }
+       
+        else if(abs(arr[i]-arr[i+1])!=1)
+        {
+            if(first==-1000)
+            {
+                cout<<arr[i]<<endl;
+            }
+            else
+            {
+                last=arr[i];
+                if(last==arr[n-1]){flag=1;break;}
+                cout<<first<<"->"<<last<<endl;
+                first=-1000;last=-5000;
+            }
+        }
+    }
+    if(first!=-1000&&last==-5000){cout<<first<<"->"<<arr[n-1]<<endl;flag=1;}
+    if(flag==0){cout<<arr[n-1]<<endl;}
+}
+
+
+
+

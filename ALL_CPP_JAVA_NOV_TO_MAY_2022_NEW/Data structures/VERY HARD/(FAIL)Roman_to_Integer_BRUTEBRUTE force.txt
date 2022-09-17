@@ -1,0 +1,156 @@
+/*Roman Number to Integer*/
+#include<bits/stdc++.h>
+using namespace std;
+int result(string s)
+{ 
+  int val=0;
+  if(s=="I")
+  {
+  	val=1;
+  }
+  else if(s=="X")
+  {
+  	val=10;
+  }
+  else if(s=="L")
+  {
+  	val=50;
+  }
+  else if(s=="C")
+  {
+  	val=100;
+  }
+  else if(s=="D")
+  {
+  	val=500;
+  }
+  else if(s=="M")
+  {
+  	val=1000;
+  	
+  }
+  else if(s=="IV")
+  {
+  	val=4;
+  }
+  else if(s=="IX")
+  {
+  	val=9;
+  }
+  else if(s=="XL")
+  {
+  	val=40;
+  }
+  else if(s=="XC")
+  {
+  	val=90;
+  }
+  else if(s=="CD")
+  {
+  	val=400;
+  }
+  else if(s=="CM")
+  {
+  	val=900;
+  }
+
+ return val;
+}
+int getInteger(string r)
+{
+	int ans=0;
+	vector<string>vec;
+	
+	for(int i=0;i<r.length();i++)
+	{
+	   string temp="";
+	   if(r[i]=='X')
+	   {
+	   	   if(r[i+1]!='I')
+	   	   {
+	   	   	  temp+=r[i];
+	   	   	  temp+=r[i+1];
+	   	   	  i++;
+		   }
+		   else{
+		   	 temp+=r[i];
+		   }
+	   }
+	   else if(r[i]=='L')
+	   {
+	   	  if(r[i+1]!='I'&&r[i+1]!='X')
+	   	  {
+	   	  	 temp+=r[i];
+	   	  	 temp+=r[i+1];
+	   	  	 i++;
+		  }
+		  else{
+		  	temp+=r[i];
+		  }
+	   }
+	   else if(r[i]=='C')
+	   {
+	   	  if(r[i+1]!='I'&&r[i+1]!='X'&&r[i+1]!='L')
+	   	  {
+	   	  	 temp+=r[i];
+	   	  	 temp+=r[i+1];
+	   	  	 i++;
+		  }
+		  else{
+		  	temp+=r[i];
+		  }
+	   }
+	   else if(r[i]=='D')
+	   {
+	   	 if(r[i+1]!='I'&&r[i+1]!='X'&&r[i+1]!='L'&&r[i+1]!='C')
+	   	 {
+	   	 	temp+=r[i];
+	   	 	temp+=r[i+1];
+		 }
+		 else{
+		 	temp+=r[i];
+		 }
+	   }
+	   else if(r[i]=='M')
+	   {
+	   	 if(r[i+1]!='I'&&r[i+1]!='X'&&r[i+1]!='L'&&r[i+1]!='C'&&r[i+1]!='D')
+	   	 {
+	   	 	temp+=r[i];
+	   	 	temp+=r[i+1];
+	   	 	i++;
+		 }
+		 else{
+		 	temp+=r[i];
+		 }
+	   }
+	   else{
+	   	 if(r[i+1]!='I')
+	   	 {
+	   	 	temp+=r[i];
+	   	 	temp+=r[i+1];
+	   	 	i++;
+		 }
+		 else{
+		 	temp+=r[i];
+		 }
+	   }
+	 vec.push_back(temp);	
+	}
+	
+	for(string x:vec)
+	{
+	  	ans+=result(x);
+	}
+	
+	return ans;
+}
+
+int main()
+{
+  string rom;
+  cout<<"Enter roman number:"<<endl;
+  cin>>rom;
+  int res=0;
+  res=getInteger(rom);	
+  cout<<res<<endl;
+}

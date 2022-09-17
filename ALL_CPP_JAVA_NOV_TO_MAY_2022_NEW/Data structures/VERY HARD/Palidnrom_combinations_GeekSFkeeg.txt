@@ -1,0 +1,40 @@
+class Solution{   
+  public:
+    bool checkPal(string s){
+        bool pl=true; int l=0;
+        while(l<s.length())
+        {
+            if(s[l]!=s[s.length()-l-1])
+            {
+                pl=false;
+                break;
+            }
+            else{
+                l++;
+            }
+        }
+        if(!pl){return false;}
+        else{return true;}
+    }
+    // Function to check if a palindrome pair exists
+    bool palindromepair(int N, string arr[]) {
+        string k=""; int count=0;
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                if(j!=i&&arr[i][0]==arr[j][arr[j].size()-1]){
+                  k+=arr[i];
+                  k+=arr[j];
+                  if(checkPal(k)){
+                      count++;
+                      break;
+                  }
+                  k="";
+                }
+            }
+          if(count>=1){break;}
+        }
+      if(count>=1){return true;}
+      else{return false;}
+    }
+
+};

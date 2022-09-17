@@ -1,0 +1,30 @@
+/*Count even characters occuring from each Index and print it out*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"Enter numbers:"<<endl;
+	cin>>str;
+	vector<int>res;
+	
+	for(int i=0;i<str.length();i++)
+	{
+		int ct=0;
+		int j=i;
+		while(j<str.length())
+		{
+			int hol=str[j]-'0';
+			if(hol%2==0)
+			{
+			    ct++;
+			}
+			j++;
+		}
+		res.push_back(ct);
+	}
+	cout<<"Result is:"<<endl;
+	for(auto x:res){
+		cout<<x<<" ";
+	}	
+}

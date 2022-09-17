@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	   int num;
+	   Scanner sc = new Scanner(System.in);
+	   num = sc.nextInt();
+	   
+	   int i=0;
+	   int k=1;
+	   int ele_counter=1;
+	   int count = i+k;
+	   int count2 = 1;
+	   int printer = 1;
+	   for(i=0;i<num;i++)
+	   {
+	       count2=1;
+	       ele_counter = 1;
+	       while(ele_counter<= count)
+	       {
+	           printer=1;
+	           while(printer<=count2)
+	           {
+	               System.out.print(printer + " ");
+	               printer++;
+	               ele_counter++;
+	           }
+	           count2++;
+	       }
+	       k++;
+	       count += k;
+	       System.out.println("");
+	   }
+	}
+}

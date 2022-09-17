@@ -1,0 +1,142 @@
+/*tinku is playing three card game with scores x,y and z with computer.
+In each chance he choose 2 different non empty score cards,  subracts one point from the score and adds one point to computer score.
+
+the game will stops when there are fewer than two non-empty cards(meaning there are no more subtraction possible).
+
+Given three integers x, y and z , print maximum score computer can get.
+
+example
+input =2 4 6
+output =6
+
+x = 2, y = 4, z = 6
+
+Explanation: The starting scores are (2, 4, 6). 
+
+One optimal set of subtraction is:
+- Take from 1st and 3rd cards, scores is now (1, 4, 5)
+- Take from 1st and 3rd cards, scores is now (0, 4, 4)
+- Take from 2nd and 3rd cards, scores is now (0, 3, 3)
+- Take from 2nd and 3rd cards, scores is now (0, 2, 2)
+- Take from 2nd and 3rd cards, scores is now (0, 1, 1)
+- Take from 2nd and 3rd cards, scores is now (0, 0, 0)
+
+There are fewer than two non-empty cards, so the game ends. so computer total score is : 6.
+
+
+
+input =1 8 8
+output =8
+
+x = 1, y = 8, z = 8
+
+Explanation: One optimal set of scores is to take from the 2nd and 3rd cards for 8 turns until they are empty.
+After that, there are fewer than two non-empty cards, so the game ends. so computer will get score is 8 .
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int cards[3];
+   cout<<"Enter cards input:"<<endl;
+   for(int i=0;i<3;i++)
+   {
+   	   cin>>cards[i];
+   }
+   int cmpscore=0; // [3,6,9]==[2,6,8]==[1,6,7]==[0,6,6]==[0,0,0] -> 10;(1st, 3rd);
+   int choosable=2;//[3,6,9]=[2,5,9]==[1,4,9]==[0,3,9]==[0,2,8]==[0,1,8]==[0,0,7] ->7;(1st, 2nd);
+   sort(cards,cards+3);//[3,6,9]==[3,5,8]==[3,4,7]==[3,3,6]==[3,2,5]==[3,1,4]==[3,0,3]==[0,0,0] ->10;(2nd,3rd	);
+   int ct=0;
+   int com=0;
+   int min=0;
+   int a[3],b[3];
+   for(int i=0;i<3;i++){
+      a[i]=cards[i];
+      b[i]=cards[i];
+   }
+   while(com<3)
+   {
+   	 if(com==0)
+   	 {
+   	 	//choose 1st and 3rd cards
+   	 	ct+=cards[0];
+   	 	cards[2]-=cards[0];
+   	 	cards[0]-=cards[0];
+   	 	//cout<<"card 0 value is:"<<cards[0]<<endl;
+   	 	//cout<<"card 2 value is:"<<cards[2]<<endl;
+   	    if(cards[1]>=cards[2])
+   	    {
+   	    	ct+=cards[2];
+   	    	cards[1]-=cards[2];
+   	    	cards[2]-=cards[2];
+   	    	//cout<<"card 1 value is:"<<cards[1]<<endl;
+   	    	//cout<<"card 2 value is:"<<cards[2]<<endl;
+		}
+		else
+		{
+			ct+=cards[1];
+			cards[2]-=cards[1];
+			cards[1]-=cards[1];
+			//cout<<"card 1 value is:"<<cards[1]<<endl;
+   	    	//cout<<"card 2 value is:"<<cards[2]<<endl;
+		}
+		min=ct;
+		cout<<ct<<endl;
+		ct=0;
+   	 	com++;
+   	 	
+	 }
+	 else if(com==1)
+	 {
+	 	//choose 1st and 2nd cards
+	 	ct+=a[0];
+	 	a[1]-=a[0];
+   	 	a[0]-=a[0];
+   	    if(a[2]>=a[1])
+   	    {
+   	    	ct+=a[1];
+   	    	a[2]-=a[1];
+   	    	a[1]-=a[1];
+		}
+		else
+		{
+			ct+=a[2];
+			a[1]-=a[2];
+			a[2]-=a[2];
+		}
+		if(ct<=min){
+			min=ct;
+		}
+		//cout<<ct<<endl;
+		ct=0;
+	 	com++;
+	 }
+	 else if(com==2)
+	 {
+	 	//choose 2nd and 3rd cards
+	 	ct+=b[1];
+	 	b[2]-=b[1];
+   	 	b[1]-=b[1];
+   	    if(b[0]>=b[2])
+   	    {
+   	    	ct+=b[0];
+   	    	b[0]-=b[2];
+   	    	b[2]-=b[2];
+		}
+		else
+		{
+			ct+=b[2];
+			b[2]-=b[0];
+			b[0]-=b[0];
+		}
+		if(ct<=min){
+			min=ct;
+			
+		}
+		//cout<<ct<<endl;
+		ct=0;
+	 	com++;
+	 }
+   }
+   cout<<"Minimum points gained by computer is: "<<min<<endl;
+}

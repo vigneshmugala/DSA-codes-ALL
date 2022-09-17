@@ -1,0 +1,65 @@
+/* Find square root with decimal points 
+without using sqr() function*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout<<"Enter number:"<<endl;
+	cin>>n;
+	bool isPerfectSquare = false;
+	float sqrt=0;
+	for(double i=1;i<=n;i++)
+	{
+		if(i*i==n)
+		{
+			isPerfectSquare = true;
+			sqrt=i;
+			break;
+		}
+		
+		else if(i*i>n)
+		{
+			sqrt=i-1;
+			break;
+		}
+	}
+
+	float left=sqrt;
+	float right = sqrt+1;
+	float mid = 0;
+	if(!isPerfectSquare)
+	{
+		while(left<=right)
+		{
+			mid = (left+right)/2;
+			if(abs(mid*mid-n)<0.0001)
+			{
+				sqrt = mid;
+				break;
+			}
+			
+            else if(n>mid*mid)
+			{
+				left = mid;
+			}			
+			
+	        else if(n<mid*mid)
+			{
+				right=mid;
+				
+	    	}		
+			
+		}
+		
+	  
+	}
+	
+	
+	cout << "The Square root of" <<" " <<  n << " "<< "is" << endl;
+	cout << sqrt;
+	
+}

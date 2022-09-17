@@ -1,0 +1,203 @@
+Problem Link:
+https://www.codingninjas.com/codestudio/problems/ninja-s-training_3621003?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Method 1: Recursion
+
+#include<bits/stdc++.h>
+
+int help(int days,int prevActivity,vector<vector<int>> &points)
+{
+    if(days == 0)
+    {
+        //if days = 0(last day) then choose activity other than previousActivity 
+        //which will yield max merit points, so that in the end ultimately max value is achieved.
+        int maxValue = INT_MIN;
+        for(int i=0;i<3;i++)
+        {
+          if(i!=prevActivity){
+            maxValue = max(points[days][i],maxValue);
+           }
+        }
+        return maxValue;
+    }
+    
+    //We can perform any of three activities except prevActivity
+    int maxValue = INT_MIN;
+    for(int i=0;i<3;i++)
+    {
+       //if choose activity no.(i) then how many points would be achieved.
+      if(i!=prevActivity){
+       int pts = points[days][i] + help(days-1,i,points);
+       maxValue = max(maxValue , pts);
+      }
+    }
+    //at the end return maxValue choosing from all different possbilities
+    return maxValue;
+}
+
+
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    int ans = help(n-1,3,points);
+    return ans;
+}
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 2: Memoization
+
+
+#include<bits/stdc++.h>
+
+int help(int days,int prevActivity,vector<vector<int>> &points,vector<vector<int>> &dp)
+{
+    if(days == 0)
+    {
+        //if days = 0(last day) then choose activity other than previousActivity 
+        //which will yield max merit points, so that in the end ultimately max value is achieved.
+        int maxValue = INT_MIN;
+        for(int i=0;i<3;i++)
+        {
+          if(i!=prevActivity){
+            maxValue = max(points[days][i],maxValue);
+           }
+        }
+        return maxValue;
+    }
+    if(dp[days][prevActivity] != -1) return dp[days][prevActivity];
+    //We can perform any of three activities except prevActivity
+    int maxValue = INT_MIN;
+    for(int i=0;i<3;i++)
+    {
+       //if choose activity no.(i) then how many points would be achieved.
+      if(i!=prevActivity){
+       int pts = points[days][i] + help(days-1,i,points,dp);
+       maxValue = max(maxValue , pts);
+      }
+    }
+    //at the end return maxValue choosing from all different possbilities
+    return dp[days][prevActivity] = maxValue;
+}
+
+
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<vector<int>> dp(n, vector<int>(4,-1));
+    int ans = help(n-1,3,points,dp);
+    return ans;
+}
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 3: Tabulation
+
+
+
+#include<bits/stdc++.h>
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<vector<int>> dp(n, vector<int>(4));
+    //Evaluate Base Case.
+    dp[0][0]=max(points[0][1],points[0][2]);
+    dp[0][1]=max(points[0][0],points[0][2]);
+    dp[0][2]=max(points[0][0],points[0][1]);
+    
+    dp[0][3] = INT_MIN;
+    for(int i=0;i<4;i++)
+    {
+        dp[0][3] = max(dp[0][3],points[0][i]);
+    }
+    
+    //Now Work on Bottom up from i(days) 1 to (n-1) 
+    // second loop j(prev day) from 0 to 3
+    // third loop checks for prevDay and evaluates the actual calculation
+    
+    for(int days=1;days<n;days++)
+    {
+        for(int last=0;last<4;last++)
+        {
+            for(int i=0;i<3;i++)
+            {
+                if(i!=last)
+                {
+                    dp[days][last] = max(dp[days][last] , dp[days-1][i]+points[days][i]);
+                }
+            }
+            
+        }
+    }
+    return dp[n-1][3];
+    
+    
+    
+}
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 4: Space Optimization
+
+use 2 1-D arrays to supplement and entire N*4 2d array
+Space Complexity is reduced to O(N*4) to O(4)
+
+#include<bits/stdc++.h>
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<int> prev(4,0);
+    //Evaluate Base Case.
+    prev[0]=max(points[0][1],points[0][2]);
+    prev[1]=max(points[0][0],points[0][2]);
+    prev[2]=max(points[0][0],points[0][1]);
+    
+    prev[3] = INT_MIN;
+    for(int i=0;i<4;i++)
+    {
+        prev[3] = max(dp[0][3],points[0][i]);
+    }
+    
+    //Now Work on Bottom up from i(days) 1 to (n-1) 
+    // second loop j(prev day) from 0 to 3
+    // third loop checks for prevDay and evaluates the actual calculation
+    
+    vector<int> temp(4,0);
+
+    for(int days=1;days<n;days++)
+    {
+        for(int last=0;last<4;last++)
+        {
+            for(int i=0;i<3;i++)
+            {
+                if(i!=last)
+                {
+                    temp[last] = max(temp[last] , prev[i]+points[days][i]);
+                }
+            }
+            
+        }
+        prev = temp;
+    }
+    return prev[3];
+    
+    
+    
+}
+
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+

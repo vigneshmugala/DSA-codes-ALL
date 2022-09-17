@@ -1,0 +1,80 @@
+Problem link:
+
+
+https://www.codingninjas.com/codestudio/problems/maximum-path-sum-in-the-matrix_797998?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=1
+------------------------------------------------------
+
+Method 1: Tabulation
+
+#include <bits/stdc++.h> 
+
+int getMaxPathSum(vector<vector<int>> &matrix)
+{
+     int n = matrix.size();
+     int m = matrix[0].size();
+    
+     int dp[n][m];
+    
+     for(int j=0;j<m;j++) dp[0][j]=matrix[0][j];
+    
+     for(int i=1;i<n;i++)
+     {
+         for(int j=0;j<m;j++)
+         {
+             int up = -1e9;
+             int ld = -1e9;
+             int ud = -1e9;
+             
+             up = matrix[i][j] + dp[i-1][j];
+             if(j>0) ld = matrix[i][j] + dp[i-1][j-1];
+             if(j<m-1)ud = matrix[i][j] + dp[i-1][j+1];
+             
+             dp[i][j] = max(up,max(ld,ud));
+         }
+     }
+    
+    int ans = -1e9;
+    for(int j=0;j<m;j++)
+    {
+        ans = max(ans,dp[n-1][j]);
+    }
+    return ans;
+}
+
+
+-----------------------------------------------------------------------------------
+
+Method 2: Memoization + Recursion
+
+
+#include <bits/stdc++.h> 
+
+int maxPath(int i,int j, int n, int m, vector<vector<int>> &matrix, vector<vector<int>> &dp)
+{
+   if(j<0 || j>=m) return -1e9;
+    
+   if(i == 0) return matrix[i][j];
+  
+   if(dp[i][j] != -1) return dp[i][j];
+    
+   int up = matrix[i][j] + maxPath(i-1,j,n,m,matrix,dp); 
+   int ld = matrix[i][j] + maxPath(i-1,j-1,n,m,matrix,dp); 
+   int ud = matrix[i][j] + maxPath(i-1,j+1,n,m,matrix,dp);
+    
+   return dp[i][j] =  max(up,max(ld,ud));
+    
+}
+int getMaxPathSum(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+    int m = matrix[0].size();
+    
+    vector<vector<int>> dp(n, vector<int>(m,-1));
+    int maxAns = -1e9;
+    for(int j=0;j<m;j++)
+    {
+        int temp = maxPath(n-1,j,n,m,matrix,dp);
+        maxAns = max(maxAns,temp);
+    }
+    return maxAns;
+}

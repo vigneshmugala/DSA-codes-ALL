@@ -1,0 +1,16 @@
+/*Print all unique numbers below N
+input- n=5
+op - 1 2 3 4 
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int n;
+   cout<<"Enter no:"<<endl;
+   cin>>n;
+   for(int i=1;i<n;i++)
+   {
+   	  cout<<i<<" ";
+   }		
+}

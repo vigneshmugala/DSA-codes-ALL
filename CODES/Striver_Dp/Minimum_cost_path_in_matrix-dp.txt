@@ -1,0 +1,127 @@
+Problem Link:
+
+https://www.codingninjas.com/codestudio/problems/minimum-path-sum_985349?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=1
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 1: Recursion
+
+#include<bits/stdc++.h>
+int help(int i, int j, int n, int m, vector<vector<int>> &grid)
+{
+    if(i==n-1 && j==m-1) return grid[i][j];
+    if(i<0 || j<0 || i>=n || j>=m) return INT_MAX;
+    
+    
+    int right = help(i,j+1,n,m,grid);
+    int down =   help(i+1,j,n,m,grid);
+    
+    return grid[i][j] + min(right,down);
+}
+
+
+int minSumPath(vector<vector<int>> &grid) {
+   return help(0,0,grid.size(),grid[0].size(),grid);
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Method 2: Memoization
+
+#include<bits/stdc++.h>
+int help(int i, int j, int n, int m, vector<vector<int>> &grid,vector<vector<int>> &dp)
+{
+    if(i==n-1 && j==m-1) return grid[i][j];
+    if(i<0 || j<0 || i>=n || j>=m) return INT_MAX;
+    
+    if(dp[i][j] != -1) return dp[i][j];
+    int right = help(i,j+1,n,m,grid,dp);
+    int down =   help(i+1,j,n,m,grid,dp);
+    
+    return dp[i][j] = grid[i][j] + min(right,down);
+}
+
+
+int minSumPath(vector<vector<int>> &grid) {
+   vector<vector<int>> dp(grid.size(), vector<int>(grid[0].size() , -1));
+   return help(0,0,grid.size(),grid[0].size(),grid,dp);
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Method 3: Tabulation
+
+
+#include<bits/stdc++.h>
+int minSumPath(vector<vector<int>> &grid) {
+  
+    int n = grid.size();
+    int m = grid[0].size();
+    int dp[n][m];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(i==0 && j==0) dp[i][j] = grid[i][j];
+            else
+            {
+                int up = INT_MAX; int left = INT_MAX;
+                if(i>0)
+                {
+                   up = grid[i][j] + dp[i-1][j];
+                }
+                if(j>0)
+                {
+                    left = grid[i][j] + dp[i][j-1];
+                }
+                dp[i][j] = min(up,left);
+            }
+        }
+    }
+    return dp[n-1][m-1];
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Method 4: Space Optimization
+
+#include<bits/stdc++.h>
+int minSumPath(vector<vector<int>> &grid) {
+  
+    int n = grid.size();
+    int m = grid[0].size();
+    //int dp[n][m];
+    
+    vector<int> prev(m,0);
+    
+    for(int i=0;i<n;i++)
+    {
+        vector<int> cur(m,0);
+        for(int j=0;j<m;j++)
+        {
+            if(i==0 && j==0) cur[j] = grid[i][j];
+            else
+            {
+                int up = INT_MAX; int left = INT_MAX;
+                if(i>0)
+                {
+                    //We use previous Row's j column
+                   up = grid[i][j] + prev[j];
+                }
+                if(j>0)
+                {
+                    //We use current Row's j-1 column
+                    left = grid[i][j] + cur[j-1];
+                }
+                cur[j] = min(up,left);
+            }
+        }
+        prev = cur;
+    }
+    return prev[m-1];
+}

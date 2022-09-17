@@ -1,0 +1,125 @@
+create a Employee Class and Department Class with the following 
+instance variables.
+
+Employee-
+Eno-int
+Ename-string
+Esal-int
+Department.Dno-int
+Comm-int
+YOE-int
+
+
+
+Department
+Dno-int
+Dname-string
+Dloc-string
+
+create necessary setters/getters
+
+Write a Main Class to read a set of n Employee records 
+and Department records
+
+You are now supposed to do the following 
+
+1) Print the Number of Employees having 10+ above YOE
+2) Print the Number of Employees working for a given department location
+
+
+
+---------------------------------------------------------------------------------
+
+import java.util.*;
+class Department
+{
+    int dno;
+    String dname;
+    String dloc;
+    Department(int dno)
+    {
+        this.dno=dno;
+    }
+    Department(int dno,String dname,String dloc)
+    {
+        this(dno);
+        this.dname=dname;
+        this.dloc=dloc;
+    }
+}
+class Employee
+{
+    int eno;
+    String ename;
+    int esal;
+    int comm;
+    int yoe;
+    int deptno;
+    
+    Employee(int eno, String ename, int esal, int deptno, int comm, int yoe)
+    {
+        this.eno = eno;
+        this.ename=ename;
+        this.esal=esal;
+        this.deptno=deptno;
+        this.comm=comm;
+        this.yoe=yoe;
+    }
+}
+class main
+{
+    public static void main(String[] args)
+    {
+        int deps;
+        Scanner sc = new Scanner(System.in);
+        deps=sc.nextInt();
+        ArrayList<Department>depoos = new ArrayList<Department>();
+        for(int i=0;i<deps;i++)
+        {
+            int deno=sc.nextInt();
+            String dename=sc.next();
+            String deloc=sc.next();
+            depoos.add(new Department(deno,dename,deloc));
+        }
+        
+        int emps;
+        emps=sc.nextInt();
+        int tenyoe=0;
+        ArrayList<Employee>empoos = new ArrayList<Employee>();
+        for(int i=0;i<emps;i++)
+        {
+            int empno=sc.nextInt();
+            String empname=sc.next();
+            int empsal=sc.nextInt();
+            int deptnum=sc.nextInt();
+            int empcomm=sc.nextInt();
+            int empyoe=sc.nextInt(); if(empyoe>10){tenyoe++;}
+            empoos.add(new Employee(empno,empname,empsal,deptnum,empcomm,empyoe));
+        }
+        String city;
+        city=sc.next();
+        
+        int refdepno=0;
+        for(Department dep: depoos)
+        {
+            if((dep.dloc).equals(city))
+            {
+                refdepno=dep.dno;
+                break;
+            }
+        }
+        int empcount=0;
+        for(Employee emp:empoos)
+        {
+            if(emp.deptno==refdepno)
+            {
+                empcount++;
+            }
+        }
+        System.out.println(tenyoe);
+        System.out.println(empcount);
+    }
+}
+
+
+

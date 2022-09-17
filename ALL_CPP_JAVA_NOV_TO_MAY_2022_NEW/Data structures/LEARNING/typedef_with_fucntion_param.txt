@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef struct
+{
+	string name;
+	string model;
+    int cost;
+    int rating;
+}Car;
+
+void printSt(Car c)
+{
+	cout<<c.name<<endl;
+	cout<<c.model<<endl;
+	cout<<c.cost<<endl;
+	cout<<c.rating<<endl;
+}
+int main()
+{
+	Car c1,c2;
+	c1.name="Lamborgini";
+	c1.model="X5";
+	c1.cost=2000000000;
+	c1.rating=10;
+	
+	c2.name="Maruti 800";
+	c2.model="Old";
+	c2.cost=100000;
+	c2.rating=2;
+	
+	printSt(c1);
+	printSt(c2);
+	
+}

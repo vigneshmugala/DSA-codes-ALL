@@ -1,0 +1,55 @@
+/*Shift the Grid by n shifts(Right shift)*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int row,col,shifts;
+	cout<<"Enter rows:"<<endl;
+	cin>>row;
+	cout<<"Enter coloums:"<<endl;
+	cin>>col;
+	cout<<"Enter shifts:"<<endl;
+	cin>>shifts;
+	int grid[row][col];
+	int size=row*col;
+	int arr[size];
+	int k=0;
+	for(int i=0;i<row;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			cin>>grid[i][j];
+			arr[k]=grid[i][j];
+			k++;
+		}
+	}	
+	k=0;
+	while(k<shifts)
+	{
+	   int temp=arr[size-1];
+	   for(int i=size-1;i>=0;i--)
+	   {
+	   	   arr[i+1]=arr[i];
+	   }
+	   arr[0]=temp;	
+	   k++;
+	}
+	k=0;
+	for(int i=0;i<row;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+		   grid[i][j]=arr[k];
+		   k++;	
+		}
+	}
+	
+	for(int i=0;i<row;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			cout<<grid[i][j]<<" ";
+		}
+	  cout<<endl;
+	}
+}

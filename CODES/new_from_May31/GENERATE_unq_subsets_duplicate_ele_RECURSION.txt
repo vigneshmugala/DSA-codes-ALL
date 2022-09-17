@@ -1,0 +1,50 @@
+// Unique subsets generation in array with Duplicate elements
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void subgen(int index , int arr[] , int n , vector<int>&sub, vector<vector<int>>&ans)
+{
+	if(index>=n)
+	{
+		ans.push_back(sub);
+		return;
+	}
+	else{
+    sub.push_back(arr[index]);
+    subgen(index+1,arr,n,sub,ans);
+    
+    sub.pop_back();
+    
+    while(arr[index]==arr[index+1] && index+1<n)
+    {
+    	index++;
+	}
+	subgen(index+1,arr,n,sub,ans);
+   }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+    	cin>>arr[i];
+	}
+	sort(arr,arr+n);
+	vector<int> subset;
+	vector<vector<int>>ans;
+	
+	subgen(0,arr,n,subset,ans);
+	
+	for(auto k: ans)
+	{
+		for(auto g:k)
+		{
+			cout<<g<<" ";
+		}
+	  cout<<endl;
+	}
+}

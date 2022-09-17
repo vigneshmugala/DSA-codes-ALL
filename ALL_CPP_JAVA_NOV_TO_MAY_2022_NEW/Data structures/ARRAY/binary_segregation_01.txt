@@ -1,0 +1,55 @@
+/*
+ 010101
+ push 1's to right side
+ push 0's to left side
+ 000111 - result
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout << "enter array size:" << endl;
+	cin >> n;
+	int arr[n];
+	cout << "Enter array ele:" << endl;
+	
+	for(int i=0;i<n;i++)
+	{
+		cin >> arr[i];
+	}
+	
+		  int left=0;
+          int right=n-1;
+     
+    while(left<right)
+    {
+    	while(arr[left]==0 && left<right)
+    	{
+    		left++;
+		}
+		while(arr[right] == 1 && left<right)
+		{
+			right--;
+		}
+		
+		if(left<right)
+		{
+			swap(arr[left],arr
+			[right]);
+			left++;
+			right--;
+		}
+	}
+	cout<<"binary segregrated array is now:"<<endl;
+	for(int j=0;j<n;j++)
+	{
+		cout<<arr[j]<<" ";
+	}
+		
+	
+	
+}

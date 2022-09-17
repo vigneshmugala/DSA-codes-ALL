@@ -1,0 +1,45 @@
+/*Generate all sub matrices of a Given Square Matrix*/
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int n;
+	cin>>n;
+	int a[n][n];
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cin>>a[i][j];
+		}
+	}
+	vector<vector<int>>results;
+	int ioff,joff,sub_size,off_cnt;
+	vector<int>temp;
+	for(sub_size=n;sub_size>1;sub_size--)
+	{
+		off_cnt=n-sub_size+1;
+		for(ioff=0;ioff<off_cnt;ioff++)
+		{
+			for(joff=0;joff<off_cnt;joff++)
+			{
+				for(int i=0;i<sub_size;i++)
+				{
+					for(int j=0;j<sub_size;j++)
+					{
+						temp.push_back(a[i+ioff][j+joff]);
+					}
+				}
+			 results.push_back(temp);
+			 temp.clear();
+			}
+		}
+	}
+	for(auto x:results)
+	{
+		for(auto y:x)
+		{
+			cout<<y<<" ";
+		}
+	  cout<<endl;
+	}
+}

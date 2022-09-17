@@ -1,0 +1,20 @@
+/*Reverse a String with Recursion*/
+
+#include<bits/stdc++.h>
+using namespace std;
+void reverse(string s,int in)
+{
+	if(in==0)
+	{
+		cout<<s[0];
+	}
+	else{
+		cout<<s[in];
+		reverse(s,in-1);
+	}
+}
+int main(){
+	string s,t;
+	cin>>s;
+	reverse(s,s.length()-1);
+}

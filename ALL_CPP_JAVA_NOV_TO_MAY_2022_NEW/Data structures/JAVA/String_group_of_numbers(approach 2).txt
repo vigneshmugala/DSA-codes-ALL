@@ -1,0 +1,49 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int size=0;
+	size=sc.nextInt();  
+	
+    sc.nextLine(); // we cannot simultaneously take sc.nextInt() and sc.nextLine() inputs so int between we have to keep this
+    String str;
+    str=sc.nextLine();
+    int flag=0;
+    String arr[]=new String[size]; 
+    for(int i=0;i<str.length();i++)
+    {
+        if(str.charAt(i)==',')
+        {
+            flag=0;
+        }
+        else if(str.charAt(i)==' ')
+        {
+            flag=1;
+        }
+    }  
+    
+    if(flag==0)
+    {
+        arr=str.split(",");
+    }
+    else{
+         arr=str.split(" ");
+    }
+    int j=0;
+    int sum=0;
+    for(String s:arr)
+    {
+        int i=Integer.parseInt(s);
+        sum += i*j;
+        j++;
+    }
+    
+    System.out.println(sum);
+    
+}
+
+
+
+
+}

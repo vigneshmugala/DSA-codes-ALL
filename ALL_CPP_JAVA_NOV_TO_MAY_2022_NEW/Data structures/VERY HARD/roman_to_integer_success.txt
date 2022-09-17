@@ -1,0 +1,45 @@
+/*Roman to Integers*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	map<char,int>vals;
+	vals.insert(pair<char,int>('I',1));
+	vals.insert(pair<char,int>('V',5));
+	vals.insert(pair<char,int>('X',10));
+	vals.insert(pair<char,int>('L',50));
+	vals.insert(pair<char,int>('C',100));
+	vals.insert(pair<char,int>('D',500));
+	vals.insert(pair<char,int>('M',1000));
+	string str;
+	cout<<"Enter roman numeral:"<<endl;
+	cin>>str;
+	int sum=0;
+	vector<int>vec;
+	for(int i=0;i<str.length();i++)
+	{
+	    for(auto x:vals)
+	    {
+	    	if(str[i]==x.first)
+	    	{
+	    		vec.push_back(x.second);
+	    		break;
+			}
+		}
+	}
+	sum+=vec[0];
+	for(int i=1;i<vec.size();i++)
+	{
+		if(vec[i-1]<vec[i])
+		{
+			sum+=(vec[i]-vec[i-1]);
+			sum-=vec[i-1];
+		}
+		else
+		{
+			sum+=vec[i];
+		}
+	}
+	cout<<"Integer value is:"<<endl;
+	cout<<sum<<endl;
+}

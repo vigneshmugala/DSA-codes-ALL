@@ -1,0 +1,54 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+       set<int> s;
+       sort(nums.begin(),nums.end());
+       for(int i=0;i<nums.size();i++)
+       {
+           s.insert(nums[i]);
+       }
+        vector<int>ref1;
+        
+        for(int n: s)
+        {
+            ref1.push_back(n);
+        }
+        int ref2[10];
+        for(int i=0;i<10;i++){ref2[i]=0;}
+        int m = 0;
+        ref2[m]++;
+        for(int i=0;i<nums.size()-1;i++)
+        {
+            if(nums[i]==nums[i+1])
+            {
+                ref2[m]++;
+            }
+            else
+            {
+                m++;
+                ref2[m]++;
+            }
+        }
+       
+        multimap<int,int>pai;
+        multimap<int,int>::reverse_iterator it;
+        for(int i=0;i<ref1.size();i++)
+        {
+            pai.insert(pair<int,int>(ref2[i],ref1[i]));
+        }
+        
+        int kount=0;
+        vector<int>fin;
+        for(it = pai.rbegin();it!=pai.rend();it++)
+        {
+            fin.push_back(it->second);
+            kount++;
+            if(kount>=k)
+            {
+                break;
+            }
+        }
+     sort(fin.begin(),fin.end());
+     return fin;
+    }
+};

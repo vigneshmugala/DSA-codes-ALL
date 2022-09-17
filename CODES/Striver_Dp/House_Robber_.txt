@@ -1,0 +1,83 @@
+Problem Link:
+https://www.codingninjas.com/codestudio/problems/house-robber_839733?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=1
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 1: Recursion
+
+#include<bits/stdc++.h>
+
+long long int help(int i, int n, bool firstHouseRobbed ,vector<int> &valueInHouse, vector<int> &dp)
+{
+   if(i == 0)
+   {
+       if(firstHouseRobbed) return 0;
+       else return valueInHouse[i];
+   }
+    
+   if(i < 0) return 0;
+    
+   if(i == n){firstHouseRobbed = true;}
+   long long int rob = help(i-2, n, firstHouseRobbed, valueInHouse, dp) + valueInHouse[i];
+   
+   if(i == n){firstHouseRobbed = false;}
+   long long int notRob = help(i-1, n, firstHouseRobbed, valueInHouse, dp);
+   return max(rob,notRob); 
+}
+
+
+long long int houseRobber(vector<int>& valueInHouse)
+{
+    //Memoization
+    int n = valueInHouse.size();
+    vector<int> dp(n, -1);
+    long long int ans = help(n-1, n-1, false, valueInHouse, dp);
+    return ans;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+
+Method 2: Tabulation
+
+#include<bits/stdc++.h>
+int calc(vector<int> vec)
+{
+     int n = vec.size();
+     vector<int> dp(n);
+     dp[0] = vec[0];
+     int pick = 0;
+     int notPick = 0;
+     for(int i=1;i<n;i++)
+     {
+         pick = vec[i];
+         if(i>1) pick+=dp[i-2];
+         notPick = dp[i-1];
+         dp[i] = max(pick,notPick);
+     }
+    return dp[n-1];
+}
+
+
+
+long long int houseRobber(vector<int>& valueInHouse)
+{
+    //Tabulation divide problem into 2 halves first half: solve for array which doesn't have 1st ele
+    // second half: solve for array which doesn't have last ele
+    //max(firsthalf, secondhalf ) is the answer.
+    
+    vector<int> a,b;
+    int n = valueInHouse.size();
+    for(int i=0;i<n;i++)
+    {
+        if(i != 0) a.push_back(valueInHouse[i]);
+        if(i != (n-1)) b.push_back(valueInHouse[i]);
+    }
+    
+    int fh = calc(a);
+    int sh = calc(b);
+    
+    return max(fh,sh);
+}
+

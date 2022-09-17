@@ -1,0 +1,67 @@
+/* 0/1 KnapSack Problem
+   
+   There are set of Items, each Item is associated With a Price p[i]
+   Each Item is also has a certain weight w[i];
+   
+   There is a bag(knapSak) with capacity W.
+   
+   Return Maximum Profit that can be achieved.
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int profitKnapsack(int i,int capacity,int profit,vector<int> &weights,vector<int> &prices)
+{
+	if(i>=weights.size()) return 0;  // if we finish looking up all items and reach item which do not exist then maxProfit is obviously 0
+	if(capacity == 0) return profit;  // if capacity is 0 then return current Profit we got(Base case)
+	
+	int maxprofit = INT_MIN;  // Inititalize maxprofit with lowest integer value possible;
+	
+	
+	//Choice 1: We place ith Item in KnapSack
+	capacity-=weights[i];  // -> Reduce the capacity
+	profit+=prices[i];     //  -> Increase the profit
+	int prof1 = profitKnapsack(i+1,capacity,profit,weights,prices);  // -> call recursion for next Item
+	                                                            //prof1 returns the maxprofit of choosing ith Item 
+	maxprofit = max(maxprofit,prof1);    //Update maxProfit variable
+		
+		
+	//Choice 2: We don't place ith Item in KnapSack
+	capacity+=weights[i];   // -> Don't place the weight , Backtrack
+	profit-=prices[i];      // -> Don't increase the profit, Backtrack
+	int prof2 = profitKnapsack(i+1,capacity,profit,weights,prices); // ->call recursion for next Item
+	                                                                //prof2 returns the maxprofit of not choosing the ith Item         
+	maxprofit = max(maxprofit,prof2);  // Update maxProft variable
+	
+	
+	return maxprofit;  //always return maxProfit we get
+	
+}
+
+
+int main()
+{
+	int n;
+	cout<<"Enter no.of Items: "<<endl;
+	cin>>n;
+	
+	vector<int> weights(n,0);
+	vector<int> prices(n,0);
+	
+	cout<<"Enter Weights of each Item: "<<endl;
+	for(int i=0;i<n;i++) cin>>weights[i];
+	
+	cout<<"Enter Prices of Each Item: "<<endl;
+	for(int i=0;i<n;i++) cin>>prices[i];
+	
+	int capacity;
+	cout<<"Enter Capacity of KnapSack: "<<endl;
+	cin>>capacity;
+	
+	int maxProfit = profitKnapsack(0,capacity,0,weights,prices);
+	
+	cout<<"Max Profit That can be Achieved is: "<<endl;
+	
+	cout<<maxProfit<<endl;
+}

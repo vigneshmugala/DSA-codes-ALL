@@ -1,0 +1,64 @@
+/* Rat In a Maze
+   Given a Grid(mxn) which contains only 0's and 1's 
+   Output the number of ways which rat can escape from point(x,y) in grid to the end point(m-1,n-1)
+   
+    1 0 0 0 
+    1 1 1 0
+    0 0 1 1
+    0 0 1 1    ---> 2 ways 
+    
+*/
+#include<bits/stdc++.h>
+using namespace std;
+
+int RatEscape(int i, int j, int r, int c, vector<vector<int>> &maze)
+{
+	if(i==(r-1)&&j==(c-1)) return 1;
+	if(i<0||j<0||i==r||i==c||maze[i][j]==0)
+	{
+		return 0;
+	}
+	else
+	{
+	maze[i][j] = 0;
+	
+	int north = RatEscape(i-1,j,r,c,maze);
+	int south = RatEscape(i+1,j,r,c,maze);
+ 	int east = RatEscape(i,j+1,r,c,maze);	
+	int west = RatEscape(i,j-1,r,c,maze);
+	maze[i][j] = 1;
+	return(north+south+east+west);
+   }
+}
+
+int main()
+{
+	int r,c;
+	cout<<"Enter maze dimesions:  ";
+	cin>>r;
+	cin>>c;
+	
+	vector<vector<int>> maze;
+	vector<int> temp;
+	
+	cout<<"Enter maze elements(0,1)"<<endl;
+	for(int i=0;i<r;i++)
+	{
+		for(int j=0;j<c;j++)
+		{
+			int in;
+			cin>>in;
+			temp.push_back(in);
+		}
+		maze.push_back(temp);
+		temp.clear();
+	}
+	
+	cout<<"Starting position of Mouse:(x,y)  "<<endl;
+	int x,y;
+	cin>>x;
+	cin>>y;
+	
+	int ans = RatEscape(0,0,r,c,maze);
+	cout<<ans<<endl;
+}

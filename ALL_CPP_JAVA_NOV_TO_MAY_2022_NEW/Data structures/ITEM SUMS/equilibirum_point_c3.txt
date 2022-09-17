@@ -1,0 +1,63 @@
+/*Equilibrium point in array
+
+ sum of lower indexes = sum of indexes at higher indexes
+ 
+ no.of lower indexes used to get the sum of higher indexed element is called eq .point
+ 
+ input- 1 2 0 3 
+  (1+2 = 3)
+  lower indexes used = 2;
+  eqilibirum point = 2*/
+ 
+ 
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout << "Enter aray size:" << endl;
+	cin >> n;
+	
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin >> arr[i];
+	}
+	
+	int target = arr[n-1];
+	int count = 1;
+	int sum=0;
+	int j=0;
+	bool found=false;
+    for(int i=0;i<n;i++)
+	{
+		count=j;
+		sum=0;
+		if(i==target)
+		{ 
+		   count=1;
+		   break;
+		}
+		for(int j=i;j<n;j++)
+		{
+		   sum+=arr[j];
+		   count++;
+		   if(sum==target)
+		   {
+		   	 found=true;
+		   	 break;
+		   }
+		}
+		if(found){
+		 cout<< "Equlibrium point:"<<" " <<count << endl;
+		 break;
+		}
+	 j++;
+	}	
+	
+	
+	
+	
+	
+}

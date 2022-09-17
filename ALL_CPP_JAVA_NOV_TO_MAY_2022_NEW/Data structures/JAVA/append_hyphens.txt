@@ -1,0 +1,69 @@
+/*
+Implement the following function
+String moveHyphen (String str, int n) ;
+
+The function accepts a string “str” of length ‘n’, that contains alphabets and 
+hyphens (-). Implement the function to move all hyphens(-) in the string to the 
+front of the given string.
+
+NOTE:- Return null if str is null.
+
+Example :-
+
+Input:
+str.Move-Hyphens-to-Front
+Output:
+—MoveHyphenstoFront
+Explanation:-
+
+The string “Move-Hyphens -to-front” has 3 hyphens (-), which are moved to the front of the string, this output is “— MoveHyphen”
+
+Sample Input
+
+Str: String-Compare
+Sample Output-
+
+-StringCompare
+*/
+import java.util.*;
+class Main
+{
+    public static String moveHyphen (String str, int n) 
+    {
+        int count=0;
+        String result;
+        for(int i=0;i<n;i++)
+        {
+            if(str.charAt(i)=='-')
+            {
+                count++;
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder("");
+        for(int i=0;i<count;i++)
+        {
+            sb.append("-");
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(str.charAt(i)!='-')
+            {
+                sb.append(str.charAt(i));
+            }
+        }
+       result=sb.toString();
+       return result;
+    }
+
+    public static void main (String[]args) 
+    {
+       Scanner sc = new Scanner(System.in);
+       String st;
+       st=sc.next();
+       int len=st.length();
+       String res = moveHyphen(st,len);
+       System.out.println(res);
+        
+    } 
+}

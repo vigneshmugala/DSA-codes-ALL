@@ -1,0 +1,35 @@
+/*
+input- hello
+o/p
+ h
+ ee
+ lll
+ llll
+ ooooo*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"Enter String:"<<endl;
+	cin>>str;
+	int n=str.length();
+	int i=1;
+	int j=0;
+	for(int i=0;i<n;i++)
+	{
+		j=0;
+		while(j<=i)
+		{
+			cout<<str[i];
+			j++;
+		}
+		cout<<endl;
+		
+	}
+	
+	
+	
+	
+}

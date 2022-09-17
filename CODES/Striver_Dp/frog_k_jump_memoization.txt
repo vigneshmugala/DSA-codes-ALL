@@ -1,0 +1,52 @@
+/* Frog Jump Problem where we can jump "k" steps at a Time. Heights array consists of heights of each step
+   
+   | heights[i-1] - heights[j-1] | is the energy consumed after climbing from ith stair to jth stair.
+   
+   Find a way which consumes minimum possible energy and Return the value of minimum possible energy consumed at climbing n stairs starting from 0th stair */
+   
+#include<bits/stdc++.h>
+using namespace std;
+
+int help(int n , int k , vector<int> &heights, vector<int> &dp)
+{
+	if(n == 0) return 0;
+	
+	if(dp[n] != -1) return dp[n];
+	
+	int finAns = INT_MAX;
+	for(int j=1;j<=k;j++)
+	{
+		if((n-j) >= 0)
+		{
+			int ans = help(n-j, k, heights, dp) + abs(heights[n] - heights[n-j]);
+			finAns = min(finAns,ans);
+		}
+	}
+	
+	return dp[n] = finAns;
+	
+}
+
+
+int main()
+{
+	int n;
+	cout<<"Enter no.of Stairs: "<<endl;
+	
+	cin>>n;
+	
+	vector<int> heights(n-1,0);
+	cout<<"Enter heights array values: "<<endl;
+	
+	for(int i=0;i<n-1;i++) cin>>heights[i];
+	
+	int k;
+	cout<<"Enter max jump step limit (K) :"<<endl;
+	cin>>k;
+	
+	vector<int> dp(n,0);
+    
+    int ans = help(n-1 , k , heights, dp);
+    cout<<ans<<endl;
+}
+

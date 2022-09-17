@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void NQueens(int i, int n, vector<vector<int>> &chessBoard, vector<vector<vector<int>>> &ans,vector<int>&colCheck
+,vector<int> &topRightCheck, vector<int> &topLeftCheck)
+{
+	if(i==n)
+	{
+		ans.push_back(chessBoard);
+		return;
+	}
+	
+	for(int j=0;j<n;j++)
+	{
+		if(colCheck[j]!=1&&topRightCheck[i+j]!=1&&topLeftCheck[i-j+n-1]!=1)
+		{
+			chessBoard[i][j]=1;
+			
+			colCheck[j]=1;
+			topRightCheck[i+j]=1;
+			topLeftCheck[i-j+n-1]=1;
+			
+			NQueens(i+1,n,chessBoard,ans,colCheck,topRightCheck,topLeftCheck);
+			
+			chessBoard[i][j]=0;
+			
+			colCheck[j]=0;
+			topRightCheck[i+j]=0;
+			topLeftCheck[i-j+n-1]=0;
+		}
+	}
+}
+
+
+int main()
+{
+	int n;
+	cout<<"Enter chessBoard Size: "<<endl;
+	cin>>n;
+	
+	vector<vector<int>> chessBoard(n,vector<int>(n,0));
+	vector<vector<vector<int>>> ans;
+	
+	
+	vector<int> colCheck(n,0);
+	vector<int> topRightCheck(2*n,0);
+	vector<int> topLeftCheck(2*n,0);
+	
+	NQueens(0,n,chessBoard,ans,colCheck,topRightCheck,topLeftCheck);
+	
+	for(auto t: ans)
+	{
+		for(auto b:t)
+		{
+			for(auto v:b)
+			{
+				cout<<v<<" ";
+			}
+		  cout<<endl;
+		}
+		cout<<"--------------------------"<<endl;
+	}
+}

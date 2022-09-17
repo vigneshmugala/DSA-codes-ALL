@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string key,inp;
+    cin>>key;
+    cin>>inp;
+    int j=0; int k=0;
+    int a[inp.length()];
+  for(int j=0;j<inp.length();j++){
+    for(int i=0;i<key.length();i++)
+    {
+        if(key[i]==inp[j])
+        {
+           a[k]=i;
+           k++;
+        }
+    }
+  }
+    int dis=0;
+    for(int i=0;i<k;i++)
+    {
+      //cout<<"Current element is :"<<a[i]<<endl;
+        if(i==0)
+        {
+            dis+=abs(0-a[i]);
+        }
+        else
+        {
+            dis+=abs(a[i-1]-a[i]);
+        }
+      //cout<<"DIS value currently is: "<<dis<<endl;
+    }
+    cout<<dis<<endl;
+}

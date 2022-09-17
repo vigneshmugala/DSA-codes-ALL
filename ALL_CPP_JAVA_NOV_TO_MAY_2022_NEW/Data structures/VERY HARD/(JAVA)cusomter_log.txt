@@ -1,0 +1,109 @@
+/*
+
+Given an integer representing the capacity of a cyber cafe and a sequence representing 
+entry/exit logs of customers, find the total number of customers who could not get any 
+computer.
+
+The first occurrence in the given sequence indicates the arrival, and the second 
+occurrence indicates the departure for a customer. A customer cannot be serviced 
+when the cafe capacity is full (when all computers are allocated).
+
+Input:
+
+sequence = "ABCDDCEFFEBGAG"
+capacity = 3
+
+Output: 2
+
+Explanation: Customers 'D' and 'F' left unattended
+
+
+Input:
+
+sequence = "ABCDDCBEFFEGAG"
+capacity = 2
+
+Output: 3
+
+Explanation: Customers 'C', 'D', and 'F' left unattended
+
+*/
+import java.util.*;
+class Main
+{
+    static boolean checkAlready(char k,ArrayList<Character>a)
+    {
+        boolean there=false;
+        int ind=a.indexOf(k);
+        if(ind == -1)
+        {
+            there=false;
+        }
+        else{
+            there=true;
+        }
+       if(there){
+           return true;
+       } 
+       else{
+           return false;
+       }
+        
+    }
+	public static int findUnattendedCustomers(String seq, int cap)
+	{
+	   ArrayList<Character>arr=new ArrayList<Character>();
+	   ArrayList<Character>un=new ArrayList<Character>();
+	   int ct=0;
+	   int unattended=0;
+	   for(int i=0;i<seq.length();i++)
+	   {
+	      if(ct==cap)
+	      {
+	         if(checkAlready(seq.charAt(i),arr))
+	         {
+	             int in=arr.indexOf(seq.charAt(i));
+	             arr.set(in,'0');
+	             ct--;
+	         }
+	         else
+	         {
+	            if(!checkAlready(seq.charAt(i),un))
+	            {
+	                un.add(seq.charAt(i));
+	                unattended++;
+	            }
+	           
+	         }
+	          
+	      }
+	      else if(ct<cap)
+	      {
+	          if(checkAlready(seq.charAt(i),arr))
+	          {
+	             int in=arr.indexOf(seq.charAt(i));
+	             arr.set(in,'0');
+	             ct--;
+	          }
+	          else
+	          {
+	             arr.add(seq.charAt(i));
+	             ct++;
+	          }
+	      }
+	   }
+	   
+	 return unattended;
+	}
+	public static void main(String[] args)
+	{
+	    String str;
+	    int c;
+	    Scanner sc=new Scanner(System.in);
+	    str=sc.next();
+	    c=sc.nextInt();
+	    int u=findUnattendedCustomers(str,c);
+	    System.out.println(u);
+	    
+	}
+}

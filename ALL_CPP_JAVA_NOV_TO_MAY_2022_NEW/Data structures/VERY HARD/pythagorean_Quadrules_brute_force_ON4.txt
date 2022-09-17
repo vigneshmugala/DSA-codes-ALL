@@ -1,0 +1,91 @@
+/*Pythagoras a mathematicians is playing with a group of numbers which contains distinct numbers(>0),
+He finds the number of valid quadruples that can be formed with the given numbers.
+
+The rules to check if it is a valid qudraples are as follows:
+    - It contains 4 numbers a, b, c, d
+    where a*b = c*d  and a != b != c != d
+
+If He is not able to do so, he prints 0 
+
+
+Write the code to check if the Pythagoras is correct or not. 
+
+The first line of input consists of the group size followed by group numbers 
+
+Input =5
+3 2 4 1 6
+output= 16
+
+Explanation:
+-------------
+There are 16 valid Quadrules:
+(2,3,1,6) , (2,3,6,1) , (6,1,3,2) , (6,1,2,3)
+(3,2,1,6) , (3,2,6,1) , (1,6,3,2) , (1,6,2,3)
+(2,6,3,4) , (2,6,4,3) , (6,2,3,4) , (6,2,4,3)
+(3,4,2,6) , (4,3,2,6) , (3,4,6,2) , (4,3,6,2)
+
+
+Sample Input-2:
+---------------
+4
+2 3 5 7
+
+Sample Output-2:
+----------------
+0
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n;
+	cout<<"Enter no of ele:"<<endl;
+	cin>>n;
+	
+	int a[n];
+	cout<<"Enter elements:"<<endl;
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	vector<vector<int>>quads;
+	vector<int>temp;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			for(int k=0;k<n;k++)
+			{
+				for(int l=0;l<n;l++)
+				{
+					temp.push_back(a[i]);
+					temp.push_back(a[j]);
+					temp.push_back(a[k]);
+					temp.push_back(a[l]);
+					quads.push_back(temp);
+					temp.clear();
+				}
+			}
+		}
+	}
+	int count=0;
+	for(vector<int> x:quads)
+	{
+	    set<int>k;
+	    k.insert(x[0]);
+	    k.insert(x[1]);
+	    k.insert(x[2]);
+	    k.insert(x[3]);
+	    if(k.size()==4)
+	    {
+	    	if(x[0]*x[1]==x[2]*x[3])
+	    	{
+	    		cout<<x[0]<<" "<<x[1]<<" "<<x[2]<<" "<<x[3];
+	    		count++;
+	    		cout<<endl;
+			}
+			k.clear();
+		}
+	}
+	cout<<"Number of Pythagorean quadurles:"<<count<<endl;
+}

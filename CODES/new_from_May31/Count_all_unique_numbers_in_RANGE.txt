@@ -1,0 +1,49 @@
+/*
+Given an integer n, return the count of all numbers with unique digits, x, where 0 <= x < 10power of n.
+
+
+input = 0
+output =1
+
+input =1
+output =10
+
+input =2
+output =91
+
+the total numbers in the range of 0 ≤ x < 100, excluding 11,22,33,44,55,66,77,88,99
+so 100-9 is 91
+
+
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        int ans = 1;
+        int finalans = 0;
+        if(n==0)System.out.println(1);
+        if(n==1)System.out.println(10);
+        else
+        {
+          while(n>=1){
+            if(n==1){finalans+=10;break;}
+            int val = 8;
+            for(int i=0;i<n-2;i++)
+            {
+                ans*=val;
+                val--;
+            }
+            ans*=81;
+            finalans+=ans;
+            ans=1;
+            n--;
+          }
+            System.out.println(finalans);
+        }
+    }
+}

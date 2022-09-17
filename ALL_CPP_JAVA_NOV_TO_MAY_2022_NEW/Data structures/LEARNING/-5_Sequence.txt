@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+void nseq(int n, int o)
+{
+    if(n==o)
+    {
+        cout<<n<<endl;
+        return;
+    }
+    else
+    {
+        cout<<n<<" ";
+        nseq(n+5,o);
+    }
+}
+void seq(int n, int o)
+{
+   if(n<0)
+   {
+       nseq(n,o);
+       return;
+   }
+   
+   else
+   {
+       cout<<n<<" ";
+       seq(n-5,o);
+   }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int o = n;
+    seq(n,o);
+}

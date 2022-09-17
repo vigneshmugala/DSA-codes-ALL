@@ -1,0 +1,107 @@
+/* Given a  IP address, return a morphed version of that IP address.
+A morphed IP address replaces every period "." with "[.]".
+
+if the IP address is invalid  return -1
+
+Example 1:
+Input: 1.1.1.1
+Output: 1[.]1[.]1[.]1
+
+Example 2:
+Input: 255.100.50.0
+Output: 255[.]100[.]50[.]0
+
+Example 3:
+Input: 266.100.50.1
+output: -1
+
+Example 4:
+input: 127.129.21
+output: -1
+
+Example 5:
+input: -127.-129.21.22
+output: -1
+
+*/
+import java.util.*;
+public class Test
+{
+  static boolean checkIp(String s)
+  {
+      int val=0;
+      int count=1;
+      boolean isIp=true;
+      for(int i=0;i<s.length();i++)
+      {
+        if(s.charAt(i)!='.'){
+          val=val*10;
+          val+=(s.charAt(i)-'0');
+          if(s.charAt(i)=='-')
+          {
+              isIp=false;
+              break;
+          }
+        }
+          if(s.charAt(i)=='.')
+          {
+              if(val>255||val<0)
+              {
+                 isIp=false;
+                 break;
+              }
+              val=0;
+              count++;
+          }
+          
+      }
+      if(count!=4)
+      {
+          isIp=false;
+      }
+      if(isIp){
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+  static String MaskIp(String s)
+  {
+      StringBuilder stb=new StringBuilder("");
+      int j=0;
+      for(int i=0;i<s.length();i++)
+      {
+          char c= (char)s.charAt(i);
+          if(Character.isDigit(c))
+          {
+              stb.append(c);
+          }
+          else
+          {
+              stb.append('[');
+              stb.append('.');
+              stb.append(']');
+          }
+      }
+     String temp=stb.toString();
+     return temp;
+  }
+  public static void main(String[] args)
+  {
+      String str;
+      Scanner sc = new Scanner(System.in);
+      str=sc.next();
+      String t="";
+      if(checkIp(str))
+      {
+         t=MaskIp(str);
+         System.out.println(t);
+      }
+      else
+      {
+          System.out.println("-1");
+      }
+      
+  }
+}

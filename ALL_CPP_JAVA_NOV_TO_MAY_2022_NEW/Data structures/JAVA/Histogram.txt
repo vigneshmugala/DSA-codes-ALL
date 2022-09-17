@@ -1,0 +1,75 @@
+/* Write a java program for the following scenario
+John was asked to creates histograms. 
+Every bar needs to be on a new line and its length corresponds to the numbers in the List passed as an argument. 
+
+The last element of the list represents the symbol to be used to represent the bar.
+
+for Example,
+4               //size of Arraylist n
+1 3 4 #         // elements of Arraylist
+
+output is a histogram i.e 
+
+#
+###
+####
+
+Note:
+-> list size n >2 and n<9
+-> consider symbol is always last element of the list
+-> in list, last index is set apart for giving histogram charecter.
+*/
+import java.util.*;
+public class Test
+{
+   static void printHistogram(int a[], int s, char c)
+   {
+       int temp=0;
+       for(int i=0;i<s;i++)
+       {
+           temp=0;
+           while(temp<a[i])
+           {
+               System.out.print(c);
+               temp++;
+           }
+          System.out.println();
+       }
+
+   }
+   public static void main(String[] args)
+   {
+       ArrayList<Character>al = new ArrayList<Character>();
+       int size;
+       Scanner sc = new Scanner(System.in);
+       size=sc.nextInt();
+       String str;
+       sc.nextLine();
+       str=sc.nextLine();
+       for(int i=0;i<str.length();i++)
+       {
+           if(str.charAt(i)!=' ')
+           {
+               al.add(str.charAt(i));
+           }
+       }
+       int arr[]=new int[al.size()-1]; int j=0; char hol= ' ';
+       for(char i:al)
+       {
+           if(Character.isDigit(i))
+           {
+               arr[j]=i-'0';
+               j++;
+           }
+           else{
+               hol=i;
+           }
+       }
+      
+       //print
+       printHistogram(arr,j,hol);
+   }
+    
+    
+    
+}

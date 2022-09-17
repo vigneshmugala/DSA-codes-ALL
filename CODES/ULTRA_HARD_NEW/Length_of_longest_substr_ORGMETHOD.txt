@@ -1,0 +1,43 @@
+class Solution {
+public:
+    
+    int lolString(string s, int start)
+    {
+         set<char> st;
+         int maxVal = INT_MIN;
+         int count = 0;
+         //int checkPoint = 0;
+         for(int i=start;i<s.length();i++)
+         {
+             count++;
+             st.insert(s[i]);
+             if(st.size()<count)
+             {
+                 int sz = st.size();
+                 //checkPoint = i;
+                 maxVal = max(maxVal, sz);
+                 st.clear();
+                 st.insert(s[i]);
+                 count = 1;
+             }
+         }
+         int sz = st.size();
+         maxVal = max(maxVal,sz);
+         
+         return maxVal;
+    }
+    
+    
+    
+    int lengthOfLongestSubstring(string s) {
+        int fin = INT_MIN;
+        if(s.length() == 0) return 0;
+        if(s.length() == 1) return 1;
+        for(int i=0;i<s.length();i++)
+        {
+            int temp = lolString(s,i);
+            fin = max(fin,temp);
+        }
+        return fin;
+    }
+};

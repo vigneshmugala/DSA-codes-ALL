@@ -1,0 +1,29 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	   int n1,n2;
+	   Scanner sc=new Scanner(System.in);
+	   System.out.println("enter two numbers: ");
+	   n1=sc.nextInt();
+	   n2=sc.nextInt();
+	   int hcf=0;
+	   int rem;
+	   rem = n1 % n2;
+	   
+	   while(rem!=0)
+	   {
+	       if(n1%n2 == 0)
+	       {
+	           rem = 0;
+	           hcf = n2;
+	       }
+	       else{
+	           rem = n1%n2;
+	           n1 = n2;
+	           n2 = rem;
+	       }
+	   }
+	   System.out.println("HCF is:" + hcf);
+	}
+}

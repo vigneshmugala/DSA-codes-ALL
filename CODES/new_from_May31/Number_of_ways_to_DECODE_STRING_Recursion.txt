@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int decodeWays(int i,string &num)
+{
+	int res = 0;
+	if(num[i]=='0')return 0;
+	if(num.size()==0)return 0;
+	if(num.size()==1)return 1;
+	if(i>=num.length())
+	{
+		return 1;
+	}
+	// CHOICE 1: include the current element only. As it is 1 character only you can take any digit (1-9) as all are less than 26.
+       //after choosing go to recursion for next element. i+1
+       res = decodeWays(i+1,num);
+     
+     // CHOICE 2: include the current element and next Element as well if first element is 1 then include all possibilities of 2nd element (10 - 19)<26
+        // if first element is 2 then next element should be 0-6only (20-26)<26 recurse only if these conditions are met.
+        // jump 2 steps forward as we consider two element at once in this choice
+     if(num[i]=='1'|| (num[i]=='2'&&(num[i+1]<='0'&&num[i+1]>='6')))
+     {
+       if(i<num.size()){
+     	  res+=decodeWays(i+2,num);
+	   }
+	 }
+     
+	 return res; 	
+}
+
+
+int main()
+{
+	string num;
+	cin>>num;
+	
+	cout<<decodeWays(0,num)<<endl;
+}

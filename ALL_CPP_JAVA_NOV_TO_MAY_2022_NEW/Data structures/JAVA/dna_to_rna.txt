@@ -1,0 +1,42 @@
+/* Transcribe the given DNA strand into corresponding mRNA
+- a type of RNA, that will be formed from DNA after transcription.
+DNA has the bases A, T, G and C, while RNA converts to U, A, C and G respectively.
+
+sample input/output:
+ATTAGCGCGATATACGCGTAC   //input
+UAAUCGCGCUAUAUGCGCAUG   // output
+
+*/
+
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+       String dna="";
+       Scanner sc = new Scanner(System.in);
+       dna = sc.next();
+       String mrna = "";
+       for(int i=0;i<dna.length();i++)
+       {
+           char k=dna.charAt(i);
+           if(k=='A')
+           {
+               mrna+='U';
+           }
+           else if(k=='T')
+           {
+               mrna+='A';
+           }
+           else if(k=='G')
+           {
+               mrna+='C';
+           }
+           else{
+               mrna+='G';
+           }
+       }
+       System.out.println(mrna);
+        
+    }
+}

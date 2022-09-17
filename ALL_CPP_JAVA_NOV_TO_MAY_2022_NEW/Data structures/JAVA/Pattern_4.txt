@@ -1,0 +1,55 @@
+/*Write a Java program to print following pattern
+
+input=6
+output=
+o
+oo
+o o
+o  o
+o   o
+oooooo
+
+*/
+import java.util.*;
+
+public class Task9
+{
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(i!=n){
+            for(int j=1;j<=i;j++)
+            {
+               if((j==1 || j==i))
+               {
+                   System.out.print("o");
+               }
+               else
+               {
+                   System.out.print(" ");
+               }
+              
+            }
+            }
+            else{
+                for(int j=1;j<=i;j++)
+                {
+                    System.out.print("o");
+                }
+            }
+         System.out.println();
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+}

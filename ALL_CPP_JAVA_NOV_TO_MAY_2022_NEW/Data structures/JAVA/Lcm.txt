@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+		 int n1,n2;
+		 Scanner sc = new Scanner(System.in);
+		 System.out.println("enter two numbers:");
+		 n1 = sc.nextInt();
+		 n2 = sc.nextInt();
+		 
+		 int lcm;
+		 if(n1>n2)
+		 {
+		     lcm = n1;
+		 }
+		 else{lcm=n2;}
+		 
+		 while(true)
+		 {
+		     if(lcm%n1 == 0 && lcm%n2 == 0)
+		     {
+		         break;
+		     }
+		     else{
+		         lcm++;
+		     }
+		 }
+		
+		
+		System.out.println("LCM is :" + lcm);
+		
+		
+		
+		
+	}
+}

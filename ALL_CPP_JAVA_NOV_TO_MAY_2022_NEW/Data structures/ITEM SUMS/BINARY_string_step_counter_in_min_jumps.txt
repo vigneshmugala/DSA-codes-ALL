@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string bin;
+    cin>>bin;
+    
+    int maxjumps=-999;
+    int jumps=1;
+    int start=0;
+    char sel=bin[0];
+    if(bin[0]!=bin[bin.length()-1])
+    {
+        if(bin[0]=='0'){sel = '1';}
+        else{sel = '0';}
+    }
+    
+    for(int i=0;i<bin.length();i++)
+    {
+        if(bin[i]==sel){start=i;break;}
+    }
+   if(start!=bin.length()-1){
+    for(int i=0;i<bin.length();i++)
+    {
+        if(bin[i]!=sel)
+        {
+           jumps++;
+        }
+        else if(bin[i]==sel&&i!=0)
+        {
+            if(jumps>=maxjumps)
+            {
+                maxjumps=jumps;
+            }
+            //cout<<jumps<<endl;
+            jumps=1;
+        }
+    }
+    cout<<maxjumps<<endl;
+   }
+  else{
+      cout<<bin.length()<<endl;
+  }
+    
+    
+}

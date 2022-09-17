@@ -1,0 +1,61 @@
+/*
+Write a java program to store the employee details in an ArrayList and display 
+the employee details in ascending order of their experience
+
+Create 'Employee' class with two instance variables Employee name and Employee
+experience (no.of years).
+
+Sample:
+Input=
+4       //No. of employees
+shiva 20
+kiran 13
+younus 45
+anil 15
+
+Output=
+kiran 13
+anil 15
+shiva 20
+younus 45
+
+*/
+import java.util.*;
+class Employee{
+    String name;
+    int exp;
+    Employee(String name,int exp){
+        this.name=name;
+        this.exp=exp;
+    }
+}
+class Test{
+  public static void main(String[] args){
+    int size;
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Employee> emps = new ArrayList<Employee>();
+    size = sc.nextInt();
+    for(int i=0;i<size;i++){
+        String k=sc.next();
+        int a=sc.nextInt();
+        Employee e=new Employee(k,a);
+        emps.add(e);
+    }
+    int[] arr=new int[size];
+    int j=0;
+    for(int i=0;i<emps.size();i++){
+        arr[j]=emps.get(i).exp;
+        j++;
+    }
+    Arrays.sort(arr);
+    for(int i=0;i<size;i++){
+        for(int p=0;p<emps.size();p++)
+        {
+            if(emps.get(p).exp==arr[i]){
+                System.out.println(emps.get(p).name+" "+emps.get(p).exp);
+                break;
+            }
+        }
+    }
+  }    
+}

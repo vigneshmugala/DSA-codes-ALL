@@ -1,0 +1,54 @@
+#include<iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+
+
+int main(){
+	
+	int n,curr,prev;
+	cout << "enter array size" << endl;
+	cin>> n;
+	
+	cout << "enter array values:" << endl;
+	int array[n];
+	
+	for(int i=0;i<n;i++)
+	{
+		cin >> array[i];
+	}
+	
+	
+	for(int i=1;i<n;i++)
+	{
+	   curr = array[i];
+	   prev = i - 1;
+	   
+	    while((array[prev] > curr) && (prev>=0))
+	    {
+	    	
+	    	array[prev+1] = array[prev];
+	    	prev--;
+	    
+		}
+		
+		array[prev+1] = curr;
+
+	}
+	
+	cout << "after sorting the array:";
+	for(int i=0;i<n;i++)
+	{
+		cout << array[i] << "  ";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

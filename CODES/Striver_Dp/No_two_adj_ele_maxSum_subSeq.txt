@@ -1,0 +1,110 @@
+Problem Link: 
+https://www.codingninjas.com/codestudio/problems/maximum-sum-of-non-adjacent-elements_843261?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos&leftPanelTab=0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 1: Recursion:
+
+#include<bits/stdc++.h>
+int help(int i, vector<int> &nums)
+{
+    if(i == 0) return nums[i];
+    if(i<0) return 0;
+    int pick = help(i-2 , nums) + nums[i];
+    
+    int notPick = help(i-1 , nums);
+    
+    return max(pick , notPick);
+}
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int n = nums.size(); 
+    int ans = help(n-1 , nums);
+    return ans;
+}
+
+--------------------------------------------------------------------------------
+
+Method 2: Memoization
+
+
+#include<bits/stdc++.h>
+int help(int i, vector<int> &nums, vector<int> &dp)
+{
+    if(i == 0) return nums[i];
+    if(i<0) return 0;
+    
+    if(dp[i] != -1) return dp[i];
+    
+    int pick = help(i-2 , nums, dp) + nums[i];
+    int notPick = help(i-1 , nums, dp);
+    
+    return dp[i] = max(pick , notPick);
+}
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int n = nums.size(); 
+    vector<int> dp(n,-1);
+    int ans = help(n-1 , nums, dp);
+    return ans;
+}
+
+
+--------------------------------------------------------------------------------
+
+Method 3: Tabulation
+
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int n = nums.size();
+    vector<int> dp(n);
+    
+    dp[0] = nums[0];
+    int pick=0; int notPick=0;
+    for(int i=1; i<n; i++)
+    {
+        if(i == 1)
+        {
+           pick = nums[i];
+           notPick = dp[i-1];
+        }
+        else
+        {
+            pick = nums[i] + dp[i-2];
+            notPick = dp[i-1];
+        }
+        dp[i] = max(pick,notPick);
+    }
+    return dp[n-1];
+}
+
+
+---------------------------------------------------------------------------
+
+Method 4: Space Optimization
+
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int n = nums.size();
+    int prev = nums[0];
+    int prev2 = 0;
+    int cur=0;
+    int pick=0; int notPick=0;
+    for(int i=1; i<n; i++)
+    {
+        if(i == 1)
+        {
+           pick = nums[i];
+           notPick = prev;
+        }
+        else
+        {
+            pick = nums[i] + prev2;
+            notPick = prev;
+        }
+        cur = max(pick,notPick);
+        prev2 = prev;
+        prev = cur;
+    }
+    return prev;
+}

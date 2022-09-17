@@ -1,0 +1,80 @@
+/* 1 2 0 1
+   largest: 2 
+   ekadithe 2 untado adi delete chayi
+   
+   deletion ela:
+   0 2 3 4
+   delet 3
+   0 2 4
+   shift indexes to left
+   arr[i] = arr[i+1] iterate from index of "deleted" element
+   assigne last element to blank*/
+
+
+#include<iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+	
+	int n;
+	cout << "enter array size" << endl;
+	cin >> n;
+	int largest = 0;
+	int second_largest = 0;
+	int holder;
+	
+	float arr[n];
+	
+	cout << "enter elements in array:" << endl;
+	
+    for(int i=0; i<n; i++)
+	{
+		cin >> arr[i];
+		}	
+	
+	for(int i=0; i<n;i++)
+	{
+		if(arr[i] > largest)
+		{
+			largest = arr[i];
+			holder = i;
+			
+		}
+	}
+	cout << "holder is:" << " " << holder  << endl;
+	//deletion of element using index
+	for(int i=holder;i < n; i++)
+	{
+		arr[i] = arr[i+1];
+	}
+	arr[n-1] = {};
+	
+	for(int i = 0 ; i<n; i++)
+	{
+		cout << arr[i] << "  " ;
+	}
+	
+	for(int i=0; i<n;i++)
+	{
+		if(arr[i] > second_largest)
+		{
+			second_largest = arr[i];
+		}
+	}
+	
+	cout << "The second largest element in the array is:" << " " << second_largest << endl;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

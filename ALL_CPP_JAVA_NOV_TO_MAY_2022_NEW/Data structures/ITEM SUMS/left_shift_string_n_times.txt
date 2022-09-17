@@ -1,0 +1,32 @@
+/*Left shift of string k times
+
+hello
+2
+
+op - llohe;
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"Enter string:"<<endl;
+	cin>>str;
+	int sh;
+	cout<<"Enter left shifts:"<<endl;
+	cin>>sh;
+	int n=str.length();
+	int actual_sh = sh%n;
+	for(int k=0;k<actual_sh;k++)
+	{
+		int temp=str[0];
+		for(int i=0;i<n-1;i++)
+		{
+			str[i]=str[i+1];
+		}
+		str[n-1]=temp;
+	}
+	
+	cout<<str<<endl;
+	
+}

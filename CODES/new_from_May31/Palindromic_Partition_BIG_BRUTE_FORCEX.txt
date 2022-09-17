@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+bool isPal(string &t)
+{
+    for(int i=0;i<t.length();i++)
+    {
+        if(t[i]!=t[t.length()-1-i]) return false;
+    }
+    return true;
+}
+
+
+vector<string> divideAndPal(string &s)
+{
+    vector<string>pals;
+    string temp = "";
+    for(int len = 0;len<s.length();len++)
+    {
+         for(int start = 0; start<s.length()-len; start++)
+         {
+             for(int i=start;i<start+len;i++)
+             {
+                 temp+=s[i];
+             }
+             if(isPal(temp)) pals.push_back(temp);
+             temp="";
+         }
+    }
+    return pals;
+}
+
+void generate(int i, vector<string> &hol, vector<string> &palpar, vector<vector<string>> &fin, string show, string &s)
+{
+    string st = "";
+    if(st == s)
+    {
+        fin.push_back(hol);
+        return;
+    }
+    for(string t:hol){st+=t;}
+    hol.push_back(palpar[i]);
+    //show+=palpar[i];
+    generate(i+1,hol,palpar,fin,show,s);
+    
+    hol.pop_back();
+    //show-=palpar[i];
+    generate(i+1,hol,palpar,fin,show,s);
+}
+
+
+vector<vector<string>> partition(string &s) 
+{
+    vector<string> palPar;
+    palPar = divideAndPal(s);
+    vector<string> hol;
+    string show = "";
+    vector<vector<string>> fin;
+    generate(0,hol,palPar,fin,show,s);
+    return fin;
+   
+    
+}

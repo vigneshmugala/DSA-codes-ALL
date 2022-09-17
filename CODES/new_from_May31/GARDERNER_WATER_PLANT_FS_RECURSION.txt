@@ -1,0 +1,143 @@
+/*
+In a garden, there is a row of plants. The gardener need to water them regularly.
+In the row of plants, some are empty places some are plants. you need to setup 
+the watering kits to water the row of plants at the empty places. A watering kit
+can supply water to its adjacent plants, i.e., if the watering kit is at 
+i-th position it can water the plants ar 'i+1'-th and 'i-1'-th  positions.
+
+You are given a string 'plants', consists of two characters only [P,E], where P 
+indiactes plant and E indicates empty place.
+
+Your task is to return the minimum number of watering kits needed so that 
+for every plant, the gardener can supply the water to all the plants in that 
+row OR -1 if it is impossible.
+
+
+Input Format:
+-------------
+A string, consists of only two characters P and E
+
+Output Format:
+--------------
+Print an integer result, the minimum num of watering kits.
+
+
+Sample Input-1:
+---------------
+PEEEPEP
+
+Sample Output-1:
+----------------
+2
+
+Explanation: 
+------------
+You can setup watering kits at index-1, index-5, so all the 3 plants gets water.
+
+
+Sample Input-2:
+---------------
+PEPEEPP
+
+Sample Output-2:
+----------------
+-1
+
+Explanation: 
+------------
+No empty place after the last plant in the row, so retrun -1.
+
+*/
+
+
+
+
+/*P E E E P E P
+   if(E) place W at it. after reaching end make a function to check whethere all trees are watered or not
+   using Recursion */
+   
+import java.util.*;
+public class Test
+{
+    static boolean waterAll(StringBuilder sb)
+    {
+        boolean arr[]=new boolean[sb.length()];
+        
+        for(int i=0;i<sb.length();i++)
+        {
+            if(sb.charAt(i)=='W')
+            {
+                if(i==0)
+                {
+                    arr[i+1]=true;
+                }
+                else if(i==sb.length()-1)
+                {
+                    arr[i-1]=true;
+                }
+                else{
+                    arr[i-1]=true;
+                    arr[i+1]=true;
+                }
+            }
+        }
+        
+        for(int i=0;i<sb.length();i++)
+        {
+            if(sb.charAt(i)=='P')
+            {
+                if(arr[i]==false)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    
+    static void help(int i,StringBuilder sb,ArrayList<Integer> em,int count,ArrayList<Integer> al) 
+    {
+        if(i>=em.size())
+        {
+            //System.out.println(sb);
+            if(waterAll(sb))
+            {
+                al.add(count);
+                return;
+            }
+            return;
+        }
+        sb.setCharAt(em.get(i),'W');
+        help(i+1,sb,em,count++,al);
+        
+        sb.setCharAt(em.get(i),'E');
+        help(i+1,sb,em,count,al);
+        
+    }
+    
+    
+    public static void main(String[] args)
+    {
+        String str;
+        Scanner sc = new Scanner(System.in);
+        str=sc.next();
+        
+        ArrayList<Integer>al=new ArrayList<Integer>();
+        
+        ArrayList<Integer>em = new ArrayList<Integer>();
+        
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='E') em.add(i);
+        }
+        
+        StringBuilder sb = new StringBuilder(str);
+        help(0,sb,em,0,al);
+        
+        //for(int g:al) System.out.print(g+"  ");
+        Collections.sort(al,Collections.reverseOrder());
+        if(al.size()==0)System.out.println("-1");
+        else System.out.println(al.get(0));
+    }
+}

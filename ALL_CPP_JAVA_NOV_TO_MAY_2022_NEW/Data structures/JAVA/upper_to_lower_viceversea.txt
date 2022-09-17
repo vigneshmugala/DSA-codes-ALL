@@ -1,0 +1,41 @@
+/* Write a java program to Given a string reverse the case. 
+All lower-cased letters should be upper-cased, and vice versa.
+
+Examples input/output
+Happy Birthday          //input
+hAPPY bIRTHDAY          //output
+
+MANY THANKS
+many thanks
+
+
+Note: numbers and special characters(Symbols) i.e  space, , . must be
+keep as it is. 
+
+
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        String str;
+        Scanner sc = new Scanner(System.in);
+        str=sc.nextLine();
+        String str2="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(Character.isLowerCase(str.charAt(i)))
+            {
+                str2+=Character.toUpperCase(str.charAt(i));
+            }
+            else{
+                str2+=Character.toLowerCase(str.charAt(i));
+            }
+        }
+        
+        System.out.println(str2);
+    }
+    
+    
+}

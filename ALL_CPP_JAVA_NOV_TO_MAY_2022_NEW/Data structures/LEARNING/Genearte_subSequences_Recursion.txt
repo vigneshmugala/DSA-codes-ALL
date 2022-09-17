@@ -1,0 +1,27 @@
+/*Generate All subsequences of a string*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void subseq(string s,string ans)
+{
+	if(s.length()==0)
+	{
+	   cout<<ans<<endl;
+	   return;
+	}
+	
+	char k = s[0];
+	string res = s.substr(1);
+	subseq(res,ans);
+	subseq(res,ans+k);
+}
+
+int main()
+{
+	string n;
+	cout<<"Enter string:"<<endl;
+	cin>>n;
+	
+	subseq(n,"");
+}

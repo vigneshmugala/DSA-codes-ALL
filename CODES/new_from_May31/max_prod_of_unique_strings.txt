@@ -1,0 +1,72 @@
+
+Rakesh is calculating maximum value of two words len(word[i]) * len(word[j])  where the words do not share common letters.
+
+Note: if no such two words exist , return 0.
+
+ex:
+input =abcw baz foo bar xtfn abcdef
+output =16
+abcw and xtfn two words doesnot share common letters so output is 16
+
+input =a ab abc d cd bcd abcd
+output =4
+ab cd two words doesnot share common
+
+input =a aa aaa aaaa
+output =0
+no such pair of words
+
+----------------------------------------------------------------------------------------
+
+#include<bits/stdc++.h>
+using namespace std;
+bool unq(string s, string t)
+{
+   set<char> st;
+   for(int i=0;i<s.length();i++)
+   {
+       st.insert(s[i]);
+   }
+   for(int j=0;j<t.length();j++)
+   {
+       st.insert(t[j]);
+   }
+   return (st.size()==(s.length()+t.length())) ? true:false;
+}
+int main()
+{
+   string inp;
+   getline(cin,inp);
+   
+   vector<string> v;
+   
+   string temp="";
+   for(int i=0;i<inp.length();i++)
+   {
+       if(inp[i]!=' ')
+       {
+           temp+=inp[i];
+       }
+       else
+       {
+           v.push_back(temp);
+           temp="";
+       }
+   }
+   v.push_back(temp);
+
+   //brute
+   int maxprod = 0;
+   for(int i=0;i<v.size();i++)
+   {
+       for(int j=i+1;j<v.size();j++)
+       {
+           if(unq(v[i],v[j]))
+           {
+              int prod = v[i].length()*v[j].length();
+              maxprod = max(maxprod,prod);
+           }
+       }
+   }
+   cout<<maxprod<<endl;
+}

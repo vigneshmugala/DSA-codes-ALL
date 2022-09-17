@@ -1,0 +1,69 @@
+/*int a= 378467  -- 764873 val1 = 378
+  int b = 287654  val2=456  val2_rev=654 -> val1= 378000 -> val1+= val2_rev-> val1=378654
+  
+  output
+  int c = 378654
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{ 
+   int a;
+   cout << "enter first no:" << endl;
+   cin >> a;
+   
+   int b;
+   cout << "enter second no: " << endl;
+   cin >> b;
+   
+   
+   int count=0;
+   int val1=0;
+   int val2=0;
+   
+   //reverse a
+   int a_rev;
+   while(a>0)
+   {
+   	 int rem=a%10;
+   	 a_rev = (a_rev*10) + rem;
+   	 a/=10;
+   }
+   while(count<3)
+   {
+   	  val1=val1*10;
+   	  int rem=a_rev%10;
+   	  val1+=rem;
+   	  a_rev/=10;
+   	  count++;
+   	
+   }
+   count=0;
+   while(count < 3)
+   {
+   	 val2=val2*10;
+   	 int rem=b%10;
+   	 val2+=rem;
+   	 b=b/10;
+   	 count++;
+   	
+   }
+   int val2_rev=0;
+   //reverse val2
+   while(val2>0)
+   {
+   	 int rem=val2%10;
+   	 val2_rev = (val2_rev*10)+rem;
+   	 val2/=10;
+   	 val1*=10;
+   }
+   
+   
+   val1 += val2_rev;
+   cout << "desired output(first digits of 1st number and last digits of last number is):" << endl;
+   cout << val1;
+}

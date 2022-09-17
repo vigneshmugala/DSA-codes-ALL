@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+void help(int i,string &str, string &sub, vector<string> &ans)
+{
+    if(str.length()==0)return;
+    if(i>=str.length())
+    {
+        ans.push_back(sub);
+        return;
+    }
+     sub.push_back(str[i]);
+     help(i+1,str,sub,ans);
+     
+     sub.pop_back();
+     help(i+1,str,sub,ans);
+}
+vector<string> subsequences(string str){
+   vector<string> ans;
+   string sub = "";
+   help(0,str,sub,ans);
+   return ans;
+}

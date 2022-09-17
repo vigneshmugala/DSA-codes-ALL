@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool isPrime(int n)
+{
+		bool div=false;
+	    if(n==1){
+	    	div=true;
+		}
+		else if(n==2){
+			div=false;
+		}
+	   else{
+		for(int i=2;i<n;i++)
+		{
+			if(n%i==0)
+			{
+				div=true;
+				break;
+			}
+		}
+       }
+		if(div){
+			return false;
+		}
+		else{
+			return true;
+		}
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int ren=0;
+	int t=n;
+    while(n!=1)
+    {
+       ren++;
+       for(int i=1;i<=n;i++)
+       {
+       	  if(isPrime(i)){
+       	  	 t--;
+	     } 
+	   }
+	   n=t;
+	}
+	ren++;
+	cout<<ren<<endl;
+}

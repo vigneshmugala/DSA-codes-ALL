@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int myAtoi(char *a,int k)
+{
+    if(k==1)
+    {
+        return *a-'0'; 
+    }
+    
+    else
+    {
+        return (10*myAtoi(a,k-1) + (a[k-1]-'0'));
+    }
+}
+int main()
+{
+    string s;
+    cin>>s;
+    
+    int size=s.length();
+    char arr[size];
+    for(int i=0;i<size;i++)
+    {
+        arr[i]=s[i];
+    }
+    int ans= s.length();
+    ans = myAtoi(arr,ans);
+    cout<<ans<<endl;
+}

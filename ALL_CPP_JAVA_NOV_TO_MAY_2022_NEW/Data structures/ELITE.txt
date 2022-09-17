@@ -1,0 +1,850 @@
+Umesh is a Mathematician,
+He is given a task to his student Shanker, 
+There are N coins in a row, indexed from 0 to N-1, intially all the coins are 
+facing "tail". And Umesh has given him a final State-to-Achieve.
+
+Shanker can achieve the final state by doing a swap operation as follows:
+    - Shanker can choose any index i, 
+    - all the coins has to be swap their faces, from "head" to "tail" 
+    or "tail to "head" from index 'i' to 'N-1'.
+
+Shanker is given a binary string S, State-to-Achieve contains [0,1] only. 
+"tail" indicates with '0' and "head" indicates with '1'
+
+Please help Shanker to find the minimum number of swap operations required 
+to reach State-to-Achieve.
+
+
+Input Format:
+-------------
+A String S, final State-to-Achieve.
+
+Output Format:
+--------------
+Print an integer, minimum number of swap operations.
+
+
+Sample Input-1:
+---------------
+10111010
+
+Sample Output-1:
+----------------
+6
+
+Explanation: 
+------------
+Initial configuration "00000000".
+swap from the first coin: "00000000" -> "11111111"
+swap from the second coin: "11111111" -> "10000000"
+swap from the third coin: "10000000" -> "10111111"
+swap from the sixth coin: "10111111" -> "10111000"
+swap from the seventh coin: "10111000" -> "10111011"
+swap from the eighth coin: "10111011" -> "10111010"
+A total of 6 swap operations required.
+
+
+Sample Input-2:
+---------------
+11111
+
+Sample Output-2:
+----------------
+1
+
+
+---------------------------------------------------------------------------------
+
+Crazy Mohan is interested to disturb the order of the items.
+There is a number N, each digit of the number is printed on a cube
+and arranged accordingly in a row. Now, Crazy Mohan is allowed to swap 
+the positions of the cubes, It is not allowed to add or remove the cubes.
+
+You have to stop Crazy Mohan, when you find the new sequence of the cubes 
+forms a new number W, such that W>N and W should be minimum.
+
+If it is possible to form W from N, print the value of W, otherwise print '-1'
+
+Input Format:
+-------------
+An integer N, given number.
+
+Output Format:
+--------------
+Print an integer, the next nearest higher number.
+
+
+Sample Input-1:
+---------------
+121
+
+Sample Output-1:
+----------------
+211
+
+
+Sample Input-2:
+---------------
+321
+
+Sample Output-2:
+----------------
+-1
+
+
+
+---------------------------------------------------------------------------------------------------
+
+
+
+Vicky, an expert in gaming software, lives in Australia and never compromises
+in his life, a principle that he adheres to since his childhood. After 
+long time he returns to India to establish a start-up gaming company. 
+
+He meets his uncle Jalsa Kishore and Vicky tells about his plan. 
+Jalsa Kishore came up with an idea for Vicky with a new game. 
+He draws a grid with combination of 0’s and 1’s of size P X Q, where
+we can reorganize the columns of the grid in any order. 
+
+Jalsa Kishore says that build a grid such that we get the area of 
+the greatest subunits within the grid where every unit of the sub grid is 1
+after reorganizing the columns.
+
+Now it’s your aim to write a method which prints the area of 
+the greatest subunits within the grid according to idea of Jalsa Kishore.
+
+
+Input Format:
+-------------
+Line-1: Two integers P and Q, size of the grid.
+Next P lines: Q separated integers, either 0 or 1.
+
+Output Format:
+--------------
+Print an integer, area of the greatest subunits.
+
+
+Sample Input-1:
+---------------
+3 4
+1 0 1 0
+0 1 1 1
+0 1 0 1
+
+Sample Output-1:
+----------------
+4
+
+Explanation:
+----------
+After Reorganizing the columns, the grid looks like as follows:
+1 0 0 1
+0 1 1 1
+0 1 1 0
+
+
+Sample Input-2:
+---------------
+1 5
+1 0 1 0 1
+
+Sample Output-2:
+----------------
+3
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+Gachibowli Diwakar is a tremendous bowler in Indian Cricket Team.
+Diwakar has played in N Series of Games, and in each series he has taken the number of wickets.
+Now Gachibowli Diwakar's wickets count is arranged in ascending order which is a non-negative integer. 
+Create a method to generate the Gachibowli Diwakar W-index.
+
+According to the definition of W-index, Gachibowli Diwakar has index W, if W of his N series
+have at least W wickets each, and the other N-W series have no more than W wickets each.
+
+Note:
+If there are several possible values for W, the maximum one is taken as the W-index.
+
+Input Format:
+-------------
+Line-1: An integer N, number of series played by Diwakar.
+Line-2: N space separated integers, number of wickets in ascending order.
+
+Output Format:
+--------------
+Print an integer, value of index -W.
+
+
+Sample Input-1:
+---------------
+6
+0 1 3 4 5 6
+
+Sample Output-1:
+----------------
+3
+
+Explanation: [0, 1, 3, 4, 5, 6] means the Gachibowli Diwakar has 6 series in total and
+in each series he had taken 0, 1, 3, 4, 5, 6 wickets respectively.
+Since Gachibowli Diwakar has 3 series with at least 3 wickets each and the
+remaining three with no more than 3 wickets each, his W index is 3.
+
+Sample Input-2:
+---------------
+10
+1 3 7 10 12 20 21 24 26 32
+
+Sample Output-2:
+----------------
+7
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+Mallika taught a new fun time program practice for Engineering Students.
+As a part of this she has given set of numbers, and asked the students 
+to find the sum of numbers between indices S1 and S2 (S1<=S2),
+both S1 and S2 inclusive.
+
+There are P Students in the class, numbered from 1 to P. Each student is
+given set of indices and that student has to find the sum of the numbers 
+between the indices and print the result.
+
+And return the answer in the same order of
+
+Input Format:
+-------------
+Line-1: Two integers N and P, N is length of set of numbers.
+		where 1<= N <= 1000
+Line-2: N space separated integers, array set[]
+Next P lines: Two integers S1 and S2, index positions 
+		where 0 <= S1 <= S2 < N
+		and 1<= set[i] <= 100000
+
+Output Format:
+--------------
+Print the sum of numbers between indices(s1, s2) given to each student.
+
+
+Sample Input-1:
+---------------
+8 2
+115053 59099 681359 526248 123844 612168 920784 591204
+2 6
+1 5
+
+Sample Output-1:
+----------------
+2864403
+2002718
+
+
+-------------------------------------------------------------------------------------------------
+
+
+In Hyderabad after a long pandemic gap, the Telangana Youth festival Is 
+Organized at HITEX. In HITEX, there are a lot of programs planned. During 
+the festival in order to maintain the rules of Pandemic, they put a 
+constraint that one person can only attend any one of the programs in 
+one day according to planned days.
+
+Now it’s your aim to implement the "Solution" class in such a way that 
+you need to return the maximum number of programs you can attend according 
+to given constraints.
+
+Explanation:
+You have a list of programs ‘p’ and days ’d’, where you can attend only 
+one program on one day. Programs [p] = [first day, last day], 
+p is the program's first day and the last day.
+
+
+Input Format:
+-------------
+Line-1: An integer N, number of programs.
+Line-2: N comma separated pairs, each pair(f_day, l_day) is separated by space.
+
+Output Format:
+--------------
+An integer, the maximum number of programs you can attend.
+
+
+Sample Input-1:
+---------------
+4
+1 2,2 4,2 3,2 2
+
+Sample Output-1:
+----------------
+4
+
+Sample Input-2:
+---------------
+6
+1 5,2 3,2 4,2 2,3 4,3 5
+
+Sample Output-2:
+----------------
+5
+
+
+------------------------------------------------------------------------------------------------
+
+
+Sreehan is a young programmer, wants to solve the new kind of challenges 
+through coding.
+
+He is given a set of distinct positive numbers,
+He need to find the number of valid quadruples can be formed with the given set.
+
+The rules to form a valid qudraples are as follows:
+    - Quadrule contains 4 elements [k, l, m, n]
+    - where [k * l] = [m * n]
+    - and k != l != m != n
+
+Can you please help Sreehan, in solving this challenge!
+
+Input Format:
+-------------
+Line-1: An integer N, number of elements in the set.
+Line-2: N space seperated distinct integers, Set.
+
+Output Format:
+--------------
+Print an integer, Number of Valid Quadruples.
+
+
+Sample Input-1:
+---------------
+5
+3 2 4 1 6
+
+Sample Output-1:
+----------------
+16
+
+Explanation:
+-------------
+There are 16 valid Quadrules:
+(2,3,1,6) , (2,3,6,1) , (6,1,3,2) , (6,1,2,3)
+(3,2,1,6) , (3,2,6,1) , (1,6,3,2) , (1,6,2,3)
+(2,6,3,4) , (2,6,4,3) , (6,2,3,4) , (6,2,4,3)
+(3,4,2,6) , (4,3,2,6) , (3,4,6,2) , (4,3,6,2)
+
+
+Sample Input-2:
+---------------
+4
+2 3 5 7
+
+Sample Output-2:
+----------------
+0
+
+
+----------------------------------------------------------------------------------
+
+Kittu playing a game, the game contains a panel of N cells.
+Each cell in the panel is a number panel[i], 
+Kittu will win when he reaches 0.
+
+The rules to play the game are as follows:
+	- Kittu's intital position is S.
+	- When Kittu is at index i, he can move to position-(i + panel[i] ) or 
+	position-(i - panel[i]).
+	- Kittu cannot move outside the panel.
+	- if he reaches any panel[i] has value 0, He wins.	
+
+Your task to find that whether kittu wins or not.
+if he wins print "true".
+if there is no way to reach 0 then print "false".
+
+NOTE: cell positions are numbered from 0 to N-1.
+0<= panel[i] < N
+
+
+Input Format:
+-------------
+Line-1: Two integers N and S, number of cells in the panel and 
+		Kittu's initial position.
+Line-2: N space separated integers.
+
+Output Format:
+--------------
+Print a boolean value.
+
+
+Sample Input-1:
+---------------
+7 5
+4 2 3 0 3 1 2
+
+Sample Output-1:
+----------------
+true
+
+Explanation: 
+------------
+All possible ways to reach at position 3 with value 0 are: 
+position 5 -> position 4 -> position 1 -> position 3 
+position 5 -> position 6 -> position 4 -> position 1 -> position 3 
+
+
+Sample Input-2:
+---------------
+5 2
+3 0 2 1 2
+
+Sample Output-2:
+----------------
+false
+
+
+------------------------------------------------------------------------------------------------
+
+Due to side effects of vaccination in Europe, Few people turned as zombies.
+And other people fight againest zombies called as warriors to save their lives.
+
+You are given a list of integers strength[], represent the strength of the people.
+all the people running in same line with same speed.
+If the strength value is negative the person is a zombie running towards left,
+If the strength value is positive the person is a warrior running towards right.
+and the absolute value represents their strength.
+
+If a zombie and a warrior meet, the person with smallest strength will die. 
+If both have the same strength, both will die. 
+Two persons moving in the same direction will never meet.
+
+Your task is to find out the list of strengths of people who will be alive. 
+
+Input Format:
+-------------
+space separated integers, list of strength[].
+
+Output Format:
+--------------
+Print the list of strengths people who will be alive.
+
+
+Sample Input-1:
+---------------
+4 9 -5
+
+Sample Output-1:
+----------------
+4 9
+
+Explanation:
+------------
+The 9 and -5 meet resulting in 9. The 4 and 9 never meet.
+
+
+Sample Input-2:
+---------------
+-3 -2 2 3
+
+Sample Output-2:
+----------------
+-3 -2 2 3
+
+Explanation:
+------------
+The people with the strengths,
+-3 and -2 moving left, 3 and 2 moving right. No one will die.
+
+
+Sample Input-3:
+---------------
+8 3 -6
+
+Sample Output-3:
+----------------
+8
+
+Explanation:
+------------
+The people with the strengths,
+3 and -6 meet, 3 will die, -6 is alive.
+And 8 and -6 meet, -6 will die, 8 is alive.
+--------------------------------------------------------------------------------------------
+
+A courier company has to deliver N items with different heights.
+All the items have to deliver to one building only.
+
+The building has K rooms inside indexed 0,1,..-K-1, and the heights
+of the rooms are different. All the rooms connected with each other and 
+has only one entry point,  e.g, you can reach room-1 from room-0 only, 
+room-2 from room-1 only, ..so on.
+
+Now the task of the delivery agent is to keep the items inside the building.
+
+To keep the items into the rooms, delivery agent has to follow these rules:
+ - Agent can't keep, two goods in same room.
+ - As there is only one entry point, If the height of some room is 
+   less than the height of an item, then the item will be stopped before
+   that room, so are the items behind it.
+ - Agent can rearrange the order of items to keep them inside the building.
+   
+Return the maximum number of items, the delivery agent can keep inside the building.
+
+Input Format:
+-------------
+Line-1 -> two integers N and K, number of items and number of rooms.
+Line-2 -> N space separated integers, heights of the items.
+Line-3 -> K space separated integers, heights of the rooms.
+
+Output Format:
+--------------
+Print an integer as result.
+
+
+Sample Input-1:
+---------------
+4 5
+4 3 4 1
+
+
+Sample Output-1:
+----------------
+3
+
+Explanation:
+------------
+We can first keep the item of height 1 in room 4. 
+Then we can keep the item of height 3 in either of the 3 rooms 1, 2, or 3.
+Lastly, we can keep one box of height 4 in room 0.
+There is no way we can keep all 4 items in the building.
+
+
+Sample Input-2:
+---------------
+5 4
+1 2 2 3 4
+3 4 1 2
+
+
+
+Sample Output-2:
+----------------
+3
+
+Explanation:
+------------
+Notice that it's not possible to keep the item of height 4 into the building,
+since it cannot pass the first room of height 3.
+Also, for the last two rooms, 2 and 3, only items of height 1 can kept.
+In room 2 or 3, keep item of height 1.
+In room 1, keep item of height 2.
+Finally in room 0, keep item of height 3. 
+We can keep 3 items maximum.
+
+
+----------------------------------------------------------------------------
+
+In a class of XII, computer teacher asked one of the student 
+to perform a task as practical session .
+
+There is a box contains N balls in it, each ball is printed 
+with a positive integer. The teacher ask the student to split 
+all the balls in the box into ball-groups,
+each group should contain exatly S balls.
+
+The student has to pick the ball-groups as follows:
+	- the balls should be numbered consecutively.
+	e.g., 1,2 3, 4 or 4,5,6,7 etc.
+
+Finally, the student should say whether it is possible to 
+split all the balls in the box, into ball-groups accordingly.
+
+Now, its your task to help the student to find whether it is possible or not.
+if possible, print "true".
+otherwise, print "false".
+
+
+Input Format:
+-------------
+Line-1: Two integers N and S, number of balls and size of ball-group.
+Line-2: N space separated integers, integers printed on each ball.
+
+Output Format:
+--------------
+Print a boolean value, whether it is possible to split all the balls into groups.
+
+
+Sample Input-1:
+---------------
+8 4
+2 6 3 4 3 5 4 5
+
+Sample Output-1:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4,5] and [3,4,5,6]
+
+
+Sample Input-2:
+---------------
+12 3
+12 2 9 5 3 4 13 7 6 8 11 7
+
+Sample Output-2:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4], [5,6,7], [7,8,9] and [11,12,13]
+
+
+Sample Input-3:
+---------------
+6 3
+2 5 7 3 4 8
+
+Sample Output-3:
+----------------
+false
+
+Explanation:
+-------------
+you cannot form ball groups.
+
+
+-------------------------------------------------------------------------------------------
+
+
+Mahalakshmi participated in a treasure-hunt conatins N boxes in it.
+Each box is numbered from 0,1,2,3,...,N-1. 
+All the boxes are intially locked with the passcodes, except Box-0.
+The passcode is written in a envolope and marked with its concern box number.
+
+Each box in the treasure hunt contains a list of envelopes, which has 
+passcodes to open the other boxes. You can open the boxes in any order, 
+but you have to start from box-0 intially.
+
+The rule to win the treasure-hunt is to open all the boxes.
+Your task is to find out, whether Mahalakshmi win the treasure hunt or not.
+If she win, print "Win".
+Otherwise, print "Lost"
+
+Input Format:
+-------------
+Line-1: An integer, number of boxes.
+Next N lines: space separated integers, box numbers.
+
+Output Format:
+--------------
+Print a string value, Win or Lost
+
+
+Sample Input-1:
+---------------
+5
+1
+2
+3
+4
+3
+
+Sample Output-1:
+----------------
+Win
+
+Sample Input-2:
+---------------
+4
+1 3
+3 0 1
+2
+0
+
+Sample Output-2:
+----------------
+Lost
+---------------------------------------------------------------
+"Emphatic Pronunciation" of a given word is where we take the word and
+replicate some of the letter to emphasize their impact.
+
+Instead of saying 'oh my god', someone may say "ohhh myyy goddd", 
+We define emphatic pronunciation of a word, which is derived by replicating 
+a group (or single) of letters in the original word. 
+
+So that the replicated group is atleast 3 characters or more and 
+greater than or equal to size of original group. 
+For example Good -> Goood is an emphatic pronunciation,
+but Goodd is not because in Goodd the 'd' are only occuring twice consecutively.
+ 
+In the question you are given the "Emphatic pronunciation" word, 
+you have to findout how many words can legal result in the 
+"emphatic pronunciation" word.
+
+Input Format:
+-------------
+Line-1 -> A String contains a single word, Emphatic Pronunciation word
+Line-2 -> Space seperated word/s
+
+Output Format:
+--------------
+Print an integer as your result
+
+
+Sample Input-1:
+---------------
+Goood
+Good
+
+Sample Output-1:
+----------------
+1
+
+
+Sample Input-2:
+---------------
+heeelllooo
+hello hi helo
+
+Sample Output-2:
+----------------
+2
+
+-----------------------------------------------------------------
+Gnanesh is working on Machine Learning domain. He wants train the machine 
+in such a way that, if he provided an image printed with a string on it,
+the machine has to extract the text as a string and verify that, 
+after shuffling  the letters in the string, 'the shuffled string should be 
+like no two adjacent letters should be same' 
+
+You will be given extracted string, and
+Can you help Gnanesh to train the machine with the given constraint 
+The machine has to print "true", if the constarint is met, 
+Otherwise, print "false".
+
+Input Format:
+-------------
+A String S
+
+Output Format:
+--------------
+Print a boolean value.
+
+
+Sample Input-1:
+---------------
+aaabd
+
+
+Sample Output-1:
+----------------
+true
+
+Sample Input-2:
+---------------
+aaab
+
+Sample Output-2:
+----------------
+false
+-------------------------------------------------------------
+
+Mallika taught a new fun time program practice for Engineering Students.
+As a part of this she has given set of numbers, and asked the students 
+to find the sum of numbers between indices S1 and S2 (S1<=S2),
+both S1 and S2 inclusive.
+
+There are P Students in the class, numbered from 1 to P. Each student is
+given set of indices and that student has to find the sum of the numbers 
+between the indices and print the result.
+
+And return the answer in the same order of
+
+Input Format:
+-------------
+Line-1: Two integers N and P, N is length of set of numbers.
+		where 1<= N <= 1000
+Line-2: N space separated integers, array set[]
+Next P lines: Two integers S1 and S2, index positions 
+		where 0 <= S1 <= S2 < N
+		and 1<= set[i] <= 100000
+
+Output Format:
+--------------
+Print the sum of numbers between indices(s1, s2) given to each student.
+
+
+Sample Input-1:
+---------------
+8 2
+115053 59099 681359 526248 123844 612168 920784 591204
+2 6
+1 5
+
+Sample Output-1:
+----------------
+2864403
+2002718
+
+
+----------------------------------------------------------------------------
+Somasekharam is given a 2D grid of size M*N, 
+the grid is filled with integers in the range of 1 to 10000:
+He need to findout the sum of the elements of the sub-grid inside
+the given 2D grid defined by its upper left corner (r1,c1) and
+lower right corner (r2, c2).
+ 
+Create and Implement the NumGrid class as follows:
+	- NumGrid(int[][] grid) 
+		- initializes the object with the integer grid.
+	- int sumOfSubGrid(int r1, int c1, int r2, int c2)
+		- returns the sum of the elements of sub-grid inside 
+		the sub-grid defined by its upper left corner (r1, c1) 
+		and lower right corner (r2, c2) .
+
+Somasekharam is given a 2d grid of size M*N and Q queries of sumOfSubGrid.
+Your task is to help Somasekharam to create and implement the NumGrid class.
+
+Constraints:
+------------
+1 <= M, N, Q <= 100
+0 <= r1,r2 < M
+0 <= c1,c2 < N
+r1<=r2
+c1<=c2
+ 
+Input Format:
+-------------
+Line-1: Three space separated integers M,N and Q.
+Next M lines: N space separated integers, values of arr[][].
+Next Q lines: four space separated integers, r1, c1, r2, c2
+
+Output Format:
+--------------
+Print Q lines of integers, the sum of the elements of sub-grid.
+
+
+Sample Input-1:
+---------------
+6 5 4
+12 7 20 17 13	// 2D Grid
+16 15 9 7 15
+1 18 14 12 10
+17 7 12 14 4
+2 18 3 16 17
+7 6 7 13 8
+1 3 5 4		// Queries
+2 2 3 3
+1 2 4 3
+0 4 4 4
+
+Sample Output-1:
+----------------
+116
+52
+87
+59
+-----------------------------------------------------------------------------

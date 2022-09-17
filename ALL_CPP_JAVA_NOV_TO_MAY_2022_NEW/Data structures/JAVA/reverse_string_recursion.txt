@@ -1,0 +1,31 @@
+/* Write a java function that reverses a string. 
+Make your function recursive.
+
+Examples input/output
+hello       
+olleh
+
+*/
+import java.util.*;
+public class Test
+{
+    static String rev(String str, int k)
+    {
+        if(k==0)
+        {
+            return (Character.toString(str.charAt(0)));
+        }
+        else{
+            return(str.charAt(k)+rev(str,k-1));
+        }
+    }
+    public static void main(String[] args)
+    {
+        String str,r;
+        Scanner sc = new Scanner(System.in);
+        str = sc.next();
+        int k=str.length()-1;
+        r=rev(str,k);
+        System.out.println(r);
+    }
+}

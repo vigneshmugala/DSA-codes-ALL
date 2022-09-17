@@ -1,0 +1,24 @@
+/*
+str = "100"
+to
+int a=100*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string str;
+    cout << "enter string number:" << endl;
+    cin >> str;
+    int val=0;
+    for(int i=0;i<str.length();i++)
+    {
+    	val = val*10;
+    	val+= (str[i]-'0');
+    	
+	}
+	
+	cout << val;
+}

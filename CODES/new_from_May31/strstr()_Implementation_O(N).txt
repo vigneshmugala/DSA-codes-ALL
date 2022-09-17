@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle.length()==0) return 0;
+        else
+        {
+            int index = -1;
+            vector<int> ind;
+            for(int i=0;i<haystack.length();i++)
+            {
+                if(haystack[i]==needle[0])
+                {
+                    ind.push_back(i);
+                }
+            }
+            
+            for(int i=0;i<ind.size();i++)
+            {
+                string temp = haystack.substr(ind[i],needle.length());
+                if(temp == needle)
+                {
+                    index = ind[i];
+                    break;
+                }
+            }
+          return index;
+        }
+    }
+};

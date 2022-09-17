@@ -1,0 +1,57 @@
+/* Wrie a Java program  that will test if a string is a valid PIN or not 
+A valid PIN has:
+
+Exactly 4 or 6 characters.
+Only numeric characters (0-9).
+No whitespace.
+Examples input/ouptu
+121317
+true
+
+
+45135
+false
+
+Note: use nextLine method
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        String pin;
+        Scanner sc=new Scanner(System.in);
+        pin = sc.next();
+        int flag=0;
+        if(pin.length()==4||pin.length()==6)
+        {
+            for(int i=0;i<pin.length();i++)
+            {
+                if(pin.charAt(i)==' ')
+                {
+                   flag=1;
+                   break;
+                }
+                else if((pin.charAt(i)>='A'&& pin.charAt(i)<='Z')|| (pin.charAt(i)>='a'&&pin.charAt(i)<='z'))
+                {
+                    flag=1;
+                    break;
+                }
+                
+                
+            }
+            if(flag==1){
+                System.out.println(false);
+            }
+            else{
+                System.out.println(true);
+            }
+        }
+        else
+        {
+            System.out.println(false);
+        }
+        
+        
+    }
+}

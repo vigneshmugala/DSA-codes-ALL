@@ -1,0 +1,27 @@
+//Generate all permutations of string using recursion//
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void perm(string str, int start, int end)
+{
+	if(start==end)
+	{
+		cout<<str<<endl;
+		return;
+	}
+     //put each letter in 1st position
+	 for(int i=start;i<=end;i++)
+	 {
+	 	swap(str[start],str[i]);
+	 	perm(str,start+1,end);   //do the same for remaining indexes ex: abc -> put a in 1st pos then go to bc string then put b in 1st pos and then c in 1st pos so perms will be (abc, acb)
+	 	swap(str[i],str[start]);  //OPTIONAL.
+	 }	
+}
+int main()
+{
+	string str;
+	cin>>str;
+	
+	perm(str,0,str.length()-1);
+}

@@ -1,0 +1,100 @@
+Find Maximum are for given sequence of plots
+In a layout of plots, all plots are having equal width, which is 10 meters, but these
+
+plots varies in length For a given sequence of plots lengths, you need find what is maximum
+rectangle area you can make ?
+
+Example
+
+
+Max Area is 4*10*20 = 800 sq meters
+
+input =30 40 25 20
+output =800
+
+input =20 20 20 60 10 50 40 20 20 20 20
+utput
+1200
+#include<bits/stdc++.h>
+using namespace std;
+int rightArea(int ele,int pos,vector<int> a, int size)
+{
+  int area=1;
+    for(int i=pos;i<a.size();i++)
+    {
+        if(a[i]>=ele)
+        {
+            area+=(10*ele);
+        }
+        else{
+            break;
+        }
+    }
+    return area;
+}
+int leftArea(int ele,int pos,vector<int> a, int size)
+{
+  int area=1;
+    for(int i=pos;i>=0;i--)
+    {
+      if(a[i]>=ele)
+      {
+          area+=(10*ele);
+      }
+      else{
+          break;
+      }
+        
+    }
+  return area;
+}
+int main()
+{
+    string str;
+    getline(cin,str);
+    vector<int>arr;
+    int val=0;
+    for(int i=0;i<str.length();i++)
+    {
+        if(str[i]!=' ')
+        {
+            val=val*10;
+            val+=str[i]-'0';
+        }
+        else
+        {
+            arr.push_back(val);
+            val=0;
+        }
+    }
+    arr.push_back(val);
+    int n=arr.size();
+    
+    //for(auto x:arr){cout<<x<<" ";}cout<<endl;
+    vector<int> areas;
+    for(int i=0;i<n;i++)
+    {
+       if(i==0)
+       {
+           areas.push_back(rightArea(arr[i],i,arr,n));
+       }
+       else if(i==(n-1))
+       {
+           areas.push_back(leftArea(arr[i],i,arr,n));
+       }
+       else
+       {
+           areas.push_back(rightArea(arr[i],i,arr,n));
+           areas.push_back(leftArea(arr[i],i,arr,n));
+       }
+    }
+    
+    int max=0;
+    for(auto x: areas)
+    {
+        if(x>=max){max=x;}
+        //cout<<x<<" ";
+    }
+    //cout<<endl;
+    cout<<max-1<<endl;
+}

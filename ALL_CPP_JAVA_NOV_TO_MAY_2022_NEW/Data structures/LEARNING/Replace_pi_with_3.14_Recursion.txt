@@ -1,0 +1,42 @@
+/* Replace PI with 3.14 in a given string using recursion
+pippxxppipimo
+
+3.14ppxxp3.143.14mo*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void piify(string s,int in)
+{
+	if(in > s.length()-1)
+	{
+		return;
+	}
+	
+	if(s[in]=='p')
+	{
+		if(s[in+1]=='i')
+		{
+			cout<<"3.14";
+			piify(s,in+2);
+		}
+		
+		else
+		{
+			cout<<s[in];
+			piify(s,in+1);
+		}
+	}
+	
+	else
+	{
+		cout<<s[in];
+		piify(s,in+1);
+	}
+}
+int main()
+{
+	string s;
+	cin>>s;
+	piify(s,0);
+}

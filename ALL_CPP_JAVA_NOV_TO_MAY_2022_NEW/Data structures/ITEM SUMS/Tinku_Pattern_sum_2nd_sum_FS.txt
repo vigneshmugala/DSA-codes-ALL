@@ -1,0 +1,83 @@
+/*
+  print pattern:
+  input - 1
+  op - 1
+  input - 2
+  op - 1
+       2*3 
+  input - 3
+  op - 1
+       2*3
+       6*5*4 
+  input - 7
+  op - 1 -- 1(odd)
+       2*3 -- 2   nums=4;
+       6*5*4 -- 3(odd)  k=6;
+       7*8*9*10 -- 4   nums = k+1;
+       15*14*13*12*11 -- 5(odd)  k=nums+i-j;
+       16*17*18*19*20*21 -- 6
+       28*27*26*25*24*23*22 -- 7(odd)
+       
+*/
+#include<bits/stdc++.h>
+using namespace std;
+
+void PrintPattern(int x)
+{
+	
+	int i=1;
+	int j=1;
+	int nums=1;
+	int k=0;
+	
+	for(int i=1;i<=x;i++)
+	{
+		if(i%2==0)
+		{
+			nums=k+1;
+			for(int j=1;j<=i;j++)
+			{
+				if(j==i)
+				{
+					cout << nums;
+					nums++;
+				}
+				else
+				{
+					cout << nums << "*";
+					nums++;
+				}
+				
+			}
+			cout << "\n";
+		}
+		else{
+			
+			k=nums+i-j;
+			for(int j=1;j<=i;j++)
+			{
+	        	if(j==i)
+	        	{
+	        		cout << nums+i-j;
+	        		
+				}
+				else
+				{
+					cout << nums+i-j << "*";
+				}
+			}
+			cout << "\n";
+			
+		}
+	}
+
+}
+
+int main()
+{
+	int n;
+	cout << "enter val:"<<endl;
+	cin >> n;
+	PrintPattern(n);
+	cout << "Tinku madarchod Rest in Peace now. Fucofff" << endl;
+}

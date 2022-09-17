@@ -1,0 +1,53 @@
+/*TCS Codevita prime number question*/
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int n;
+	cout<<"Enter number:"<<endl;
+	cin>>n;
+	int i=4;
+	vector<int>primes;
+	primes.push_back(2);
+	primes.push_back(3);
+	//extract all primes under <n
+	while(i<n)
+	{
+	   bool isPrime=true;
+	   for(int j=2;j<i;j++)
+	   {
+	   	  if(i%j==0)
+	   	  {
+	   	  	isPrime=false;
+	   	  	break;
+		  }
+	   }
+	   if(isPrime)
+	   {
+	   	 primes.push_back(i);
+	   	 i++;
+	   }
+	   else{
+	   	i++;
+	   }	
+	}
+	int sum=0;
+	int count=0;
+   for(auto x:primes)
+   {
+   	  sum+=x;
+   	  count++;
+   	  if(sum==n)
+   	  {
+   	  	 break;
+	  }
+   }
+   if(sum==n){
+   cout<<"The count of such primes are:"<<endl;
+   cout<<count<<endl;
+  }
+  else{
+  	 cout<<"This number cannot be represented as sum of consecutive primes" <<endl;
+  }
+}

@@ -1,0 +1,44 @@
+/* 
+chocolate boxes - 3 (input)
+
+(no.of friends , boxes in chocolate)  -- 3 such cases
+
+return true if each friends equally gets chocolate if not then false
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int cases;
+	cout<<"Enter cases: " << endl;
+	
+	cin >> cases;
+	for(int i=1;i<=cases;i++)
+	{
+		int temp[2];
+		cout << "Enter number of Friends: "<<endl;
+		cin >> temp[0];
+		
+		cout << "Enter no.of chocolates in the box:"<< endl;
+		cin >> temp[1];
+		
+		if(temp[1]%temp[0] == 0)
+		{
+			cout<<"true";
+			cout << endl;
+		}
+		else
+		{
+			cout<<"false";
+			cout << endl;
+		}
+	}
+	
+	
+	
+	
+	
+	
+}

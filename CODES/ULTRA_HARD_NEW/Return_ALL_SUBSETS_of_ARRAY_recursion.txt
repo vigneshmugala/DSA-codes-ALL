@@ -1,0 +1,55 @@
+/*All subsets of an array using recursion problem*/
+#include<bits/stdc++.h>
+using namespace std;
+
+
+vector<vector<int>> AllSubsets(vector<int> v, int index, int n)
+{
+   if(index>=n)
+   {
+   	   return {{}};    //return empty vector<vector<int>>;
+   }
+   vector<vector<int>> ans;
+   vector<vector<int>> partialAns = AllSubsets(v,index+1,n);  //Big Task to be handled..
+   //small task is to add v[i]'s to all copies of partialAns and add it to main ans, and also add paitalans to main ans without adding v[i]'s
+   for(vector<int> k: partialAns)
+   {
+   	   ans.push_back(k);
+   }
+   //add 1's and push again to ans;
+   
+   for(vector<int> k : partialAns)
+   {
+   	   k.push_back(v[index]);
+   	   sort(k.begin(),k.end());
+   	   ans.push_back(k);
+   }
+  return ans;
+}
+int main()
+{
+	int n;
+	cout<<"Enter size of the Main array: "<<endl;
+	cin>>n;
+	
+	vector<int> v;
+	
+	cout<<"Enter elements in the array: "<<endl;
+	for(int i=0;i<n;i++)
+	{
+		int inp;
+		cin>>inp;
+		v.push_back(inp);
+	}
+	
+	vector<vector<int>> subsets = AllSubsets(v,0,n);
+	sort(subsets.begin(),subsets.end());
+	for(vector<int> x: subsets)
+	{
+		for(int y: x)
+		{
+			cout<<y<<" ";
+		}
+	  cout<<endl;
+	}
+}

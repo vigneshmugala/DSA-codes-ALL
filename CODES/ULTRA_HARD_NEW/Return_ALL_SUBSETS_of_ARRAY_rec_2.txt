@@ -1,0 +1,43 @@
+//2nd approach generate all subsets of array 
+#include<bits/stdc++.h>
+using namespace std;
+void createSubsets(vector<int> &v, int index, int size, vector<int> &subset, vector<vector<int>> &ans)
+{
+   if(index==v.size()) //base case.
+   {
+       ans.push_back(subset);
+	   return;	  
+   }
+   
+   //first choice is to  add the current element in the subset. and directly call the recursion for next elements for the same job.
+   subset.push_back(v[index]);
+   createSubsets(v,index+1,size,subset,ans);
+   //next choice is to not add the current element in the subset and call recursion for next elements 
+   subset.pop_back();
+   createSubsets(v,index+1,size,subset,ans);	
+}
+int main()
+{
+	int n;
+	cin>>n;
+	
+	vector<int> v;
+	for(int i=0;i<n;i++)
+	{
+		int in;
+		cin>>in;
+		v.push_back(in);
+	}
+	
+	vector<vector<int>>allSubsets;
+	vector<int> subset;
+	createSubsets(v,0,n,subset,allSubsets);
+	for(vector<int> k: allSubsets)
+	{
+		for(int u: k)
+		{
+			cout<<u<<" ";
+		}
+	 cout<<endl;
+	}
+}

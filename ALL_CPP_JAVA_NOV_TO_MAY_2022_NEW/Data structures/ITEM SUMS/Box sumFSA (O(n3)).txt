@@ -1,0 +1,81 @@
+/*FS-a gummadi baleshwar rao sum
+ box-1 : weights
+       [5,3,1]
+ box -2 : contains more weights inculuding the weights in box1
+      [3,4,5,2,6,7,8,1]
+     
+     nearest to 5 in box-2 in right side : 6
+	 nearest to 3 in box-2 : 4
+	 nearest to 1 in box-2 : -1 (if not found)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<int> box1;
+	vector<int> result;
+	vector<int> box2;
+	int input;
+	cout << "enter box1 weights:" << endl;
+	while(cin>>input&&input!= -1)
+	{
+		box1.push_back(input);
+	}
+	
+    cout << "enter box2 weights:" << endl;
+	while(cin>>input && input != -1)
+	{
+		box2.push_back(input);
+	}
+	
+	
+	for(int i=0;i<box1.size();i++)
+	{
+		int holder = box1[i];
+		bool found = false;
+		for(int j=0;j<box2.size();j++)
+		{
+			if(box2[j] == holder)
+			{
+				int k=j;
+				if(k==(box2.size()-1)){
+					result.push_back(-1);
+					found = true;
+				}
+				while(k<box2.size()-1)
+				{
+					if(box2[k+1]>box2[j])
+					{
+						result.push_back(box2[k+1]);
+						found = true;
+						break;
+					}
+					else
+					{
+						k++;
+					}
+				
+				}
+				
+				if(found)
+				{
+					break;
+				}
+				
+			}		
+		}
+		if(!found)
+		{
+			result.push_back(-1);
+		}
+		
+	}
+	cout << "the desired output Is:" << endl;
+	for(auto x: result)
+	{
+		cout << x << " ";
+	}
+	
+}

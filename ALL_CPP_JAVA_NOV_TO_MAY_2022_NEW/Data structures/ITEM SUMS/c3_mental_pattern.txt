@@ -1,0 +1,50 @@
+/*
+input n = 4;
+1 
+1 1 2
+1 1 2 1 2 3 
+1 1 2 1 2 3 1 2 3 4 
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	
+	int n;
+	cout << "Enter n:" << endl;
+	cin >> n;
+	int count;
+	int k=1;
+	int i=0;
+	count = i+k;
+	int val=1;
+	int count2=1;
+	int j=1;
+	int l=1;
+	for(i=0;i<n;i++)
+	{
+	   count2 = 1;
+	   j=1;
+	   while(j<=count){
+			l=1;
+		    while(l<=count2)
+			{
+			   cout << l << " ";
+			   l++;	
+			   j++;
+			} 
+		    count2++;
+		}
+		k++;
+		count += k;
+		cout << endl;
+	}
+	
+	
+	
+	
+	
+	
+	
+}

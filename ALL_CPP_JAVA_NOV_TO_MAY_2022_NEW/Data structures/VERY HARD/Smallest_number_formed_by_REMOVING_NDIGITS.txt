@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int remLen(int i, string s)
+{
+    int re=0;
+    for(int k=i;i<s.length();i++)
+    {
+        re++;
+    }
+    re--;
+  return re;
+}
+int main()
+{
+    string str;
+    cin>>str;
+    
+    string ans="";
+    
+    int remov=0;
+    cin>>remov;
+    
+    int dig=str.length()-remov;
+    int rem_index=0; int min=9999; int mindex=0; int remdig=dig;
+    
+    bool arr[str.length()];
+    for(int i=0;i<str.length();i++){arr[i]=0;}
+    
+    while(ans.length()<dig) 
+    {
+       //cout<<"Limiter Index is: "<< rem_index << endl;
+       for(int i=0;i<str.length();i++)
+       {
+          if(i>=rem_index&&remLen(i,str)>=remdig-1&&!arr[i])
+          {
+              int ref=str[i]-'0';
+              if(ref<=min)
+              {
+                  min=ref;
+                  mindex=i;
+              }
+          }
+       }
+       arr[mindex]=1;
+       //cout <<"Minimum :" << min <<endl;
+       ans+=min+'0';
+       remdig--;
+       rem_index=mindex;
+       //cout<<"Index of Minimum is: "<<rem_index<<endl;
+       //cout<<"Remaining Digits Left is: "<<remdig<<endl;
+       mindex=0;
+       min=9999;
+    }
+    
+    string real="";
+    bool zerosEnded=false;
+    for(int i=0;i<ans.length();i++)
+    {
+        if(ans[i]!='0')
+        {
+            zerosEnded=true;
+            real+=ans[i];
+        }
+        else if(ans[i]=='0'&&zerosEnded){
+            real+=ans[i];
+        }
+    }
+    cout<<ans<<endl;
+    cout<<real<<endl;
+}

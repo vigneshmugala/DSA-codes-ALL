@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cin>>str;
+	int dis=0;
+	for(int i=0;i<str.length();i++){
+		dis=abs(str[i]-'a');
+		str[i]=((97+25)-dis);
+	}
+	cout<<str;
+}

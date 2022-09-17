@@ -1,0 +1,79 @@
+// Can we divide an array with K partitions such that all have equal sum?
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool canWeDivide(int i, int arr[], int size, int k,int bucketNumber, int bucketSum ,int target_sum,vector<int> &check)
+{
+	if(bucketNumber==k) //if all buckets are completely filled and no bucket faced error then we succesfully divided all elements into 3 buckets with same sum so we return true;
+	{
+		return true;
+	}
+	if(bucketSum==target_sum)//then we move on to next bucket with values all set back to 0;
+	{
+		return canWeDivide(0,arr,size,k,bucketNumber+1,0,target_sum,check);
+	}
+	if(bucketSum>target_sum) //if bucketSum exceeds target_sum then we have failed 
+	{
+		return false;
+	}
+	if(i>=size) // if i exceeded size but we can't make bucketSum == targetSum so it is failed
+	{
+		return false;
+	}
+	if(check[i]==1) // we only add unique elements in the bucket(each bucket) so we skip current element if check[current_ele] = 1
+	{
+	    return canWeDivide(i+1,arr,size,k,bucketNumber,bucketSum,target_sum,check);
+	}
+	else if(check[i]==0){
+	//CHOICE 1:
+    bucketSum+=arr[i];  //we select arr[i] in bucket no. (bucketNumber)
+	check[i]=1;       // we won't select it again (so mark it 1 in boolean vector)
+	bool op1 = canWeDivide(i+1,arr,size,k,bucketNumber,bucketSum,target_sum,check); // call recursion for remaining elements
+	
+	//CHOICE 2:
+	bucketSum-=arr[i]; // we won't select the same arr[i] in bucket no. (bucketNumber) so we undo the change(backtracking)
+	check[i]=0;     //  we also undo the change that was done in boolean vector
+	bool op2 = canWeDivide(i+1,arr,size,k,bucketNumber,bucketSum,target_sum,check);// call recursion for remaining elements
+    return op1 | op2;    // at the end if one of two choices op1 (if we choose ele 1) or op 2(if we don't choose ele 1) is correct then we have correct ans.(true) if both aren't possible then return false
+   }
+   
+}
+int main()
+{
+	int n;
+	cout<<"Enter array Size: "<<'\n';
+	cin>>n;
+	
+	int arr[n];
+	int total_sum = 0;
+	cout<<"Enter array Elements: "<<'\n';
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+		total_sum += arr[i];
+	}
+	
+	int k;
+	cout<<"Enter no.of partitions: "<<'\n';
+	cin>>k;
+	
+	int target = 0;
+	if(total_sum % k!=0)
+	{
+		cout<<"false"<<'\n';
+	}
+	else
+	{
+		vector<int> checker(n,0);
+		target = total_sum/k;
+		if(canWeDivide(0,arr,n,k,0,0,target,checker))
+		{
+			cout<<"true"<<'\n';
+		}
+		else
+		{
+			cout<<"false"<<'\n';
+		}
+	}
+}

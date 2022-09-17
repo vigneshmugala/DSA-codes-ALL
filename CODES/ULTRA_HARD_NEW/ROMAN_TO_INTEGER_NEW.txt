@@ -1,0 +1,86 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        vector<int> vals;
+        int ans = 0;
+        for(int i=0;i<s.length();i++)
+        {
+            char c = s[i];
+            switch(c)
+            {
+                case 'I':
+                    vals.push_back(1);
+                    break;
+                case 'V':
+                    vals.push_back(5);
+                    break;
+                case 'X':
+                    vals.push_back(10);
+                    break;
+                case 'L':
+                    vals.push_back(50);
+                    break;
+                case 'C':
+                    vals.push_back(100);
+                    break;
+                case 'D':
+                    vals.push_back(500);
+                    break;
+                case 'M':
+                    vals.push_back(1000);
+                    break;
+            }
+        }
+        
+        for(auto z: vals) cout<<z<<" ";
+        /*
+          MCMXCIV -- 1000,100,1000,10,100,1,5 -- 1000+100*+(1000-100) +
+          IX      -- 1,10 done
+          LCXVIII -- 50,100,10,5,1,1,1
+          VIII    -- 5,1,1,1
+          XCVIII  -- 10,100,5,1,1,1
+          
+         next dhi greater unte --- skip kottu
+         next dhi less undhi no previous -- +=(val[i])
+         previouse dhi less unte -- +=(val[i-1] - val[i])
+           next dhi less undhi && previous dhi kuda less undhi --  +=(val[i] - val[i-1])
+           next dhi greater undhi && previous dhi less undhi -- Impossible case
+           next dhi greater undhi && previouse dhi kuda greater undhi -- skip kottu
+        
+        */
+        if(vals.size() == 1) return vals[0];
+        
+        for(int i=0;i<vals.size();i++)
+        {
+            if(i == 0)
+            {
+               if(vals[i+1] <= vals[i])
+               {
+                  ans+=vals[i];   
+               }
+            }
+            else if(i == vals.size()-1)
+            {
+                if(vals[i]>vals[i-1])
+                {
+                    ans+=(vals[i]-vals[i-1]);
+                }
+                else
+                    ans+=vals[i];
+            }
+            else
+            {
+                if(vals[i+1]<=vals[i])
+                {
+                    if(vals[i-1]<vals[i])
+                    {
+                        ans+=(vals[i] - vals[i-1]);
+                    }
+                    else
+                        ans+=vals[i];
+                }
+            }
+        }
+        return ans;
+    }
+};

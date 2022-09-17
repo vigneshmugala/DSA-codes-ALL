@@ -1,0 +1,76 @@
+/*Mental Pattern Rangoli
+ n=4
+ 1*2*3*4*17*18*19*20
+ --5*6*7*14*15*16
+ ---8*9*12*13
+ ----10*11
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int sum(int n)
+{
+	int s=0;
+	for(int i=1;i<=n;i++)
+	{
+    	s+=i;
+    }
+  return s;  
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter n:"<<endl;
+	cin>>n;
+	int count=n;
+	int temp=1;
+	//int k=1;
+	//int p=1;
+	int st=0;
+	int dash=0;
+	int init=0;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<dash;j++)
+		{
+			cout<<"-";
+		}
+		for(int j=0;j<count;j++)
+		{
+			cout<<temp<<"*";
+			temp++;
+		}
+		//int st= 2*sum(n)-p*n+k;
+	   if(i==0){
+		 st= (2*sum(n)-n+1);
+		 init = st;
+	    }
+	    else{
+	    	st=init-count;
+	    	init=st;
+		}
+		for(int j=0;j<count;j++)
+		{
+		  if(j!=count-1){
+			cout<<st<<"*";
+			st++;
+	      }
+	      else
+	      {
+	      	cout<<st;
+		  }
+		}
+	   if(i==0){
+	   	dash+=2;
+	   	count--;
+	   	
+	   }
+	   else{
+	   	dash++;
+	   	count--;
+	   }
+	 cout<<endl;
+	}
+	
+}

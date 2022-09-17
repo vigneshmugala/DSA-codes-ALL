@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct book
+{
+	char title[50];
+	int pages;
+	char author[40];
+	int cost;	
+};
+int main()
+{
+	struct book book1;
+	struct book book2;
+	//strcpy(destination where string is to be copied , "string");
+	strcpy(book1.title, "Learn New Skills");
+	strcpy(book1.author,"Vignesh Mugala");
+	book1.pages=50;
+	book1.cost=200;
+	
+	strcpy(book2.title,"Deep Work");
+	strcpy(book2.author,"Cal NewPort");
+	book2.pages=290;
+	book2.cost= 500;
+	
+   cout<<book1.title<<endl;
+   cout<<book1.author<<endl;
+   cout<<book1.pages<<endl;
+   cout<<book1.cost<<endl;
+   cout<<'-------------'<<endl;
+   cout<<book2.title<<endl;
+   cout<<book2.author<<endl;
+   cout<<book2.pages<<endl;
+   cout<<book2.cost<<endl;		
+}

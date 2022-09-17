@@ -1,0 +1,76 @@
+/*rotate array size n by d elements
+  input:
+  0 1 2 3 4 5 6
+  size: 7
+  move: 2
+  5 6 0 1 2 3 4
+  */
+  
+#include<bits/stdc++.h>
+using namespace std;
+
+void rotateonce(int arr[], int n){
+	
+	for(int i=0; i<=n; i++)
+	{
+		int temp = arr[0];
+		arr[i] = arr[i + 1];
+		arr[n-1] = temp;	
+	}
+		
+}
+
+void rotate(int arr[] , int n , int d)
+{
+   for(int i=1;i<=d;i++)
+   {
+   	  rotateonce(arr,n);
+	   }	
+	
+}
+
+void printarray(int arr[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    cout << arr[i] << "";
+
+  }
+
+}
+int main()
+{  
+	int s;
+	cout << "enter array size:" << endl;
+	int array[s];
+	int dis;
+	cout << "enter rotation magnitude:" << endl;
+	cin >> dis;
+	
+	for(int i =0; i<= s; i++)
+	{
+		cin >> array[i];
+	}
+	
+	rotate(array,s,dis);
+        printarray(arr,s);
+	return 0;
+		
+}
+
+
+
+//for Static array in main function
+
+int main()
+{
+   int array[] = {1,2,3,4,5,6,7,8};
+   int s = sizeof(array) / sizeof(arr[0]);
+   int dis;
+   cout << "enter rotation magnitude:" << endl;
+   cin >> dis;
+
+   rotate(array,s,dis);
+   printarray(array,s);
+   return 0;
+}

@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+		int num;
+		Scanner sc = new Scanner(System.in);
+		num = sc.nextInt();
+		int sqrt=0;
+		for(int i=1;i<num;i++)
+		{
+		    int j=i*i;
+		    
+		    if(j==num)
+		    {
+		        sqrt = i;
+		        break;
+		    }
+		    else{
+		        if(j>num)
+		        {
+		            sqrt = i-1;
+		            break;
+		        }
+		    }
+		 
+		}
+		System.out.println("Square root is :" + sqrt);
+		
+		
+		
+		
+		
+		
+	}
+}

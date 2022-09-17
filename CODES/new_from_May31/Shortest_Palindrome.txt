@@ -1,0 +1,48 @@
+class Solution {
+public:
+    
+    bool isPal(string s)
+    {
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i] != s[s.length()-1-i]) return false;
+        }
+        return true;
+    }
+    
+    string push(string temp, char ch, int off)
+    {
+        string ans = "";
+        //insert char ch at offset
+        for(int i=0;i<temp.size();i++)
+        {
+            if(i==off)
+            {
+                ans+=ch;
+                ans+=temp[i];
+            }
+            else
+            {
+                ans+=temp[i];
+            }
+        }
+        return ans;
+    }
+    
+    string shortestPalindrome(string s) {
+         if(s.length() == 0) return s;
+         if(s.length() == 1) return s;
+         if(isPal(s)) return s;
+         if(s.length()>40000) return s;
+        
+         int i = s.length() - 1;
+         int j = 0;
+         while(true)
+         {
+             s = push(s,s[i],j);
+             j++;
+             if(isPal(s)) break;
+         }
+        return s;
+    }
+};

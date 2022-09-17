@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool isPal(string s,int lptr, int rptr)
+{
+	if(lptr>rptr)
+    {
+    	return true;
+	}
+	if(s[lptr]!=s[rptr])
+	{
+		return false;
+	}
+	else
+	{
+	    return isPal(s,lptr+1,rptr-1);	
+	}
+}
+int main()
+{
+	string str;
+	getline(cin,str);
+	
+	string nstr;
+	for(int i=0;i<str.length();i++)
+	{
+		if(str[i]!=' ')
+		{
+			nstr+=str[i];
+		}
+	}
+	if(isPal(nstr,0,nstr.length()-1)){cout<<"It is a palindrome"<<endl;}
+	else{cout<<"It is not a palindrome"<<endl;}
+}

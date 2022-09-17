@@ -1,0 +1,59 @@
+/*
+
+ "0111" is "1000" and adding 1 at the end we get 1001
+ "1100" is  "0011" and adding 1 at the end we get 0100
+
+Here adding will done from the last 
+when we add two '1's  we get 10 as the result and 1 is carry forwarded, on continuing the same process we get 0100 as the result 
+
+
+Sample Test Case - 1
+input = 0111
+output = 1001
+
+Sample Test Case - 2
+input = 1100
+output = 0100
+*/
+#include<bits/stdc++.h>
+using namespace std;
+string twosCompliment(string s)
+{
+   int len=s.length();
+   for(int i=0;i<len;i++)
+   {
+   	  if(s[i]=='0')
+   	  {
+   	  	s[i]='1';
+	  }
+	  else{
+	  	s[i]='0';
+	  }
+   }
+  
+   if(s[len-1]=='0')
+   {
+   	  s[len-1]='1';
+   }
+   else
+   {
+   	  int k=0;
+   	  while(s[len-1-k]!='0')
+   	  {
+   	  	s[len-1-k]='0'; //0011   
+   	  	                //   1
+   	  	k++;           // 0000
+	  }
+	  s[len-1-k]='1';
+   }
+ return s;
+}
+int main()
+{
+  string str;
+  cout<<"Enter value: "<<endl;
+  cin>>str;
+  string newstr="";
+  newstr= twosCompliment(str);	
+  cout<<newstr<<endl;	
+}

@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+	string str;
+	cout << "Enter String:" << endl;
+	cin >> str;
+	for(int i=0;i<str.length();i++)
+	{
+		char hol = i;
+		int j=i+1;
+		
+		while(j<str.length())
+		{
+			if(str[j] == str[i])
+			{
+				int dis = j+1-hol;
+				string sub = str.substr(hol,dis);
+				cout << sub << endl;
+				break;
+			}
+			else
+			{
+				j++;
+			}
+		}
+		
+	}	

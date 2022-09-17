@@ -1,0 +1,90 @@
+/* mathematics problem
+ Input string - mathematics
+ n value: 3
+ m       e        i
+   a   h   m    t    c
+     t       a          s
+ output- meiahmtctas*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string str;
+	cout<<"Enter string:"<<endl;
+	cin>>str;
+	int div=0;
+	cout<<"Enter n value:"<<endl;
+	cin>>div;
+	int windowsize = 2*div-3;
+	vector<char>res;
+	vector<char>res2;
+	
+	for(int i=0;i<str.length();i+=windowsize+1)
+	{
+		res.push_back(str[i]);
+	}
+	int j=1;
+    int count=0;
+    while(j<str.length())
+    {
+    	res2.push_back(str[j]);
+    	j++;
+    	count++;
+    	if(count==windowsize)
+    	{
+    		j++;
+    		count=0;
+		}
+	}
+    int iter = div-1;
+    /*athemtics n=4 windowsize = 5
+      athem | tics""
+      01234   56789
+	  
+	  step1: add enough blank spaces to suffice*/
+	  
+	  int blanks = windowsize - (res2.size() % windowsize);
+	  if(blanks!=windowsize){
+	  for(int i=1;i<=blanks;i++)
+	  {
+	  	res2.push_back(' ');
+	  }      
+    }
+    
+     
+      int ct=0;
+      int ptr=0;
+      int hol=0;
+      int parts = res2.size()/windowsize;
+      while(ct<iter)
+      {
+      	ptr=0;
+      	for(int i=hol;i<parts+hol;i++)
+      	{
+      	   res.push_back(res2[ptr+hol]);
+      	   if((ptr+hol)!=(ptr+windowsize-1-hol))
+		   {
+      	      res.push_back(res2[ptr+windowsize-1-hol]);
+	       }
+		   ptr+=windowsize;
+      		
+		}
+      	hol++;
+      	ct++;
+	  }
+	
+	 cout<<"The Desired Output is: "<<endl;
+	 for(char x:res)
+	 {
+	 	if(x!=' ')
+		 {
+		 	cout<<x;
+	     }
+	 }
+	
+	
+	
+	
+}

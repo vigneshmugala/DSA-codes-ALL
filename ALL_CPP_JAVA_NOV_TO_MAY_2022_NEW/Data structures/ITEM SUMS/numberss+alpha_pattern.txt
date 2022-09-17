@@ -1,0 +1,53 @@
+/*
+Pattern
+n=5
+1*Z
+2*Y*Y*2   - 4 iter
+3*X*X*X*3  - 5 iter
+4*W*W*W*W*4 - 6 iter
+5*V*V*V*V*V*5
+
+
+ascii values of small letters a-z -> 97 to 122
+ascii vallues of capital letter A-Z -> 65 to 90
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout << "Enter n :" << endl;
+	cin>>n;
+	char ch=89;
+	cout << "1*Z" << endl; 
+	int k=4;
+	for(int i=2;i<=n;i++)
+	{
+		for(int j=1;j<=k;j++)
+		{
+			if(j==1)
+			{
+				cout<<i<<"*";
+			}
+			else if(j==k)
+			{
+				cout << i;
+			}
+			else
+			{
+				cout << ch <<"*";
+			}
+		
+		}
+		ch--;
+		k++;
+		cout << endl;
+	}
+	
+	
+	
+	
+	
+}

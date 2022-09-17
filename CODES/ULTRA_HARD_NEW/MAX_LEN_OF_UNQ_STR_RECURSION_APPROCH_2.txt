@@ -1,0 +1,71 @@
+/* Maximum length of string formed with subsequences of a string with unique characters*/
+//APPROACH-2;
+
+#include<bits/stdc++.h>
+using namespace std;
+bool checker(vector<int> &vis, string str)
+{
+    // case-1: If the string itself has reapeating characters then reject that string from considertion altogether
+	vector<int> bis(26,0);
+	for(int i=0;i<str.length();i++)
+	{
+	  if(bis[str[i]-'a']==0)
+		 bis[str[i]-'a']++;
+	  else
+	    return false;
+	}	
+	// case-2: If any character in string str is colliding with already present visited array &vis which consists characters of other 
+	// (cont) strings as well, so if we have found a collision that means concatenation of the final string with current str is incompatiable and we have failed
+	
+	for(int i=0;i<str.length();i++)
+	{
+	   if(vis[str[i]-'a']==1)
+	   {
+	   	  return false;
+	   }
+	}
+   return true;
+}
+int maxLenth(int i, string arr[] , int size, int len, vector<int> &vis)
+{
+	if(i>=size)return len; // so if i reaches end marker without failure, return the length of the string.
+	
+	string str= arr[i];
+	
+	if(!checker(vis,str)) //check whether string is colliding with vis[] array or it itself has repeating characters, if the string fails this test it means it must not be taken into consideration, so recurse for i+1
+	{
+		return maxLenth(i+1,arr,size,len,vis); //so recurse for i+1
+	}
+	else
+	{
+		// we have again two choices. first is we have to consider in our final ans. 
+		for(int j=0;j<str.length();j++)
+		{
+			vis[str[j]-'a']=1;
+		}
+		int op1 = maxLenth(i+1,arr,size,len+str.length(),vis);
+		// second choice is to not include our string str in final ans. so backtrack all the changes that have been made
+		for(int j=0;j<str.length();j++)
+		{
+			vis[str[j]-'a']=0;
+		}
+		int op2 = maxLenth(i+1,arr,size,len,vis);
+		
+		return max(op1,op2); //return best (max) of two choices that have been made in each case.
+	}
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	
+	string arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	
+	vector<int>vis(26,0);
+	cout<<maxLenth(0,arr,n,0,vis)<<'\n';
+}

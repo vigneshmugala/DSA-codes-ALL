@@ -1,0 +1,127 @@
+
+(Partially completed)
+output -> ab ac ad ag ah ai...etc
+
+#include<bits/stdc++.h>
+using namespace std;
+void GenerateStringVector(vector<char>vec,int input)
+{
+	int asc=97;
+	int temp=input;
+	int dig=0;
+	vector<string>result;
+	while(temp>0)
+	{
+		dig++;
+		temp/=10;
+	}
+	int arr[dig];
+	int j=0;
+	while(input>0)
+	{
+		int rem=input%10;
+		arr[j]=rem;
+		j++;
+		input/=10;
+		
+	}
+	int start=0;
+	int end=dig-1;
+	int temp2=0;
+	//get digits in array;
+    while(start<end){
+		temp2=arr[start];
+		arr[start]=arr[end];
+		arr[end]=temp2;
+		start++;
+		end--;
+     }
+	int ele=0;
+
+	//get string for a specific input number
+	int saiz=0;
+
+	for(int i=0;i<dig;i++)
+	{
+	   ele=arr[i];
+	   switch(ele)
+	   {
+	   	  case 2:
+	   	  	asc=97;
+	   	  	break;
+	   	  case 3:
+	   	  	asc=100;
+	   	  	break;
+	   	  case 4:
+	   	  	asc=103;
+	   	  	break;
+	   	  case 5:
+	   	  	asc=106;
+	   	  	break;
+	   	  case 6:
+	   	  	asc=109;
+	   	  	break;
+	   	  case 7:
+	   	  	asc=112;
+	   	  	break;
+	   	  case 8:
+	   	  	asc=116;
+	   	    break;
+	   	  case 9:
+	   	  	asc=119;
+	   	  	break;
+	   }
+	   if(ele==7||ele==9)
+	   {
+	   	   saiz=4;
+	   	   int temphol=0;
+	   	   while(temphol<saiz)
+	   	   {
+	   	   	   char c=asc;
+	   	   	   asc++;
+	   	   	   vec.push_back(c);
+	   	   	   temphol++;
+		   }
+	   }
+	   else
+	   { 
+	      saiz=3;
+	      int temphol=0;
+	      while(temphol<saiz)
+	      {
+	      	char c=asc;
+	      	asc++;
+	      	vec.push_back(c);
+	      	temphol++;
+		  }
+	   	
+	   }
+
+	}
+	for(int i=0;i<vec.size();i++)
+	{
+		char hol=vec[i];
+		int jol=i;
+		while(jol<vec.size())
+		{
+		   string tempo="";
+		   tempo.push_back(hol);
+		   tempo.push_back(vec[jol+1]);
+		   result.push_back(tempo);
+		   jol++;	
+		}
+	}
+	for(auto x:result)
+	{
+		cout<< x << " ";
+	}
+	
+}
+int main()
+{
+	int inp;
+	cout<<"enter input remote combination:"<<endl;
+	cin>>inp;
+	vector<char>combs;
+	GenerateStringVector(combs,inp);
+}

@@ -1,0 +1,46 @@
+/*
+  rev_num = num;
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+		int num;
+		Scanner sc = new Scanner(System.in);
+		num = sc.nextInt();
+		
+		int rem=0;
+		int rev_num=0;
+		int n = num;
+		boolean isSingleDigit=false;
+		if(n/10<1)
+		 {
+		        System.out.println("single digit no. are not palindromes brother");
+		        isSingleDigit=true;
+         }
+		while(num>0 && !isSingleDigit)
+		{ 
+		    rem = num%10;
+		    rev_num = (rev_num*10) + rem;
+		    num=num/10;
+		}
+		
+		if(rev_num == n && !isSingleDigit)
+		{
+		    System.out.println("palindrome");
+		    
+		}
+		
+		else
+		{
+		    if(!isSingleDigit){
+		         System.out.println("not a palindrome");
+		    }
+		   
+		}
+		
+		
+		
+	}
+}

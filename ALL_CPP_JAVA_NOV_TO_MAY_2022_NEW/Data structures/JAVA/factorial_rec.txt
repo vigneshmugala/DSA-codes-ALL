@@ -1,0 +1,37 @@
+/* Write a java program 
+to Create a function that takes an integer and returns the factorial of
+that integer recursively. 
+
+Factorial is the integer multiplied by all positive lower integers.
+
+
+Sample input/output
+3
+6
+
+5
+120
+*/
+import java.util.*;
+public class Test
+{
+    static int fac(int n)
+    {
+        if(n==0)
+        {
+            return 1;
+            
+        }
+        else{
+            return n*fac(n-1);
+        }
+    }
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        int f=fac(n);
+        System.out.println(f);
+    }
+}

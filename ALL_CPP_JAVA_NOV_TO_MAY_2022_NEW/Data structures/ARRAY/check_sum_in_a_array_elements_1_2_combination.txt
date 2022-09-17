@@ -1,0 +1,85 @@
+/*
+ input array- 4 5 1 8   8 7 5 4 1    22-8= 14;
+                                     14-7=7;
+                                     7-5=2
+                        if not found:
+                            1. sort the array in descending order
+                            2. check sum <= total
+                            3. if not
+ input sum - 9
+ 
+ input sum -14 
+ 
+ 
+ output - true;
+ 
+ input array- 1 2 3 5 6 8 9 10  
+ sum = 29 ----> 29-10= 19-9=10-8=2
+
+input sum - 11
+
+ output = true;
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout << "enter aray size" << endl;
+	cin >> n;
+	cout << "enter array elements:" << endl;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin >> arr[i];
+	}
+	cout  << "enter sum value:" << endl;
+	int sum;
+	cin >> sum;
+	int j=0;
+	int flag=0;
+	for(int i=0;i<n;i++)
+	{
+		if(arr[i] == sum)
+		{
+			cout << "True" << endl;
+			flag=1;
+			break;
+		}
+		
+		j=i;
+		while(j<n)
+		{
+			if(arr[j]+arr[i] == sum)
+			{
+				cout << "True" << endl;
+				flag=1;
+				break;
+			    
+			}
+			else{
+				j++;
+			}	
+		}
+		if(flag==1)
+		{
+			break;
+		}
+	}
+	int total;
+	for(int i=0;i<n;i++)
+	{
+		total += arr[i];
+	}
+	if(flag==0)
+	{
+		
+		cout << "False" << endl;
+		
+	}
+	
+		
+}

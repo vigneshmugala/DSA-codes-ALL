@@ -1,0 +1,112 @@
+/* Find a Given word in the Grid of Characters
+
+   In this given grid find the Word "design" we have found it 
+   [ q v s h ]
+   [ d* e* s* i* ]
+   [ b j n* g* ]
+   [ b z z z]
+ 
+ return true if word is found else return false
+
+*/
+//SEGMENTATION FAULT.....
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> calcFirstOccs(vector<vector<int>> &ans,vector<vector<char>> &grid, char ch)
+{
+   vector<int> temp;
+   for(int i=0;i<grid.size();i++)
+   {
+   	  for(int j=0;j<grid[0].size();j++)
+   	  {
+   	  	 if(grid[i][j]==ch)
+   	  	 {
+   	  	 	temp.push_back(i);
+   	  	 	temp.push_back(j);
+   	  	 	ans.push_back(temp);
+	     }
+	  }
+	  temp.clear();
+   }
+   return ans;	
+}
+bool isFound(int r_pos, int c_pos,int r, int c, int ptr, string word,vector<vector<char>>&grid)
+{
+	bool dir1,dir2,dir3,dir4;
+	
+	if(ptr>=word.length()) return true;
+	if(r_pos<0||c_pos<0||r_pos==r||c_pos==c||grid[r_pos][c_pos]!=word[ptr])
+	{
+		return false;
+	}
+	char ch = grid[r_pos][c_pos];
+	grid[r_pos][c_pos]='#';
+	
+	//Direction 1 : North
+	 dir1 = isFound(r_pos-1,c_pos,r,c,ptr+1,word,grid);
+	//Direction 2: South
+	 dir2 = isFound(r_pos+1,c_pos,r,c,ptr+1,word,grid);
+	//Direction 3: East
+	 dir3 = isFound(r_pos,c_pos+1,r,c,ptr+1,word,grid);
+	//Direction 4: West
+     dir4 = isFound(r_pos,c_pos-1,r,c,ptr+1,word,grid);
+     
+	grid[r_pos][c_pos]=ch;
+	
+	return(dir1||dir2||dir3||dir4);
+}
+bool isActuallyFound(vector<vector<int>> &firstOcc,string &word,vector<vector<char>>&grid,int r,int c)
+{
+    for(int i=0;i<firstOcc.size();i++)
+    {
+    	if(isFound(firstOcc[i][0],firstOcc[i][1],r,c,0,word,grid))
+    	{
+    		return true;
+		}
+	}
+   return false;
+}
+int main()
+{
+    int r,c;
+    cout<<"Enter dimesions of the Character Grid: (row,cols)"<<'\n';
+    cin>>r;
+    cin>>c;
+    
+    vector<vector<char>> grid(r);
+    vector<char>subgrid(c);
+    
+    cout<<"Enter the COMPLETE Character Grid: "<<'\n';
+    for(int i=0;i<r;i++)
+    {
+    	for(int j=0;j<c;j++)
+    	{
+    		char in;
+    		cin>>in;
+    		subgrid.push_back(in);
+		}
+		grid.push_back(subgrid);
+		subgrid.clear();
+	}
+	
+	string word = "";
+	cout<<"Enter the word that you want to Find: "<<'\n';
+	cin>>word;
+	
+	//Store all Occurences of the First characters in a v<v<>>;
+	vector<vector<int>> firstOcc;
+	firstOcc = calcFirstOccs(firstOcc,grid,word[0]);
+	
+	cout<<"brooo<"<<endl;
+	cout<<isFound(1,1,r,c,0,word,grid)<<endl;
+	if(isActuallyFound(firstOcc,word,grid,r,c))
+	{
+		cout<<"TRUE, the word is Found"<<'\n';
+	}
+	else
+	{
+		cout<<"FALSE, the word has not been Found."<<'\n';
+	}
+	
+}

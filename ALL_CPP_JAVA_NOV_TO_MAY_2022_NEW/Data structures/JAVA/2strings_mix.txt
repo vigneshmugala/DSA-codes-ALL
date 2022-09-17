@@ -1,0 +1,62 @@
+/*
+Aadhya is a good programmer in her class. she was given 2 strings, and her mentor asked her to do 
+coding on the below scenario 
+
+-merge  2 Strings in an alternate way, i.e. the final string’s first character is 
+the first character of the first string, the second character of the final string is the 
+first character of the second string and so on. 
+
+-if once you reach end of one string while if another string is still remaining then append
+the remaining of that string to final string 
+
+sample case:
+hello
+bye
+hbeylelo
+*/
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args)
+    {
+       String str,str1;
+       Scanner sc = new Scanner(System.in);
+       str=sc.nextLine();
+       str1=sc.nextLine();
+       
+       int max=0;
+       int strlen=str.length();
+       int str1len = str1.length();
+       max = strlen>str1len ? strlen:str1len;
+       StringBuilder sb = new StringBuilder("");
+       
+       for(int i=0;i<max;i++)
+       {
+           if(strlen>str1len)
+           {
+               if(i<str1len)
+               {
+                   sb.append(str.charAt(i));
+                   sb.append(str1.charAt(i));
+               }
+               else
+               {
+                   sb.append(str.charAt(i));
+               }
+           }
+           else
+           {
+               if(i<strlen)
+               {
+                   sb.append(str.charAt(i));
+                   sb.append(str1.charAt(i));
+               }
+               else
+               {
+                   sb.append(str1.charAt(i));
+               }
+           }
+       }
+       System.out.println(sb);
+    }
+}

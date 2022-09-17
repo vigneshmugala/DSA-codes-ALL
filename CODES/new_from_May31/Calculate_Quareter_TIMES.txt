@@ -1,0 +1,177 @@
+
+Somu a third class student is working on a Maths Assignment on Time, given by 
+his teacher.
+
+He will be given the Begin Time and End Time. 
+
+He is supposed to find the Number of Quarter Times in the given time period.
+A Quarter time is considered as below
+
+HH:00 to HH:15
+HH:15 to HH:30
+HH:30 to HH:45
+HH:45 to HH:00
+
+where HH represents an integer number from 00 to 23.
+
+calculate the number of Quarter Times during the given time session
+
+A 24-hour clock is used, so the earliest time in the day is 00:00 and the latest is 23:59.
+
+if the start time is 04:20 and end time is 04:48. 
+
+It implies you only one quarter from 04:30 to 04:45. 
+You did not have the full quarter from 04:15 to 04:30 because you started the Second Quarter 
+at 4:20 and you did not count the next quarter 04:45 to 05:00 because your end time is 04:48.  
+
+If finishTime is earlier than startTime, then you have to calculate 
+from startTime to the midnight and from midnight to finishTime.
+
+
+
+
+input = 12:01
+12:44
+output=1
+
+Explanation: 
+------------
+You have only quarter from 12:15 to 12:30
+
+
+input = 20:00 
+06:00
+
+output = 40
+
+Explanation:
+------------
+You have 16 quarters from 20:00 to 00:00 and 24 quarters from 00:00 to 06:00.
+
+
+---------------------------
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string t1,t2;
+    cin>>t1;
+    cin>>t2;
+    
+    int tq = 0;
+    
+    vector<int>a(2,0);
+    vector<int>b(2,0);
+    
+    bool s = false;
+    for(int i=0;i<t1.length();i++)
+    {
+        if(t1[i]==':') s=true;
+        if(!s&&t1[i]!=':')
+        {
+            a[0]*=10;
+            a[0]+=t1[i]-'0';
+            
+            b[0]*=10;
+            b[0]+=t2[i]-'0';
+        }
+        if(s&&t1[i]!=':')
+        {
+            a[1]*=10;
+            a[1]+=t1[i]-'0';
+            
+            b[1]*=10;
+            b[1]+=t2[i]-'0';
+        }
+    }
+    
+    vector<int> qt= {0,15,30,45};
+    
+    //20:20 and 05:01
+    
+    for(int i=0;i<qt.size();i++)
+    {
+        if(qt[i]==a[1]) break;
+        if(qt[i]>a[1])
+        {
+            a[1]=qt[i];
+            break;
+        }
+    }
+    for(int i=0;i<qt.size();i++)
+    {
+        if(qt[i]==b[1]) break;
+        if(qt[i]>b[1])
+        {
+            b[1]=qt[i];
+            break;
+        }
+    }
+    if(a[1]>45)
+    {
+        if(a[0]==23)
+        {
+            a[0]=0;
+            a[1]=0;
+        }
+        else
+        {
+            a[0]++;
+            a[1]=0;
+        }
+        
+    }
+    if(b[1]>45)
+    {
+        if(b[0]==23)
+        {
+            b[0]=0;
+            b[1]=0;
+        }
+        else
+        {
+            b[0]++;
+            b[1]=0;
+        }
+    }
+    //Step 1:Calcuate Quarters Remaining in Current Hour
+    //Step 2: 4*(TargetHour-1 - CurrentHour+1)
+    //Step 3: Calcuate Quarters Remaining in Target Hour
+    
+    int curHour = 0;
+    for(int i=0;i<qt.size();i++)
+    {
+        if(a[1]==qt[i])
+        {
+            curHour = qt.size()-i;
+            break;
+        }
+    }
+    tq+=curHour;
+    
+    int middleHour = 0;
+    if(a[0]>b[0])
+        middleHour = 4*(abs(a[0]+1-24)) + 4*abs(0-b[0]);
+    else 
+        middleHour = 4*(abs(a[0]+1-b[0]));
+   
+    tq+= middleHour; 
+    
+    int finalHour = 0;
+    for(int i=0;i<qt.size();i++)
+    {
+        if(b[1]==qt[i])
+        {
+            finalHour = i;
+            break;
+        }
+    }
+    tq+=finalHour;
+    if(a[0]==0&&b[0]==0&&a[1]==0&&b[1]==0)tq=96;
+    
+    cout<<tq-1<<endl;
+    
+}

@@ -1,0 +1,72 @@
+/*
+  print pattern:
+  input - 1
+  op - 1
+  input - 2
+  op - 1
+       2*3 
+  input - 3
+  op - 1
+       2*3
+       6*5*4 
+  input - 7
+  op - 1 -- 1(odd)
+       2*3 -- 2  
+       6*5*4 -- 3(odd)  
+       7*8*9*10 -- 4   
+       15*14*13*12*11 -- 5(odd) 
+       16*17*18*19*20*21 -- 6
+       28*27*26*25*24*23*22 -- 7(odd)
+       
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void printPattern(int x)
+{
+	int nums=2;
+	cout << 1 << endl;
+	for(int i=2;i<=x;i++)
+	{
+		vector<int>v;
+		for(int j=1;j<=i;j++)
+		{
+			v.push_back(nums);
+			nums++;
+	
+		}
+		
+	    if(i%2==1)
+		{
+			reverse(v.begin(),v.end());
+		}	
+		
+		for(int i=0;i<v.size();i++)
+		{
+			if(i==v.size()-1)
+			{
+				cout << v[i];
+				cout << "\n";
+			}
+			
+			else
+			{
+				cout << v[i] << "*";
+			}
+		}
+	}
+	
+	
+	
+
+	
+}
+
+int main()
+{
+	int n;
+	cout << "enter value:" << endl;
+	cin >> n;
+	printPattern(n);
+}

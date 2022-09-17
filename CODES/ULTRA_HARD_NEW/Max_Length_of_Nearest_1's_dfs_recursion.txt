@@ -1,0 +1,120 @@
+Student Groups.
+
+In a college, differents students groups conducted a survery, to find out 
+which group has the biggest count of students in a student group. 
+
+Students has a status of 1/0.
+If there is 1 it means there are connected with each other.
+If 0 they are not connected. 
+
+Few Students those who are not intrested to join any group they break the 
+chain by making the status 0 . This way there will be n number of student groups.
+
+Students are connected either horizontally, vertically or diagonally 
+with each other and they form a student-group. 
+There may be zero or more student-groups.
+
+The Student Union Groups want to know the biggest student group.
+
+You will ge given M,N Groups whose status is either 0/1
+
+Sample Input-1:
+---------------
+5 4
+0 0 1 1
+0 0 1 0
+0 1 1 0
+0 1 0 0
+1 1 0 0
+
+Sample Output-1:
+----------------
+8
+
+
+Sample Input-2:
+---------------
+5 5
+0 1 1 1 1
+0 0 0 0 1
+1 1 0 0 0
+1 1 0 1 1
+0 0 0 1 0
+
+Sample Output-2:
+----------------
+5
+
+In the above example we have 3 students groups
+first group has 5 
+second group has 4 
+third group has 3 
+
+Among those the first group has the maximum students so print 5  
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.*;
+class main{
+static int getRegionSize(int m[][], int row, int column,int total_rows, int total_cols)
+{
+    if(row<0||column<0||row>=total_rows||column>=total_cols)
+    {
+        return 0;
+    }
+    if(m[row][column]==0)
+    {
+        return 0;
+    }
+    m[row][column]=0;
+    int size=1;
+    for(int r=row-1;r<=row+1;r++)
+    {
+        for(int c=column-1;c<=column+1;c++)
+        {
+            if(r!=row||c!=column)
+            {
+                size+=getRegionSize(m,r,c,total_rows,total_cols);
+            }
+        }
+    }
+  return size;
+}
+static int getBiggestRegion(int m[][],int total_rows,int total_cols)
+{
+    int maxregion=0;
+    for(int row=0;row<total_rows;row++)
+    {
+        for(int col=0;col<total_cols;col++)
+        {
+            if(m[row][col]==1)
+            {
+                int size = getRegionSize(m,row,col,total_rows,total_cols);
+                if(size>=maxregion)
+                {
+                    maxregion=size;
+                }
+            }
+        }
+    }
+  return maxregion;
+}
+public static void main(String[] args)
+{
+    int r,c;
+    Scanner sc = new Scanner(System.in);
+    r=sc.nextInt();
+    c=sc.nextInt();
+    
+    int m[][] = new int[r][c];
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            m[i][j]=sc.nextInt();
+        }
+    }
+    System.out.println(getBiggestRegion(m,r,c));
+ }
+}

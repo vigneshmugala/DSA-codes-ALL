@@ -1,0 +1,68 @@
+// SIZE of combination = K, Target = N
+// Use Elements in Range 1 to 9
+// Use Each ELement only once in the Combination
+// Generate All Unique combinations ex: [1,4] and [2,3] which sum to Target = 5
+#include<bits/stdc++.h>
+using namespace std;
+
+void gen(int index, int target, int size, vector<int>&sub , vector<vector<int>> &ans)
+{
+	if(sub.size()==size)
+	{
+	  if(target==0)
+	  {
+		ans.push_back(sub);
+		return;
+      }
+     return;
+	}
+	if(index>=9)
+	{
+		if(sub.size()==size)
+		{
+		  if(target==0)
+		  {
+			ans.push_back(sub);
+			return;
+	      }
+	     return;
+		}
+	  return;
+	}
+	sub.push_back(index);
+	gen(index+1, target-index, size,sub,ans);
+	
+	sub.pop_back();
+	gen(index+1,target,size,sub,ans);
+	
+}
+int main()
+{
+	int target;
+	cout<<"Enter Target value: "<<endl;
+	cin>>target;
+	
+	int fixsize;
+	cout<<"Enter Size of Subset value: "<<endl;
+	cin>>fixsize;
+	
+	vector<int> sub;
+	vector<vector<int>>ans;
+	
+	gen(1,target,fixsize,sub,ans);
+	
+	set<vector<int>> hs;
+	
+	for(vector<int> s: ans)
+	{
+		hs.insert(s);
+	}
+	for(vector<int> h: hs)
+	{
+		for(int x:h)
+		{
+			cout<<x<<" ";
+		}
+	 cout<<endl;
+	}
+}

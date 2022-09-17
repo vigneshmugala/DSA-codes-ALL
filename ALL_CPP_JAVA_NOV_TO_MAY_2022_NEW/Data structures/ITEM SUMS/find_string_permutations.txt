@@ -1,0 +1,31 @@
+/*Return all Permutations of a String*/
+#include<bits/stdc++.h>
+using namespace std;
+void FindStringPermutations(string s)
+{
+	sort(s.begin(),s.end());
+	do
+	{
+		cout<<s<<endl;
+	}
+	while(next_permutation(s.begin(),s.end()));	
+}
+int main()
+{
+   string str;
+   cin>>str;
+   
+   FindStringPermutations(str);
+}
+
+
+(or)
+
+void FindStringPermutations(string s)
+{
+	sort(s.begin(),s.end());
+	while(next_permutation(s.begin(),s.end()))
+	{
+		cout<<s<<endl;
+	}	
+}

@@ -1,0 +1,47 @@
+/* Generate all Subsets that sum up to a value = k */
+#include<bits/stdc++.h>
+using namespace std;
+
+void genSub(int i, int arr[], int size, int target, vector<int> &sub, vector<vector<int>> &ans)
+{
+	if(target == 0) 
+	{
+		ans.push_back(sub);
+		return;
+	}
+	if(i>=size)return;
+	
+	
+		sub.push_back(arr[i]);
+		genSub(i+1,arr,size,target-arr[i],sub,ans);
+		
+		sub.pop_back();
+		genSub(i+1,arr,size,target,sub,ans);
+}
+
+
+int main()
+{
+	int n;
+	cin>>n;
+	
+	int arr[n];
+	for(int i=0;i<n;i++)cin>>arr[i];
+	
+	vector<int> sub;
+	vector<vector<int>> ans;
+	
+	int target;
+	cin>>target;
+	
+	genSub(0,arr,n,target,sub,ans);
+	
+	for(auto k: ans)
+	{
+		for(int z: k)
+		{
+			cout<<z<<" ";
+		}
+	 cout<<'\n';
+	}
+}

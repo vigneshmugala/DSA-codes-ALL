@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+int getMaxThree(int a,int b, int c)
+{
+    if(a>b&&a>c)
+    {
+        return a;
+    }
+    else if(b>c&&b>a)
+    {
+        return b;
+    }
+    else if(c>a&&c>b)
+    {
+        return c;
+    }
+}
+int main()
+{
+    int r,c;
+    cin>>r;
+    cin>>c;
+    
+    int m[r][c];
+    
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            cin>>m[i][j];
+        }
+    }
+    int max_dis=0; int next=0; int total_sum=0; int cur_row=0;
+    for(int i=0;i<r;i++)
+    {
+        total_sum+=m[i][0];
+        cout<<"FIRST ELE: "<<m[i][0]<<" ";
+        for(int j=1;j<c;j++)
+        {
+           if(i>0&&i<r-1)
+           {
+              next=getMaxThree(m[i][j],m[i-1][j],m[i+1][j]);
+              total_sum+=next;
+              cout<<"Next "<<next;
+           }
+           else{
+               if(i==0)
+               {
+                   //next=getMaxThree(m[i][j],m[i+1][j],-1);
+                   next=max(m[i][j],m[i+1][j]);
+                   total_sum+=next;
+                   cout<<"Next "<<next<<" ";
+               }
+               else if(i==r-1)
+               {
+                   //next=getMaxThree(m[i][j],m[i-1][j],-1);
+                   next=max(m[i][j],m[i-1][j]);
+                   total_sum+=next;
+                   cout<<"Next "<<next<<" ";
+               }
+           }
+           
+        }
+        cout<<"Distance of the path is: "<<total_sum<<" "<<endl;
+           if(total_sum>=max_dis)
+           {
+               max_dis=total_sum;
+           }
+           total_sum=0;
+    }
+    cout<<max_dis<<endl;
+}

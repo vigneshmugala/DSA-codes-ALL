@@ -1,0 +1,78 @@
+/*
+Aadhya is a java programmer and her trainer asked to write an efficient algorithm to 
+implement the wrdwrd function in Java, which returns the index of the first occurrence of a 
+string 'S' in another string 'X'.
+
+case 1
+input=charan
+kmit
+output=-1
+explanation:
+kmit is not present in the string charan as substring.
+
+case 2
+input=Techie Delight
+light
+output=9
+
+explanation:
+light is present as substring in Techie Delight from index 9 (0 based indexing).
+*/
+
+import java.util.*;
+class Main
+{
+    // Function to implement `wrdwrd()` function
+    public static int wrdwrd(String X, String Y)
+    {
+       int xlen=X.length();
+       int ylen=Y.length();
+       int j=0;
+       int ptr=0;
+       int ans=0;
+       boolean found=false;
+       for(int i=0;i<xlen;i++)
+       {
+           if(X.charAt(i)==Y.charAt(0))
+           {
+               ptr=i;
+               j=0;
+               while(j<ylen)
+               {
+                  if(X.charAt(ptr)==Y.charAt(j))
+                  {
+                      j++;
+                      ptr++;
+                  }
+                  else
+                  {
+                      break;
+                  }
+               }
+               if(j==ylen)
+               {
+                   ans=i;
+                   found=true;
+                   break;
+               }
+           }
+       }
+       if(found){
+           return ans;
+       }
+       else{
+           return -1;
+       }
+    }
+ 
+    public static void main(String[] args)
+    {
+       String str;
+       String str1;
+       Scanner sc = new Scanner(System.in);
+       str=sc.nextLine();
+       str1=sc.nextLine();
+       int index = wrdwrd(str,str1);
+       System.out.println(index);
+    }
+}

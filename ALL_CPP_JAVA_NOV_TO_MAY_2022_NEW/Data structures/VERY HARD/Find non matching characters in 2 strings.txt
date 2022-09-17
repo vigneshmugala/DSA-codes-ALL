@@ -1,0 +1,41 @@
+/* Find  non matching characters from 2 strings o(n)time complexity*/
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string s,t;
+	cout<<"Enter two strings:"<<endl;
+	getline(cin,s);
+	getline(cin,t);
+	for(int i=0;i<s.length();i++)
+	{
+		s[i]=tolower(s[i]);
+	}
+	for(int i=0;i<t.length();i++)
+	{
+		t[i]=tolower(t[i]);
+	}
+	int a[26]={0};//initialize all ele to 0 in array to not allow garbage values;
+	int b[26]={0}; //arrays to store frequencies of each character occuring in both strings
+	for(int i=0;i<s.length();i++)
+	{
+		a[(int)s[i]-(int)('a')]++;   //increment the count of that particulat alphabet occurence
+	}
+	
+	for(int i=0;i<t.length();i++)
+	{
+		b[(int)t[i]-(int)('a')]++;
+	}
+	
+	cout<<"The  common characters in both strings are: "<<endl;
+	map<char,int>occ;
+	for(int i=0;i<26;i++)
+	{
+		if(a[i]==0 && b[i]!=0)
+		{
+            char l= (char)(i+(int)('a'));
+            cout<<l;
+		}
+	}
+}

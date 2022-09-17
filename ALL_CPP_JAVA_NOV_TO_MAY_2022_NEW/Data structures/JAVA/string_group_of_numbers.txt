@@ -1,0 +1,92 @@
+/* Write a java program to help John .
+
+John wants to create a function that takes group of intergers
+along with a number n.
+he need a logic that finds any number from that group is greater than or equal to the given number n
+
+if logic finds that number then it should return true otherwise return false.
+
+--constrant:
+1- function may get empty group  it should retun fasle;
+
+
+For Example
+input=5,3,15,22,4       //input group     
+10              // n
+output=true
+Explanation: John finds two numbers 15 and 22  in group elementswhich are greater than 10 so 
+he is expecting ture;
+
+
+input=1,2,3,4,5
+8
+output=false
+Explanation: John did not finds any number in group elements which is greater than or equal to 8
+so he is expecting false;
+
+input=4,3,3,3,2,2,2
+4
+output=true
+
+input=          //empty 
+5
+output=false
+*/
+import java.util.*;
+public class Test
+{
+    static boolean isGreater(String s ,int n)
+    {
+        boolean found=false;
+        int val=0;
+        int arr[]=new int[100];
+        int j=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)!=',')
+            {
+                val=val*10;
+                val+= (s.charAt(i)-'0');
+            }
+            else if(s.charAt(i)==',')
+            {
+                arr[j]=val;
+                val=0;
+                j++;
+            }
+        }
+        
+        for(int i=0;i<=j;i++)
+        {
+            if(arr[i]>=n)
+            {
+                found=true;
+                break;
+            }
+        }
+        if(s.length()==0)
+        {
+            found=false;
+        }
+        if(found){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    public static void main(String[] args)
+    {
+       Scanner sc=new Scanner(System.in);
+       String str=sc.nextLine();
+       int k=sc.nextInt();
+       if(isGreater(str,k))
+       {
+           System.out.println("true");
+       }
+       else{
+           System.out.println("false");
+       }
+       
+    }
+}

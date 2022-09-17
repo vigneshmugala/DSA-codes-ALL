@@ -1,0 +1,75 @@
+/* Write a java program for the following scenario
+
+Create a function that takes a string's characters as ASCII and returns 
+each character's hexadecimal value as a string.
+
+Examples
+hello world
+68 65 6c 6c 6f 20 77 6f 72 6c 64
+
+Big Boi
+42 69 67 20 42 6f 69
+
+Marty Poppinson
+4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e
+
+Notes
+-->Each byte must be seperated by a space.
+-->All alpha hex characters must be lowercase.
+
+*/
+import java.util.*;
+public class Task3
+{
+   static void GetHexaDecimal(String str)
+   {
+      ArrayList<StringBuilder>Hexvalues = new ArrayList<StringBuilder>();
+      int len=str.length();
+      for(int i=0;i<len;i++)
+      {
+        int c=(int)(str.charAt(i));
+        StringBuilder hex=ConvertHexa(c);
+        Hexvalues.add(hex);
+      }
+     for(int i=0;i<Hexvalues.size();i++)
+     {
+        System.out.print(Hexvalues.get(i)+" ");
+         
+     }
+   }
+   static StringBuilder ConvertHexa(int num)
+   {
+       StringBuilder hexa=new StringBuilder("");
+       while(num>0)
+       {
+          int rem=num%16;
+          int actual=0;
+          char c=' ';
+          if(rem>=10){
+              actual=87+rem;
+              c=(char)actual;
+              hexa.append(c);
+          }
+          else
+          {
+              actual=rem;
+              hexa.append(actual);
+          }
+          num/=16;
+       }
+       hexa.reverse();
+       return hexa;
+   }
+   public static void main(String[] args)
+   {
+       String s;
+       Scanner sc = new Scanner(System.in);
+       s=sc.nextLine();
+       GetHexaDecimal(s);
+   }
+    
+    
+    
+    
+    
+}

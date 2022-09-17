@@ -1,0 +1,27 @@
+/*MOVE ALL X*/
+
+#include<bits/stdc++.h>
+using namespace std;
+string moveX(string s)
+{
+	if(s.length()==0)
+	{
+		return "";
+	}
+	char k = s[0];
+	string ans = moveX(s.substr(1));
+	
+	if(k=='x')
+	{
+		return ans+k;
+	}
+	return k+ans;
+}
+int main()
+{
+	string str;
+	cout<<"Enter string :"<<endl;
+	cin>>str;
+	
+	cout<<moveX(str)<<endl;
+}

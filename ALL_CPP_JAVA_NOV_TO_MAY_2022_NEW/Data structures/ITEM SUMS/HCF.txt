@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+	int n1,n2;
+	cin >> n1;
+	cin >> n2;
+	
+	int rem;
+	int hcf;
+    if(n1<n2)
+    {
+    	int temp=n1;
+    	n1=n2;
+    	n2=temp;
+    	
+	}
+	rem = n1%n2;
+	while(rem!=0)
+	{
+		if(n1%n2==0)
+		{
+			rem=0;
+			hcf=n2;
+		}
+		else
+		{
+			rem = n1%n2;
+			n1=n2;
+			n2=rem;
+		}
+	}
+	
+	cout << "Hcf is :" << hcf;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

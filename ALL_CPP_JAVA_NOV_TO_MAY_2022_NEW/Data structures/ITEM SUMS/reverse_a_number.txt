@@ -1,0 +1,26 @@
+/* Reverse a Number 
+  inp - 1234
+  op - 4321
+  
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int num;
+	cin >> num;
+	
+	int digit, rev;
+	
+	while(num>0)
+	{
+		digit = num % 10;
+		rev = (rev*10) + digit;
+		num=num/10;
+	
+	}
+	cout << rev;
+}

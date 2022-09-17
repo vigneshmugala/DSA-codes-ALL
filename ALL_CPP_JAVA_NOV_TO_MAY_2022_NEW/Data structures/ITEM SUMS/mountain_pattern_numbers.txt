@@ -1,0 +1,55 @@
+/*
+Pattern
+n=5 input
+            1
+          2 1 2
+        3 2 1 2 3
+      4 3 2 1 2 3 4
+    5 4 3 2 1 2 3 4 5
+    
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout<<"Enter n:" << endl;
+	cin>>n;
+	int size=2*n-1;
+	int start = (size/2)+1;
+	int val=0;
+	for(int i=0;i<n;i++)
+	{
+		val=i+1;
+		for(int j=1;j<=size;j++)
+		{
+			if(j<(start-i)||j>(start+i))
+			{
+				cout<<" ";
+			}
+			else
+			{
+			    if(j<start)
+			    {
+			    	cout<<val<<" ";
+			    	val--;
+			    	
+				}
+				else
+				{
+					cout<<val<<" ";
+					val++;
+					
+				}
+			}
+			
+			
+		}
+	 cout<<endl;
+	}
+	
+	
+	
+}

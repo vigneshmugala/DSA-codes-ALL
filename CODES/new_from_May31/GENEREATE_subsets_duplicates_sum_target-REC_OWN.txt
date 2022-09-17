@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void generate(int indx, int target, vector<int> &arr, vector<int> &sub, vector<vector<int>> &ans)
+{
+	if(target == 0)  //if we reached desired answer then Push into main vector and return;
+	{
+		ans.push_back(sub);
+		return;
+	}
+	
+	if(indx == arr.size())   // if we reached the end and if we reach target then add and return else return;
+	{
+		if(target==0)
+		{
+			ans.push_back(sub);
+			return;
+		}
+	  return;
+	}
+	if(target<0)return; // if summation of elements exceeds then there is no need to explore that subtree further
+	
+	// LEFT SIDE -> WE ADD THE ELEMENT and keep the index unchanged 
+	
+	sub.push_back(arr[indx]);
+	generate(indx, target - arr[indx],arr, sub, ans);
+	
+	// RIGHT SIDE -> WE DON'T ADD ELEMENT(SO WE POP_BACK() ->BACKTRAKCING) and change the index by +1
+	sub.pop_back(); //BACKTRACKING.
+	generate(indx+1, target, arr, sub , ans);	
+}
+int main()
+{
+	int n;
+	cin>>n;
+	
+	vector<int> arr;
+	for(int i=0;i<n;i++)
+	{
+		int inp;
+		cin>>inp;
+		arr.push_back(inp);
+	}
+	
+	int target;
+	cin>>target;
+	
+	vector<int> sub;
+	vector<vector<int>> ans;
+     
+	generate(0,target,arr,sub,ans);
+		
+	for(vector<int> a: ans)
+	{
+		for(int b: a)
+		{
+			cout<<b<<" ";
+		}
+	  cout<<endl;
+	}
+}

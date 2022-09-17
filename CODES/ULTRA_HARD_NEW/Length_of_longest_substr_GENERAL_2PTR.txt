@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_set<char> us;
+        if(s.length() == 0) return 0;
+        if(s.length() == 1) return 1;
+        int left = 0;
+        int right = 0;
+        
+        int n = s.length();
+        
+        int maxLen = INT_MIN;
+        
+        while(left<n && right<n)
+        {
+            if(us.find(s[right]) == us.end()) //element not present in set O(1)
+            {
+                us.insert(s[right]);
+                right++;
+                maxLen = max(maxLen,right-left);
+            }
+            else
+            {
+               
+                us.erase(s[left]);
+                left++;
+            }
+        }
+        
+        return maxLen;
+    }
+};

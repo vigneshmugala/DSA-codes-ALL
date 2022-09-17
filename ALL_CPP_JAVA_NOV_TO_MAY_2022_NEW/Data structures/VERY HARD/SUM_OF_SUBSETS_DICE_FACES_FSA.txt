@@ -1,0 +1,106 @@
+You have d dice, and each die has f faces numbered 1, 2, ..., f.
+Return the number of possible ways (out of fd total ways) modulo 10^9 + 7 to roll the dice so the
+sum of the face up numbers equals target.
+
+Example 1:
+Input: d = 1, f = 6, target = 3
+Output: 1
+Explanation: 
+You throw one die with 6 faces.  There is only one way to get a sum of 3.
+
+
+input =
+1 6 3
+output = 1
+first read d value, followed by f value and target value
+
+
+Example 2:
+2 6 7
+output =6
+
+d = 2, f = 6, target = 7
+Output: 6
+Explanation: 
+You throw two dice, each with 6 faces.  There are 6 ways to get a sum of 7:
+1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
+
+Example 3:
+input =2 5 10
+output =1
+
+d = 2, f = 5, target = 10
+Output: 1
+Explanation: 
+You throw two dice, each with 5 faces.  There is only one way to get a sum of 10: 5+5.
+
+Example 4:
+Input: d = 1, f = 2, target = 3
+Output: 0
+Explanation: 
+You throw one die with 2 faces.  There is no way to get a sum of 3.
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int ans = 0;
+void combinations(int arr[], int n, int dice, int cur_index, int data[], int cur_ele,int target)
+{
+    if(cur_index == dice)
+    {
+        int sum = 0;
+        for(int p=0;p<dice;p++)
+        {
+            sum+=data[p];
+            //cout<<data[p]<<" ";
+        }
+        if(sum==target)
+        {
+            ans++;
+            if(dice>1){ans++;}
+        }
+     //cout<<endl;
+     return;
+    }
+    
+    if(cur_ele>=n)
+    {
+        return;
+    }
+    data[cur_index]=arr[cur_ele];
+    //combinations(arr,n,dice,cur_index,data,cur_ele,target);
+    combinations(arr,n,dice,cur_index+1,data,cur_ele+1,target);
+    combinations(arr,n,dice,cur_index,data,cur_ele+1,target);
+}
+int main()
+{
+    int dice,face,target;
+    cin>>dice;
+    cin>>face;
+    cin>>target;
+    int arr[face];
+    for(int i=0;i<face;i++)
+    {
+        arr[i]=i+1;
+    }
+    int data[dice];
+    combinations(arr,face,dice,0,data,0,target);
+    //cout<<"INDITIAL ANS:"<<endl;
+    //cout<<ans<<endl;
+    int same_sum=0;
+   if(dice>1){
+    for(int i=0;i<face;i++)
+    {
+        for(int j=0;j<dice;j++)
+        {
+            same_sum+=arr[i];
+        }
+       if(same_sum==target){ans++;}
+       same_sum=0;
+    }
+   }
+    //cout<<"FINAL ANSWER IS:"<<endl;
+    cout<<ans<<endl;
+}

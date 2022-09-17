@@ -1,0 +1,73 @@
+/* Given a Array of Strings, what can be maximum length of string of unique characters
+   That can be formed from concatenating sub-sequences(strings in arr[]) */
+ /* ["cha" , "r", "act" , "ers"] answer is chaers (6) */ 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool unq(vector<string> &temp)
+{
+	set<char> st;
+	int count = 0;
+	for(string s: temp)
+	{
+		for(char k: s)
+		{
+			st.insert(k);
+			count++;
+		}
+	}
+	
+	return (st.size()==count)? true: false;
+	
+}
+
+int sz(vector<string> temp)
+{
+	int count = 0;
+	for(string s: temp)
+	{
+		for(char k: s)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+int maxSubseq(int i, string arr[] , int size , vector<string> &temp,vector<int> &storage,int MAX)
+{
+	if(!unq(temp))  // if temp vector contains strings which contains duplicates then there is no max, it is 0. 
+	{
+		return 0;
+	}
+	if(i>=size) // if we reach to the end of the string without having duplicates in string then we should return number of characters in that string.
+	{
+		return sz(temp);
+	}
+	int maxLen1 = 0;
+	int maxLen2 = 0;
+	temp.push_back(arr[i]); // we select element arr[i] and push into temp vector 
+	maxLen1 = maxSubseq(i+1, arr , size , temp , storage, MAX); // and calcuate ^maxLength^ for remaining elements store it in a variable maxLen1 
+	
+	temp.pop_back(); //(backtrack) remove arr[i] from temp
+	maxLen2 = maxSubseq(i+1, arr, size, temp, storage, MAX); // and recurse for remaning element and store ^maxLength^ for remaining elements and store it in a variable maxLen2
+	
+	return max(maxLen1,maxLen2); //return maximum of those two MaxLengths from two possibilites.
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	
+	string arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	
+	vector<string>temp;
+	vector<int> storage;
+	cout<<maxSubseq(0,arr,n,temp,storage,0)<<'\n';
+}

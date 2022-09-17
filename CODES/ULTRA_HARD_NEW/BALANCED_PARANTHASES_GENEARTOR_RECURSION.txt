@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void help(int left,int right,int n,string temp, vector<string> &hol)
+{
+   if(left == n && right == n)
+   {
+   	  hol.push_back(temp);
+   	  return;
+   }
+	
+   if(left<n){
+	help(left+1,right,n,temp+'(',hol);
+   }
+   
+   if(right<left)
+   {
+   	  help(left,right+1,n,temp+')',hol);
+   }
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	string temp ="";
+	vector<string> hol;
+	
+	help(0,0,n,temp,hol);
+	
+	for(string str: hol)cout<<str<<'\n';
+}

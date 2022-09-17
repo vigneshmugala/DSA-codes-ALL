@@ -1,0 +1,56 @@
+/*
+Tarun wants to develop a java application which takes String s as input and calculates 
+the length of last word and he needs help of yours in developing application.
+
+Help tarun in developing application. 
+
+Sample Case: 
+Hello World
+5
+ 
+
+*/
+
+import java.util.*;
+public class Main
+{
+   public static void main(String[] args)
+   {
+       Scanner sc=new Scanner(System.in);
+       String str;
+       str=sc.nextLine();
+       
+       int len=str.length();
+       int count=0;
+       char arr[]=new char[len];
+       int arr2[]=new int[100];
+       int j=0;
+       int blankcount=0;
+       boolean wordFound=false;
+       
+       for(int i=len-1;i>=0;i--)
+       {
+          if(str.charAt(i)==' '&&!wordFound)
+          {
+              blankcount++;
+          }
+          else if(str.charAt(i)==' '&& wordFound)
+          {
+              break;
+          }
+          else
+          {
+              count++;
+              wordFound=true;
+          }
+           
+       }
+       System.out.println(count);
+
+   }
+    
+    
+    
+    
+    
+}

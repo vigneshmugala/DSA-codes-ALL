@@ -1,0 +1,41 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+	   int amt;
+	   Scanner sc = new Scanner(System.in);
+	   amt = sc.nextInt();
+	   int rem=0;
+	   int i=0;
+	  int arr[] = {2000,1000,500,200,100,50,20,10,5,2,1};
+	   while(amt != 0 && i<11)
+	   {
+	      if(amt/arr[i] <= 0)
+	      {
+	         i++;
+	         rem = amt;
+	      }
+	       
+	      else{
+	          System.out.println(arr[i]+":"+amt/arr[i]);
+	          rem=amt%arr[i];
+	          i++;
+	      }
+	       
+	      amt = rem;
+	       
+	       
+	   }
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	}
+}

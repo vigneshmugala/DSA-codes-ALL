@@ -1,0 +1,45 @@
+/* Please  implement a Java program  For following scenario 
+
+-- for given size and group of elements 
+-- Increment Every Element of the group by One 
+-- Print Incremented group in sorted order.
+
+Sample Input & Output:
+input=5     //size
+2           //  5 elements  2-9
+5
+8
+6
+9
+output=[3, 6, 7, 9, 10]
+*/
+import java.util.*;
+public class Test
+{
+   public static void main(String[] args)
+   {
+       int n;
+       Scanner sc = new Scanner(System.in);
+       n=sc.nextInt();
+       int arr[]=new int[n];
+       for(int i=0;i<n;i++)
+       {
+           arr[i]=sc.nextInt();
+           arr[i]+=1;
+       }
+       Arrays.sort(arr);
+       System.out.print("[");
+       for(int i=0;i<n;i++)
+       {
+           if(i==n-1)
+           {
+               System.out.print(arr[i]);
+           }
+           else
+           {
+                System.out.print(arr[i]+" ,");
+           }
+       }
+       System.out.print("]");
+   }
+}

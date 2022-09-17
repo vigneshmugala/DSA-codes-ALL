@@ -1,0 +1,29 @@
+/*Leetcode area problem*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int n;
+   cin>>n;
+   int height[n];
+   for(int i=0;i<n;i++){
+   	 cin>>height[i];
+   }
+   int max=0;
+   int area=0;
+   for(int i=0;i<n;i++)
+   {
+   	  area=0;
+   	  for(int j=0;j<n;j++)
+   	  {
+   	  	 if(height[j]>=height[i] && i!=j)
+   	  	 {
+   	  	    area= abs(j-i)*height[i];
+   	  	    if(area>=max)
+   	  	        max=area;
+	     }
+ 	  }
+   }	
+   cout<<max<<endl;
+}

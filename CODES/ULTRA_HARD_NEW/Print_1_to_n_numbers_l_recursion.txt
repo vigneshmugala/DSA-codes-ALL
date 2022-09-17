@@ -1,0 +1,22 @@
+// print numbers from 1 to n in lexicographical order recursion..
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void printlex(int start, int end)
+{
+	if(start==end)
+	{
+		cout<<endl;
+		return;
+	}
+	cout<<start<<" ";
+	printlex(start+1,end);
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	printlex(1,n);
+}

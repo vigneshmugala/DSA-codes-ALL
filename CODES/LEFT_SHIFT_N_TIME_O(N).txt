@@ -1,0 +1,29 @@
+void rotateArr(int arr[], int d, int n){
+    
+  int moves = d % n;    
+  int ref[n];
+  for(int i=0;i<n;i++)
+  {
+      ref[i]=arr[i];
+  }
+  
+  int start=0;
+  int end=0;
+   
+  start = moves;
+  
+  int count = 0;
+  for(int i=start;i<n;i++)
+  {
+      arr[i-moves]=arr[i];
+      count++;
+  }
+  
+  int j=0;
+  for(int i=count;i<n;i++)
+  {
+      arr[i]=ref[j];
+      j++;
+  }
+ 
+}

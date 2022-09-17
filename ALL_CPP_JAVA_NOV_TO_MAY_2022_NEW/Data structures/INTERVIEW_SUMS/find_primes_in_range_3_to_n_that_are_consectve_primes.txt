@@ -1,0 +1,87 @@
+/*TCS Codevita prime number question*/
+#include<iostream>
+#include<vector>
+using namespace std;
+bool isPrime(int k){
+	 int flag=0;
+	 for(int i=2;i<k;i++)
+	 {
+	 	 if(k%i==0)
+	 	 {
+	 	 	flag=1;
+	 	 	break;
+		 }
+	 }
+	 if(flag==0){
+	 	return true;
+	 }
+	 else{
+	 	return false;
+	 }
+}
+bool isConsecutivePrimes(int k)
+{
+	int i=4;
+	vector<int>primes;
+	primes.push_back(2);
+	primes.push_back(3);
+	//extract all primes under <n
+	while(i<k)
+	{
+	   bool isPrime=true;
+	   for(int j=2;j<i;j++)
+	   {
+	   	  if(i%j==0)
+	   	  {
+	   	  	isPrime=false;
+	   	  	break;
+		  }
+	   }
+	   if(isPrime)
+	   {
+	   	 primes.push_back(i);
+	   	 i++;
+	   }
+	   else{
+	   	i++;
+	   }	
+	}
+	int sum=0;
+	int count=0;
+   for(auto x:primes)
+   {
+   	  sum+=x;
+   	  count++;
+   	  if(sum==k)
+   	  {
+   	  	 break;
+	  }
+   }
+   if(sum==k){
+    return true;
+  }
+  else{
+  	 return false;
+  }
+}
+int main()
+{
+	cout<<"Enter number:"<<endl;
+	int n;
+	cin>>n;
+	int ct=0;
+	for(int i=3;i<n;i++)
+	{
+		if(isConsecutivePrimes(i))
+		{
+			if(isPrime(i))
+			{
+				ct++;
+				cout<<i<<endl;
+			}
+		}
+	}
+	cout<<"Such numbers which satisfy this property under 3 to K range are:"<<endl;
+	cout<<ct<<endl;
+	
+}

@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void towerHanoi(int n , char from, char to, char aux)
+{
+  if(n==0)
+  {
+  	 return;
+  }	
+  else
+  {
+  	 towerHanoi(n-1,from,aux,to);
+  	 cout<<"Move disk "<<n<<"from "<<from<<" to "<<to<<endl;
+  	 towerHanoi(n-1,aux,to,from);
+  }
+	
+}
+int main()
+{
+	int n;
+	cout<<"Enter number of Disks:"<<endl;
+	cin>>n;
+	char a,b,c;
+	
+	cout<<"Enter 'from' disk:"<<endl;
+	cin>>a;
+	cout<<"Enter 'to' disk:"<<endl;
+	cin>>b;
+	cout<<"Enter 'Auxiliary' disk:"<<endl;
+	cin>>c;
+	towerHanoi(n,a,b,c);
+}

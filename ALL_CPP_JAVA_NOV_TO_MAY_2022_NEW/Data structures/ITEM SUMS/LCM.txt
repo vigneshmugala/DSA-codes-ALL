@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n1,n2;
+	int lcm=0;
+	
+	cout << "Enter two numbers:" << endl;
+	
+	cin >> n1;
+	cin >> n2;
+	
+	if(n1>n2)
+	{
+		lcm = n1;
+	}
+	else
+	{
+		lcm = n2;
+	}
+	
+	while(true)
+	{
+		if(lcm % n1 == 0 && lcm % n2 == 0)
+		{
+			break;
+		}
+		else
+		{
+			lcm++;
+		}
+		
+	}
+	
+	cout << "The LCM of a and b is:" << " " << lcm;
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,84 @@
+/*
+ find triplets from a vector nums
+ a[i]+a[j]+a[k]==0;
+ i!=j!=k;
+ Brute force approach
+*/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<vector<int>> threeSum(vector<int> &nums)
+{
+    vector<vector<int>>ans;
+    int a=0;
+    int b=0;
+    int c=0;
+    for(int i=0;i<nums.size();i++)
+    {
+        a=nums[i];
+        for(int j=i+1;j<nums.size();j++)
+        {
+            b=nums[j];
+            
+            for(int k=0;k<nums.size();k++)
+            {
+                if(k!=i && k!=j)
+                {
+                    int c=nums[k];
+                    if(a+b+c==0)
+                    {
+                        vector<int>temp;
+                        temp.push_back(a);
+                        temp.push_back(b);
+                        temp.push_back(c);
+                        //check for duplicate vector
+                        vector<int>temp1;
+                        temp1=temp;
+                        sort(temp1.begin(),temp1.end());
+                        bool isThere=false;
+                        for(vector<int> x:ans)
+                        {
+                            vector<int>temp2;
+                            temp2=x;
+                            sort(temp2.begin(),temp2.end());
+                            if(temp2==temp1)
+                            {
+                                isThere=true;
+                                break;
+                            }
+                            
+                        }
+                        if(!isThere)
+                        {
+                            ans.push_back(temp);
+                        }
+                    }
+                }
+            }
+        }
+    }
+  return ans;
+}
+int main()
+{
+    vector<int>n;
+    int input=0;
+    for(int i=0;input!=-999;i++)
+    {
+      if(input!=-999){
+        cin>>input;
+        n.push_back(input);
+      }
+    }
+    vector<vector<int>>ans=threeSum(n);
+    for(vector<int> x:ans)
+    {
+        for(auto y:x)
+        {
+            cout<<y<<" ";
+        }
+        cout<<endl;
+    }
+}

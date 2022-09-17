@@ -1,0 +1,51 @@
+/* Write a java program that takes a number and returns one digit that
+is the result of summing all the digits of the input number. 
+When the sum of the digits consists of more than one digit, 
+repeat summing until you get one digit.
+
+Examples
+123
+6
+// 1 + 2 + 3 = 6
+
+999888777L
+9
+
+1238763636555555555L
+9
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+       String n;
+       long num=0;
+       Scanner sc = new Scanner(System.in);
+       n=sc.next();
+       for(int i=0;i<n.length();i++)
+       {
+          if(n.charAt(i)>='0'&& n.charAt(i)<='9')
+          {
+              num=num*10;
+              num+=n.charAt(i)-'0';
+          }
+       }
+       long k = num;
+       long res = k;
+       long sum = 0;
+       while(res>10)
+       {
+           while(k>0)
+           {
+               long rem=k%10;
+               sum+=rem;
+               k/=10;
+           }
+           res=sum;
+           k=res;
+           sum=0;
+       }
+      System.out.println(res);
+    }
+}

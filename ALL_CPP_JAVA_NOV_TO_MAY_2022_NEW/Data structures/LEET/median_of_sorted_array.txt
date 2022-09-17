@@ -1,0 +1,53 @@
+/*median of two sorted arrays*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<int> v1;
+	vector<int> v2;
+	vector<int> merged;
+	int i=0;
+	
+	cout << "enter arr 1 elements:" << endl;
+	int input;
+	while(cin>>input && input != -1)
+	{
+		v1.push_back(input);
+	}
+	cout << "enter arr 2 elements: "<<endl;
+	while(cin>>input && input != -1)
+	{
+		v2.push_back(input);
+	} 
+	
+	for(i=0;i<v1.size();i++)
+    {
+        merged.push_back(v1[i]);
+	}	
+	int j=i;
+	
+	for(i=0;i<v2.size();i++)
+	{
+		merged.push_back(v2[i]);
+	}
+	
+	sort(merged.begin(),merged.end());
+	
+	double median;
+	int size = merged.size();
+	if(size % 2 == 0)
+	{
+		double me = (merged[(size/2)] + merged[(size/2) - 1]);
+		median = me/2;
+		cout << "The median is :" << " " << median << endl;
+	}
+	else
+	{
+		median = (merged[((size+1)/2)-1]);
+		cout << "The median is :" << " " << median << endl;	
+	}
+	
+}

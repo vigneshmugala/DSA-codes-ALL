@@ -1,0 +1,47 @@
+/*
+  Find Trailing zeros in n!
+  
+  n=5
+  5! = 120
+  trailing zeros = 1;
+  
+  
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+		long num;
+		Scanner sc = new Scanner(System.in);
+		num = sc.nextInt();
+		long factorial = num;
+		for(long i=num;i>1;i--)
+		{
+		    factorial = factorial*(i-1);
+		
+		}
+        int digits=0;
+        long k=factorial;
+        while(k > 0)
+        {
+            long rem = k%10;
+            k = k/10;
+            digits++;
+        }
+        int count = 0;
+        for(int i=1;i<=digits;i++)
+        {
+            long rem = factorial%10;
+            if(rem == 0)
+            {
+                count++;
+            }
+            else{
+                break;
+            }
+            factorial = factorial/10;
+        }
+        System.out.println(count);
+	}
+}

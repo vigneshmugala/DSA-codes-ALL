@@ -1,0 +1,40 @@
+/*check a String is Palindrome string or not*/
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string str;
+	cout << "enter string:"<< endl;
+	cin >> str;
+	int len =str.length();
+	int i=0;
+	bool isPalindrome = true;
+	while(i<len)
+	{
+		if(str[i] == str[len-i-1])
+		{
+			i++;
+			isPalindrome = true;
+		}
+		
+	   else
+	   {
+	   	isPalindrome = false;
+	   	 break;
+		   }	
+		
+	}
+	
+	if(isPalindrome)
+	{
+		cout << "This string is a Palindrome string" << endl;
+	}
+	else
+	{
+		cout << "This string is not a Palindrome String" << endl;
+	}
+	
+	
+	
+}

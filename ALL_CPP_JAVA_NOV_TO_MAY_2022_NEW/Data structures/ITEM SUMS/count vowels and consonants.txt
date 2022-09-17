@@ -1,0 +1,29 @@
+/*calculate no.of vowels and consonants*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"Enter string:"<<endl;
+	getline(cin,str);
+	int vow=0;
+	int cons=0;
+	transform(str.begin(),str.end(),str.begin(),::tolower);
+	for(int i=0;i<str.length();i++)
+	{
+	  if(str[i]!=' '){
+		int k=(char)str[i];
+		if(k==97||k==101||k==105||k==111||k==117)
+		{
+			vow++;
+		}
+		else{
+			cons++;
+		}
+      }
+
+	}
+	
+	cout<<"No.of vowels are: "<<vow<<endl;
+	cout<<"No of consonants are : "<<cons<<endl;
+}

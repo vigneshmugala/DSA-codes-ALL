@@ -1,0 +1,43 @@
+//Return all those subsets from (1 to N) who sum up to a value = k
+#include<bits/stdc++.h>
+using namespace std;
+
+void sgenerate(int num, int bound, int sum, vector<int> &subset, vector<vector<int>> &ans)
+{
+   if(num>bound)return;
+   
+   if(sum==0)
+   {
+   	   ans.push_back(subset);
+   	   return;
+   }	
+   subset.push_back(num);
+   sgenerate(num+1,bound,sum-num,subset,ans);
+   
+   subset.pop_back();
+   sgenerate(num+1,bound,sum,subset,ans);
+}
+int main()
+{
+	int n;
+	cout<<"Enter upper bound: "<<endl;
+	cin>>n;
+	
+	int sum;
+	cout<<"Enter target sum value: "<<endl;
+	cin>>sum;
+	
+	vector<int> subset;
+	vector<vector<int>> ans;
+	
+	sgenerate(1,n,sum,subset,ans);
+	
+	for(vector<int> x: ans)
+	{
+		for(int y: x)
+		{
+			cout<<y<<" ";
+		}
+	  cout<<endl;
+	}
+}

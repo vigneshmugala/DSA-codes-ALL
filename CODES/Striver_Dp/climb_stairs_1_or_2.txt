@@ -1,0 +1,43 @@
+/* Climbing Stairs DP 
+
+ Given n no.of steps. 
+ 
+ you can climb 1 or 2 steps at a time,
+ 
+ You start at 0th step, find number of ways you can climb on to top'
+ 
+ 0 , 1 , 1, 2 , 3, 5 , 8 , 13 , 21 .. 
+ */
+ 
+ 
+ #include<bits/stdc++.h>
+ using namespace std; 
+ 
+ int countWays(int n, vector<int> &dp)
+ {
+     if(n == 0) return 1;
+     
+       if( n<0 ) return 0;	 
+	 if(n==1) return 1; //becuase, at step no.1 we can't do n-2 we can do only n- 1 anyway 1 way is possible so directly return 1;
+	 
+	 
+	 if(dp[n] != -1) return dp[n];
+	 
+	 int ans1 = countWays(n-1,dp);
+	 int ans2 = countWays(n-2,dp);
+	 
+	 return dp[n] = (ans1+ans2);	
+ 	
+ 	
+ }
+ int main()
+ {
+ 	int n;
+ 	cin>>n;
+ 	
+ 	vector<int> dp(n+1,-1);
+ 	
+ 	int ans = countWays(n,dp);
+ 	
+ 	cout<<ans<<endl;
+ }

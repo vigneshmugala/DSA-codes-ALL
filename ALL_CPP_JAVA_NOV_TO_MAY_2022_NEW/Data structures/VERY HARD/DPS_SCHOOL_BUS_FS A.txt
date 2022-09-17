@@ -1,0 +1,70 @@
+DPS school will run school buses from one location to 
+differnt locations(ie routes) where 
+routes[i]=[locationA, locationB]
+Given n routes return the last stop location of the school bus. 
+
+input =3
+nagole uppal
+uppal habsiguda
+habsiguda nacharam
+
+output =nacharam
+Explanation: Starting at "nagole" busses will reach "nacharam" 
+which is the last stop. bus route consist of "nagole" -> "uppal" -> "habsiguda" -> "nacharam".
+
+
+input =3
+tarnaka narayanaguda
+uppal tarnaka
+narayanaguda mahenderahills
+output =mahenderahills
+
+Explanation: All possible routes are:
+uppal-> tarnaka -> narayanaguda->mahenderahills or
+tarnaka -> narayanaguda -> mahenderahills
+narayanaguda -> mahenderahills
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+string getLastStop(vector<vector<string>> res)
+{
+  bool found=false;
+  for(int i=0;i<res.size();i++)
+  {
+      string temp = res[i][1];
+      for(int j=0;j<res.size();j++)
+      {
+          if(res[j][0]==temp)
+          {
+              found=true;
+              break;
+          }
+      }
+      if(!found)
+      {
+          return temp;
+      }
+      else{found=true;}
+  }
+}
+int main()
+{
+    vector<vector<string>>routes;
+    int n;
+    cin>>n;
+    
+    for(int i=0;i<n;i++)
+    {
+        vector<string>temp;
+        string t1,t2;
+        cin>>t1; cin>>t2;
+        temp.push_back(t1);
+        temp.push_back(t2);
+        routes.push_back(temp);
+    }
+    
+    cout<<getLastStop(routes)<<endl;
+}

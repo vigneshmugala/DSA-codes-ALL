@@ -1,0 +1,27 @@
+/*count occurence for a particular character in a string*/
+#include<bits/stdc++.h>
+using namespace std;
+int countOc(string s, char a)
+{
+	int ct;
+	for(int i=0;i<s.length();i++)
+	{
+		if(s[i]==a)
+		{
+			ct++;
+		}
+	}
+	return ct;
+	
+}
+int main()
+{
+	string str;
+	char k;
+	cout<<"Enter the string:"<<endl;
+	getline(cin,str);
+	cout<<"Enter character you want to count:"<<endl;
+	cin>>k;
+	int occs=countOc(str,k);
+	cout<<"No.of occurences are :  " << occs <<endl;
+}

@@ -1,0 +1,62 @@
+/* Two friends of class 10 are playing a game. 
+Rules for that game: 
+one of the two would come forward and say a word (smallcased string)
+another one should convert that word into numaric list and say
+
+for example F1 says     eabd
+opponent must reply with [0, 1, 2, 3]
+
+example2
+baa
+[0, 1, 1]
+
+Explanation: opponent said word have four characters starting character is mapped with zero (0)
+and upcomming distinct characters are increased by one (1)
+if duplicate characters are there in such cases need to use same numaric value which is already used.
+as like example2 a is repeating 2 times so for all occrences use same integer map.
+
+help these friends to develop a program that makes any individual can play with computer.
+
+Notes
+->Start the counter at 0, and increment by 1 each time if encounter a new character.
+->Identical characters should share the same number.
+-> do consider character sequence of string 
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        ArrayList<Integer>al = new ArrayList<Integer>();
+        HashMap<Character,Integer>ptr=new HashMap<Character,Integer>();
+        Scanner sc= new Scanner(System.in);
+        String str;
+        str=sc.next();
+        int count=0;
+        al.add(count);
+        ptr.put(str.charAt(0),0);
+        for(int i=1;i<str.length();i++)
+        {
+            char hol=str.charAt(i);
+            boolean alreadyThere=false;
+            for(Map.Entry m:ptr.entrySet())
+            {
+                char temp=(char)m.getKey();
+                if(hol==temp)
+                {
+                    al.add((int)m.getValue());
+                    alreadyThere=true;
+                }
+            }
+            if(!alreadyThere)
+            {
+                count++;
+                ptr.put(str.charAt(i),count);
+                al.add(count);
+                
+            }
+            
+        }
+        System.out.println(al);
+    }
+}

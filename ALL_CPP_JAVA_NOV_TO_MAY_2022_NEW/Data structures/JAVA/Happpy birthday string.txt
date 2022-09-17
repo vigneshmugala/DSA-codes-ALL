@@ -1,0 +1,77 @@
+/* Write a java program which constructs a rectangular birthday cake, 
+based on someone's name and age! Build it out of strings in 
+an array and make sure to surround the birthday message with 
+the character that fits the rule:
+
+If the age is an even number, surround the message with "#".
+If the age is an odd number, surround the message with "*".
+Other important rules:
+
+The message should be in the format: {age} Happy Birthday {name}! 
+{age}
+Leave a space between the edge of the cake and the age numbers.
+Examples
+Jack
+10
+##############################
+# 10 Happy Birthday Jack! 10 #
+##############################
+
+
+ Russell
+ 19
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ @ 19 Happy Birthday Russell! 19 @       //first 1, age (ct) hpbdy 16 name(k+2) age(ct) last 1 = total @/#
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Isabelle
+ 2
+ ################################
+ # 2 Happy Birthday Isabelle! 2 #
+ ################################
+
+Notes
+The amount of characters in the banner should be the same 
+length as the message to pass the tests.
+
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String name=sc.next();
+        String age=sc.next();
+        char dec;
+        int a = Integer.parseInt(age);
+        if(a%2==0){
+            dec='#';
+        }
+        else
+        {
+            dec='@';
+        }
+        int ct=age.length();
+        int k=name.length();
+        int hcount = 1+ct+16+k+2+ct+1+2;
+        
+        for(int i=0;i<3;i++)
+        {
+            if(i!=1)
+            {
+                for(int j=1;j<=hcount;j++)
+                {
+                    System.out.print(dec);
+                }
+            }
+            else
+            {
+              System.out.print(dec+" "+age+" "+"Happy Birthday"+" "+name+"!"+" "+age+" "+dec);
+            }
+          System.out.println();
+        }
+        
+    }
+}

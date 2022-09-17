@@ -1,0 +1,20 @@
+/* Sum of digits in a number*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int num;
+	cout << "enter nO:" << endl;
+	cin >> num;
+	int count =0;
+	
+	while(num>0)
+	{
+		count += num % 10;
+		num=num/10;
+	}
+	cout << "sum of digits is:" << endl;
+	cout << count;
+}

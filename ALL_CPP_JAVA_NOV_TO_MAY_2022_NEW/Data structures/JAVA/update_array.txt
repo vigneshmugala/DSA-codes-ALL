@@ -1,0 +1,69 @@
+// Write a Java Program to Insert an Element in a Specified Position in a Given Array
+/*
+Scenario is : 
+input=
+Enter no. of elements you want in array:6
+Enter all the elements:
+2
+4
+6
+9
+4
+5
+Enter the position where you want to insert element:3
+Enter the element you want to insert:7
+output=[2, 4, 7, 6, 9, 4, 5]
+
+sample testcase
+
+input=6         // size
+2
+4
+6
+9
+4
+5
+3           //position
+7           // element 
+output=[2, 4, 7, 6, 9, 4, 5]
+
+*/
+
+import java.util.Scanner;
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+       int n;
+       Scanner sc=new Scanner(System.in);
+       n=sc.nextInt();
+       int arr[]=new int[n+1];
+       for(int i=0;i<n;i++)
+       {
+           arr[i]=sc.nextInt();
+       }
+       int ele,pos;
+       pos=sc.nextInt();
+       ele=sc.nextInt();
+       for(int i=n-1;i>=pos-1;i--)
+       {
+           arr[i+1]=arr[i];
+       }
+       arr[pos-1]=ele;
+       System.out.print("[");
+       for(int i=0;i<n+1;i++)
+       {
+           if(i==n)
+           {
+               System.out.print(arr[i]);
+           }
+           else
+           {
+               System.out.print(arr[i]+", ");
+           }
+       }
+       System.out.print("]");
+      
+    }
+}
+

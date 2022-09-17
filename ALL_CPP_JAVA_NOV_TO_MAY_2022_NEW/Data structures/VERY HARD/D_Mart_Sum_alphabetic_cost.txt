@@ -1,0 +1,100 @@
+/*D Mart 1 free for 2 offer Question
+A-Z item names,each Item cost(1rs. to 26rs.)
+2 items 1 free
+ex. 6 items E bought. 
+    2-1 2-1 4+2=6
+    so customer actually bought 4
+    cost= 4*5(E value)=20rs.
+Input format: ZZZZYYYXXAAGECIEIGHEIHGHE
+calculate Total cost Including Offer
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int calculateItems(int k)
+{
+	int freecount=0;
+	int l=0;
+	int i=1;
+	while(i<=k)
+	{
+		if(l==2)
+		{
+			freecount+=1;
+			l=0;
+			i++;
+		}
+		else
+		{
+			i++;
+			l++;
+		}
+	}
+  int items=k-freecount;
+ return items;
+}
+int calculateCost(string s)
+{
+	int totalcost=0;
+	map<char,int>costs;
+	char c=65;
+	for(int i=1;i<=26;i++)
+	{
+		costs.insert(pair<char,int>(c,i));
+		c++;
+	}
+	
+	map<char,int>products;
+	for(int i=0;i<s.length();i++)
+	{
+	   int j=i;
+	   int count=0;
+	   while(j<s.length())
+	   {
+	   	  if(s[j]==s[i])
+	   	  {
+	   	  	count++;
+	   	  	j++;
+		  }
+	   	  else
+	   	  {
+	   	  	j++;
+		  }
+	   	
+	   }
+	   products.insert(pair<char,int>(s[i],count));	
+	}
+	
+	for(auto x:products)
+	{
+		int actual_count= calculateItems(x.second);
+		char prod= x.first;
+ 		for(auto y: costs)
+ 		{
+ 		   	if(y.first == prod)
+ 		   	{
+ 		   		totalcost+= actual_count*y.second;
+			}
+		}
+	}
+  return totalcost;
+}
+/*
+ 2 - 2(no extra) 2/2=1-0
+ 3 - 2(1 extra)  3/2=1
+ 4 - 3(1 extra)  4
+ 5 - 4(1 extra)  5%2 == 0+1
+ 6 - 4(2 extra)  6%2 == 0+2
+ 7 - 5(2 extra)
+ 8 - 6(2 extra)
+ 9 - 6(3 extra)
+ 10 -7(3 extra)
+*/
+int main()
+{
+	string str;
+	cout<<"Enter Items Purchased:"<<endl;
+	cin>>str;
+	int cost = calculateCost(str);
+	cout<<cost;
+	
+}

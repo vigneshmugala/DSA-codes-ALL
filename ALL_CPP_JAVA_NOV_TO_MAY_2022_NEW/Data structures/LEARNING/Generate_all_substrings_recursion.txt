@@ -1,0 +1,40 @@
+/*Generate all Substrings of a given string using Recursion
+
+vignesh -> {v,i,g,n,e,s,h}
+           {vi,ig,gn,ne,es,sh}
+           {vig,ign,gne,nes,esh}
+           {vign,igne,gnes,nesh}
+           {vigne,ignes,gnesh}
+           {vignes,ignesh}
+           {vignesh}
+         -> 28 substrings
+
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void generateSubstrings(string s,int par)
+{
+	if(par>s.length())
+	{
+		return;
+	}
+    
+    else
+    {
+       for(int i=0;i<=s.length()-par;i++)
+    	{
+    	   cout<<s.substr(i,par)<<endl;
+	    }
+	}
+	generateSubstrings(s,par+1);
+}
+int main()
+{
+	string str;
+	cout<<"Enter String: "<<endl;
+	cin>>str;
+	
+	generateSubstrings(str,1);
+}

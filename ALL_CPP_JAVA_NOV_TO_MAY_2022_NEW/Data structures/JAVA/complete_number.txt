@@ -1,0 +1,31 @@
+/*
+  Check whether given number is Complete number
+  
+  All digits are even then it is commplete number;
+*/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+        int num;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number: ");
+        num = sc.nextInt();
+        int flag = 0;
+        while(num>0)
+        {
+            int rem = num % 10;
+            if(rem %2 !=0)
+            {
+                System.out.println("NOT COMPLETE NUMBER");
+                flag=1;
+                break;
+            }
+            num = num/10;
+        }
+        if(flag==0){
+        System.out.println("COMPLETE NUMBER");
+        }
+	}
+}

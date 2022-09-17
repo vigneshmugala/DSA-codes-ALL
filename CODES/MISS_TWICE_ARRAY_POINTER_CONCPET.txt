@@ -1,0 +1,33 @@
+// Find one missing and one repeated twice element in an given array, array is passed as a function parameter (potinter)
+ int *findTwoElement(int *arr, int n) {
+        sort(arr,arr+n);
+        
+        int miss = 0;
+        int twice = 0;
+        
+        for(int i=0;i<n-1;i++)
+        {
+            if(abs(arr[i]-arr[i+1])>1 && abs(arr[i]-arr[i+1])!=0)
+            {
+                miss = arr[i+1]-1;
+            }
+            
+            else if(abs(arr[i]-arr[i+1])==0)
+            {
+                twice = arr[i];
+            }
+        }
+        if(arr[0]!=1)
+        {
+            miss = 1;
+        }
+        else if(arr[n-1]!=n)
+        {
+            miss=n;
+        }
+      int *k = new int[2];
+      k[0]=twice;
+      k[1]=miss;
+      
+     return k;
+    }

@@ -1,0 +1,62 @@
+/*convert Time from HH:MM:SSAM/PM to 24 Hours Format*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	string str;
+	cout<<"enter time in 12hr format:"<<endl;
+	cin>>str;
+	int flag=0;
+	for(int i=0;i<str.length();i++)
+	{
+		if(str[i]=='a'||str[i]=='A')
+		{
+			str[i]=' ';
+			flag=0;//AM
+		}
+		else if(str[i]=='p'||str[i]=='P')
+		{
+			str[i]= ' ';
+			flag=1;//PM
+		}
+		else if(str[i]=='m'||str[i]=='M')
+		{
+			str[i]=' '; //remove M
+		}
+	}
+	int val=0;
+	for(int i=0;i<2;i++)
+	{
+		val*=10;
+		val+=(str[i]-'0');
+	}
+	if(flag==1&&val!=12)
+	{
+		val=12+val;
+	}
+
+	if(val<10)
+	{
+		str[0]='0';
+		str[1]='0'+ val;	
+	}
+	else
+	{
+		int k=val%10;
+		val/=10;
+		int l=val%10;
+		str[0]= '0'+l;
+		str[1]= '0'+k;
+	
+		
+	}
+   
+   for(char c:str)
+   {
+   	 if(c!=' ')
+   	 {
+   	 	cout<<c;
+		}
+   }
+   
+}

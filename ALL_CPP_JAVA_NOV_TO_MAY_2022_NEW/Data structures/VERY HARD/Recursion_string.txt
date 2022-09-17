@@ -1,0 +1,49 @@
+/*Delete two adjacent letters which are same in a string till we get no adjacent elements which are same*/
+#include<bits/stdc++.h>
+using namespace std;
+string deleteNear(string s)
+{
+	int flag=1;
+	int len=s.length();
+	bool notOccured=false;
+	for(int i=0;i<len;i++)
+	{
+		if(s[i]==s[i+1])
+		{
+			s[i]=' ';
+			s[i+1]=' ';
+			notOccured=true;
+		}
+	}
+	string temp="";
+	for(char i:s)
+	{
+		if(i!=' ')
+		{
+			temp+=i;
+		}
+	}
+	if(notOccured){
+		flag=1;
+	}
+	else
+	{
+		flag=0;
+	}
+  if(flag==1)
+  {
+  	temp=deleteNear(temp);
+  }	
+  else if(flag==0)
+  {
+  	return temp;
+  }
+}
+int main()
+{
+	string str;
+	cout<<"Enter string:"<<endl;
+	cin>>str;
+	str=deleteNear(str);
+	cout<<str<<endl;
+}

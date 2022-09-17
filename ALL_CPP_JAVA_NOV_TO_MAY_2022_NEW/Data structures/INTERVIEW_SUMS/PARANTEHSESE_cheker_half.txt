@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool ispar(string x)
+{
+	stack<char> hol;
+	int size=x.length();
+	if(size%2!=0)
+	{
+		return false;
+	}
+	else
+	{
+	   for(int i=0;i<size;i++)
+	   {
+	   	  if(!hol.empty()&&(abs(hol.top()-x[i])==1 || abs(hol.top()-x[i])==2))
+	   	  {
+	   	  	hol.pop();
+	      }
+	      else if(hol.empty()){
+	      	hol.push(x[i]);
+		  }
+	   }
+	   
+	   if(hol.empty()){
+	   	 return true;
+	   }
+	   else{
+	   	 return false;
+	   }
+	}
+	
+}
+int main()
+{
+	string x;
+	cout<<"Enter paranthases format:"<<endl;
+	cin>>x;
+	if(ispar(x)){
+		cout<<"true"<<endl;
+	}
+	else{
+		cout<<"false"<<endl;
+	}
+}

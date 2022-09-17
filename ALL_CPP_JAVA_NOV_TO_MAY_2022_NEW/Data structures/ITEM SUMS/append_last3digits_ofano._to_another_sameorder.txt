@@ -1,0 +1,50 @@
+/*int a= 345908
+  int b = 455
+  
+  output
+  int b = 455908
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{ 
+   int a;
+   cout << "enter number 1:" << endl;
+   cin >> a;
+   
+   int b;
+   cout << "enter number 2:" << endl;
+   cin >> b;
+   int val=0;
+   int count = 0;
+   while(count < 3)
+   {
+   	  val = val*10;
+   	  int rem=a%10;
+   	  val += rem;
+   	  a=a/10;
+   	  b=b*10;
+   	  count++;
+
+   }
+   int rev=0;
+   while(val>0)
+   {
+   	 int rem2=val%10;
+   	 rev = (rev*10)+rem2;
+   	 val=val/10;
+   }
+  
+   
+   b+= rev;
+  
+   cout << "appended number is:" << endl;
+   cout << b;
+	
+	
+	
+}

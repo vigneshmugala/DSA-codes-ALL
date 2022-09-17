@@ -1,0 +1,35 @@
+/*Reverse a String only the characters not symbols
+i/p -a&b$c#d
+o/p - d&c$b#a
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   string str;
+   cout<<"Enter string:"<<endl;
+   cin>>str;
+   string temp="";
+   for(int i=0;i<str.length();i++)
+   {
+   	  if(isalpha(str[i]))
+   	  {
+   	  	temp+=str[i];
+	  }
+   }
+   reverse(temp.begin(),temp.end());
+   int j=0;
+   for(int i=0;i<str.length();i++)
+   {
+   	 if(isalpha(str[i]))
+   	 {
+   	 	str[i]=temp[j];
+   	 	j++;
+	 }
+   }
+   cout<<"The required string is:"<<endl;
+   cout<<str;
+	
+	
+	
+}

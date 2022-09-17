@@ -1,0 +1,46 @@
+/* Capitalization is writing a word with its first letter as a capital letter. 
+Your task is to capitalize the given word.
+
+Note, that during capitalization all the letters except the first one remains unchanged.
+
+Input
+A single line contains a non-empty word. This word consists of lowercase and uppercase
+English letters. The length of the word will not exceed 103.
+
+Output
+Output the given word after capitalization.
+
+sample input/output:
+apPLe
+ApPLe
+
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        String str;
+        String ans="";
+        Scanner sc=new Scanner(System.in);
+        str=sc.next();
+        for(int i=0;i<str.length();i++)
+        {
+            if(i==0)
+            {
+              if(str.charAt(i)>='a'&&str.charAt(i)<='z'){
+                int k=(int)(str.charAt(i))-32;
+                ans+=(char)k;
+              }
+              else
+              {
+                  ans+=str.charAt(i);
+              }
+            }
+            else{
+                ans+=str.charAt(i);
+            }
+        }
+      System.out.println(ans);
+    }
+}

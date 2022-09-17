@@ -1,0 +1,79 @@
+/*
+input - n
+no.of.elements - 2n
+every element 1-n appears twice and distance between it's two appearances equal to the value of the element itslef
+Find all such combinations
+
+ex: 3
+3 1 2 1 3 2
+2 3 1 2 1 3
+(BACKTRAKCING METHOD)
+
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int fac(int k)
+{
+	int fa=1;
+	for(int i=k;i>=1;i--)
+	{
+		fa*=i;
+	}
+  return fa;
+}
+bool checkFills(int a[],int checks,int s)
+{
+	int count=0;
+	for(int m=0;m<s;m++)
+	{
+		int hol=a[m];
+		if(a[m+hol+1]==0)
+		{
+			count++;
+			a[m+hol+1]=hol;
+		}
+		else{
+			break;
+		}
+	}
+   return true;
+}
+int main()
+{
+   int n;
+   cout<<"Enter n:"<<endl;
+   cin>>n;
+   int size=2*n;
+   int itr= fac(n);
+   int k=0;
+   int comb[size];
+   for(int i=1;i<=n;i++)
+   {
+   	 comb[i-1]=i;
+   }
+   while(k<itr)
+   {
+   	next_permutation(comb,comb+n);
+   	int arr[size];
+   	for(int i=0;i<size;i++)
+   	{
+   		if(i<n)
+   		{
+   			arr[i]=comb[i];
+		}
+		else
+		{
+			arr[i]=0;
+		}
+	}
+    if(checkFills(arr,n,size))
+    {
+    	for(int i=0;i<size;i++)
+    	{
+    		cout<<arr[i]<<" ";
+		}
+	  cout<<endl;
+	}
+   	k++;
+   }	
+}

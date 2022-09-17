@@ -1,0 +1,89 @@
+srinivas is trying to rearrange characters in word based on frequency 
+of each character repeated number of times in that particular word.
+
+example:
+input =stff
+output =ffst
+
+
+input =fffbbb
+output =fffbbb
+
+both f and b appear three times , so answer would be fffbbb or bbbfff.
+return in insertion order of when they both are same frequency. 
+ 
+input =caAc
+output =ccaA
+
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string str;
+    cin>>str;
+    
+    unordered_map<char,int>um;
+    
+    //insert into um
+    int count=0; int lim=0;
+    for(int i=0;i<str.length();i++)
+    {
+        for(int j=0;j<str.length();j++)
+        {
+            if(str[j]==str[i])
+            {
+                count++;
+                if(count>=lim){lim=count;}
+            }
+        }
+        um.insert(pair<char,int>(str[i],count));
+        count=0;
+    }
+    
+    //store in string vector with order + no.times repeated
+    vector<string>ss;
+    int ref[20];
+    int ind=0;
+    for(int i=1;i<=lim;i++)
+    {
+        string temp="";
+        for(auto x: um)
+        {
+            if(x.second==i)
+            {
+                temp+=x.first;
+            }
+        }
+        if(temp.length()>0)
+        {
+            reverse(temp.begin(),temp.end());
+            ss.push_back(temp);
+            ref[ind]=i;
+            ind++;
+        }
+        temp="";
+    }
+    
+    for(int i=0;i<ss.size();i++)
+    {
+        cout<<ss[i]<<"  "<<ref[i]<<endl;
+    }
+    
+    //print on screen directly
+    for(int i=ss.size()-1;i>=0;i--)
+    {
+        for(char x:ss[i])
+        {
+            for(int o=0;o<ref[i];o++)
+            {
+                cout<<x;
+            }
+        }
+    }
+}

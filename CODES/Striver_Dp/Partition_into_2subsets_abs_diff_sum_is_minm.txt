@@ -1,0 +1,137 @@
+Problem Link:
+https://www.codingninjas.com/codestudio/problems/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum_842494?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Method 1: Recursion
+
+#include <bits/stdc++.h>
+int minDiff(int i, int sub1, int sub2, int diff, int n, vector<int> &arr)
+{
+    if(i>=n) return diff;
+    
+    int takefirst = minDiff(i+1, sub1+arr[i] , sub2, abs((sub1+arr[i]) - sub2), n, arr);
+    
+    int takesecond = minDiff(i+1, sub1, sub2+arr[i] , abs((sub2+arr[i]) - sub1), n, arr);
+    
+    return min(takefirst, takesecond);
+}
+
+
+int minSubsetSumDifference(vector<int>& arr, int n)
+{
+	return minDiff(0,0,0,0,n,arr);
+}
+
+
+-----------------------------------------------------------------------------------------
+
+Method 2: Memoization(3D) - Partially correct
+
+
+#include <bits/stdc++.h>
+int minDiff(int i, int sub1, int sub2, int diff, int n, vector<int> &arr,vector<vector<vector<int>>> &dp)
+{
+    if(i>=n) return diff;
+    
+    if(dp[i][sub1][sub2] != -1) return dp[i][sub1][sub2];
+    
+    int takefirst = minDiff(i+1, sub1+arr[i] , sub2, abs((sub1+arr[i]) - sub2), n, arr, dp);
+    
+    int takesecond = minDiff(i+1, sub1, sub2+arr[i] , abs((sub2+arr[i]) - sub1), n, arr, dp);
+    
+    return dp[i][sub1][sub2] = dp[i][sub1][sub2] = min(takefirst, takesecond);
+}
+
+
+int minSubsetSumDifference(vector<int>& arr, int n)
+{
+    vector<vector<vector<int>>> dp(n, vector<vector<int>>(5000, vector<int>(5000,-1)));
+	return minDiff(0,0,0,0,n,arr,dp);
+}
+
+
+----------------------------------------------------------------
+
+Method 2: Recursion new method working, but can only memoize to a certain extent.
+
+
+#include <bits/stdc++.h> 
+int help(int i, int sum, int totsum, int diff, int n, vector<int> &arr, vector<vector<int>> &dp)
+{
+    if(i>=n) return diff;
+    if(dp[i][sum] != -1) return dp[i][sum];
+    int pick = help(i+1, sum+arr[i] , totsum, abs(totsum -2*(sum+arr[i])), n, arr,dp);
+    int notPick = help(i+1, sum, totsum, abs(totsum - 2*sum), n ,arr,dp);
+    return dp[i][sum] = min(pick,notPick);
+}
+
+int minSubsetSumDifference(vector<int>& arr, int n)
+{
+    int totsum = 0;
+    for(int i=0;i<n;i++) totsum+=arr[i];
+    vector<vector<int>> dp(n , vector<int>(1e4, -1));
+    return help(0,0,totsum,0,n,arr,dp);
+} 
+
+
+
+--------------------------------------------------------------------------------
+
+
+Method 3: Tabulation of (Subset with sum equals k ) problem usage
+
+  But this method works only for positive numbers...
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int minSubsetSumDifference(vector < int > & arr, int n) {
+  int totSum = 0;
+
+  for (int i = 0; i < n; i++) {
+    totSum += arr[i];
+  }
+
+  vector < vector < bool >> dp(n, vector < bool > (totSum + 1, false));
+
+  for (int i = 0; i < n; i++) {
+    dp[i][0] = true;
+  }
+
+  if (arr[0] <= totSum)
+    dp[0][totSum] = true;
+
+  for (int ind = 1; ind < n; ind++) {
+    for (int target = 1; target <= totSum; target++) {
+
+      bool notTaken = dp[ind - 1][target];
+
+      bool taken = false;
+      if (arr[ind] <= target)
+        taken = dp[ind - 1][target - arr[ind]];
+
+      dp[ind][target] = notTaken || taken;
+    }
+  }
+
+  int mini = 1e9;
+  for (int i = 0; i <= totSum; i++) {
+    if (dp[n - 1][i] == true) {
+      int diff = abs(i - (totSum - i));
+      mini = min(mini, diff);
+    }
+  }
+  return mini;
+}
+
+int main() {
+
+  vector<int> arr = {1,2,3,4};
+  int n = arr.size();
+
+  cout << "The minimum absolute difference is: " << minSubsetSumDifference(arr, n);
+}

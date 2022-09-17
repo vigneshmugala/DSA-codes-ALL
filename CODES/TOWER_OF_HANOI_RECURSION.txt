@@ -1,0 +1,30 @@
+import java.util.*;
+class Main
+{
+    static void TowerOfHanoi(int n,char source, char dest, char aux)
+    {
+        //base case to end recursion if Disks = 0;
+        if(n==0)
+        {
+            return;
+        }
+        
+        //Job1) we will move (n-1) disks from S to Aux using D
+         TowerOfHanoi(n-1,source,aux,dest);
+
+         System.out.print("Disk "+n+"Moved from "+source+" To: "+dest);
+         System.out.println();
+
+        //Job2) we will move (n-1)disks from Aux to D using S
+         TowerOfHanoi(n-1,aux,dest,source);
+    }
+    
+    public static void main(String[] args)
+    {
+        int n;
+        Scanner sc = new Scanner(System.in);
+        n=sc.nextInt();
+        
+        TowerOfHanoi(n,'A','B','C');
+    }
+}

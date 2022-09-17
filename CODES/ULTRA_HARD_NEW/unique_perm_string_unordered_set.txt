@@ -1,0 +1,30 @@
+//unique permutations of a string/arr with unordered_set and recursion//
+#include<bits/stdc++.h>
+using namespace std;
+void unq_perm(string str, int start, int end)
+{
+	if(start==end)
+	{
+		cout<<str<<endl;
+		return;
+	}
+  	unordered_set<char> us;
+  	for(int i=start;i<=end;i++)
+  	{
+  		if(us.find(str[i])!=us.end())
+  		{
+  			continue;
+		}
+		us.insert(str[i]);
+  		swap(str[i],str[start]);
+  		unq_perm(str,start+1,end);
+  		swap(str[i],str[start]);
+	}
+}
+int main()
+{
+	string str;
+	cin>>str;
+	
+	unq_perm(str,0,str.length()-1);
+}

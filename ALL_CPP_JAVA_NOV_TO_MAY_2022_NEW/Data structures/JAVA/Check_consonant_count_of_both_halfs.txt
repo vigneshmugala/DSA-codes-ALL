@@ -1,0 +1,94 @@
+/* Write a java program with the following scenario -
+
+- You are given a string s of even length. Split this string into two halves of equal lengths,
+and let a be the first half and b be the second half.
+
+- Two strings are alike if they have the same number of consonants
+Notice that s contains uppercase and lowercase letters.
+
+Return true if a and b are alike. Otherwise, return false.
+
+Example 1:
+Input: book
+Output: true
+Explanation: a = "bo" and b = "ok". a has 1 consonant and b has 1 consonant. 
+Therefore, they are alike.
+
+Example 2:
+Input: textbook
+Output: false
+Explanation: a = "text" and b = "book". a has 3 consonants and b has 2 consonants. 
+Therefore, they are not alike.
+
+Constraints:
+=> 2 <= s.length <= 100
+=> s.length is even.
+=> s consists of uppercase and lowercase letters.
+*/
+import java.util.*;
+public class Test
+{
+    public static void main(String[] args)
+    {
+        String str;
+        Scanner sc = new Scanner(System.in);
+        str=sc.next();
+        int len=str.length();
+        String temp="";
+        String temp1="";
+        if(len%2==0)
+        {
+           
+            for(int i=0;i<len;i++)
+            {
+                if(i<len/2)
+                {
+                    temp+=str.charAt(i);
+                }
+                else
+                {
+                    temp1+=str.charAt(i);
+                }
+            }
+        }
+        int ct=0;
+        int ct1=0;
+        for(int i=0;i<temp.length();)
+        {
+            char c=temp.charAt(i);
+            if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
+            {
+                i++;
+            }
+            else
+            {
+                i++;
+                ct++;
+            }
+            
+        }
+        for(int i=0;i<temp1.length();)
+        {
+           char c=temp1.charAt(i);
+            if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
+            {
+                i++;
+            }
+            else
+            {
+                i++;
+                ct1++;
+            } 
+        
+        }
+        if(ct==ct1)
+        {
+            System.out.println("true");
+        }
+        else{
+            System.out.println("false");
+        }
+        
+        
+    }
+}

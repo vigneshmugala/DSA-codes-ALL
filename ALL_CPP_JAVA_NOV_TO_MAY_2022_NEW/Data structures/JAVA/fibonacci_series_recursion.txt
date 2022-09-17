@@ -1,0 +1,46 @@
+/* Write a java program to Create a recursive function that, takes a number, 
+returns the corresponding value of that index in the Fibonacci series.
+
+The Fibonacci Sequence is the series of numbers:
+1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+The next number is found by adding the two numbers before it:
+
+The 2 is found by adding the two numbers before it (1+1).
+The 3 is found by adding the two numbers before it (1+2).
+The 5 is (2+3), and so on!
+Example input/output
+3      3
+
+7      21
+
+12      //input
+233     //output
+Notes
+The first number in the sequence starts at 1 (not 0).
+*/
+import java.util.*;
+public class Test
+{
+    static int fib(int pos)
+    {
+       if(pos==0||pos==1)
+       {
+           return 1;
+       }
+       else{
+           return(fib(pos-1)+fib(pos-2));
+       }
+     
+        
+    }
+    public static void main(String[] args)
+    {
+       int k;
+       Scanner sc = new Scanner(System.in);
+       k=sc.nextInt();
+       int ans = fib(k);
+       System.out.println(ans);
+    }
+
+}

@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void help(int i,vector<int> &nums,set<vector<int>> &perms)
+    {
+        if(i==nums.size())
+        {
+            perms.insert(nums);
+            return;
+        }
+        
+        for(int j=0;j<nums.size();j++)
+        {
+            swap(nums[i],nums[j]);
+            help(i+1,nums,perms);
+            swap(nums[i],nums[j]);
+        }
+        
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        set<vector<int>>perms;  
+        vector<vector<int>>hol;
+         help(0,nums,perms);
+         for(auto z:perms)hol.push_back(z);
+         return hol;       
+    }
+};

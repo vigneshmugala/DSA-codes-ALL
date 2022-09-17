@@ -1,0 +1,56 @@
+/*
+Pattern
+n=5
+a
+B c
+D e F
+g H i J
+k L m N o
+
+ascii values of uppercase characters ->  65-90
+ascii values of lowercase character ->  97-122
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cout <<"Enter n value:"<<endl;
+	cin>>n;
+	
+	char a=65;
+	char b=97;
+	
+	int count=0;
+	
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=1;j<=i;j++)
+		{
+			count++;
+			if(count%2==0)
+			{
+				cout<<a<<" ";
+				a++;
+				b++;
+			}
+			else{
+				cout<<b<<" ";
+				a++;
+				b++;
+			}
+			
+		}
+		cout << endl;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,68 @@
+/*Longest Palindromic Substring*/
+#include<bits/stdc++.h>
+using namespace std;
+bool isPalindrome(string s)
+{
+	int l=s.length();
+	bool pal=true;
+	for(int i=0;i<l;i++)
+	{
+		if(s[i]!=s[l-1-i])
+		{
+			pal=false;
+			break;
+		}
+	}
+	if(pal){
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+int main()
+{
+  string str;
+  cout<<"enter:"<<endl;
+  cin>>str;
+  vector<string>res;
+  for(int i=0;i<str.length();i++)
+  {
+  	 int j=str.length()-1;
+  	 while(j>=0)
+  	 {
+  	 	if(str[j]==str[i] && j!=i)
+  	 	{
+  	 		string sub=str.substr(i,j-i+1);
+  	 		if(isPalindrome(sub))
+  	 		{
+  	 			res.push_back(sub);
+			}
+			break;
+		}
+		else
+		{
+			j--;
+		}
+	 }
+  }	
+ 
+ int max_len=0;
+  string ans="";
+  for(string s:res)
+  {
+  	int len=s.length();
+  	if(len>max_len)
+  	{
+  		max_len = len;
+  		ans=s;
+	}
+  	
+  }	
+  cout<<"Largest Palindromic Substring is:"<<endl;
+  cout<<ans<<endl;
+	
+	
+	
+}

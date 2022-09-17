@@ -1,0 +1,79 @@
+// Flood Fill Algorithm 
+// Fill an Matrix (Grid) with oldvalue = x with the New Value = y
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void floodfill(int i,int j,int r,int c,int oldColor,int newColor,vector<vector<int>> &m)
+{
+   if(oldColor == newColor)return;   //if newColor = old then why we need to change color at all?
+   if(i<0||j<0||i==r||i==c||m[i][j]!=oldColor)  //Boundary conditions
+   {
+   	   return; 
+   }
+   //Our Task is to Change color in the cell of OldColor to the NewColor.
+   m[i][j]=newColor;
+   
+   // Search From 4 Directions from given point..(x,y) -> (i,j)
+   // Choice 1: Go North
+   floodfill(i-1,j,r,c,oldColor,newColor,m);
+   
+   //Choice 2: Go South
+   floodfill(i+1,j,r,c,oldColor,newColor,m);
+   
+   //Choice 3: Go East
+   floodfill(i,j+1,r,c,oldColor,newColor,m);
+   
+   //Choice 4: Go West
+   floodfill(i,j-1,r,c,oldColor,newColor,m);
+   	
+}
+int main()
+{
+    int r,c;
+    cout<<"Enter Rows and Columns of the Matrix Respectively: "<<'\n';
+    
+    cin>>r;
+    cin>>c;
+    
+    vector<vector<int>> m;
+    vector<int> temp;
+    cout<<"Enter elements in the Matrix: "<<'\n';
+    for(int i=0;i<r;i++)
+    {
+    	for(int j=0;j<c;j++)
+    	{
+    		int in;
+    		cin>>in;
+    		temp.push_back(in);
+		}
+		m.push_back(temp);
+		temp.clear();
+	}
+	
+	int x,y;
+	cout<<"Drop point location :"<<'\n';
+	cout<<"X Co-ordinate:  ";
+	cin>>x;
+	cout<<"Y-Co-ordinate:  ";
+	cin>>y;
+	
+	int nColor; 
+	cout<<"New Color to Replace :";
+	cin>>nColor;
+	
+	
+	floodfill(x,y,r,c,m[x][y],nColor,m);
+	
+	
+	cout<<"After Applying the Flood Fill algorithm: "<<'\n';
+	
+	for(vector<int> z:m)
+	{
+		for(int y:z)
+		{
+			cout<<y<<" ";
+		}
+		cout<<'\n';
+	}
+}

@@ -1,0 +1,46 @@
+/*int a= 378467
+  int b =  311
+  
+  output
+  int b = 467311
+  (append last 3 digits of a  to front of b)
+*/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{ 
+   int a;
+   cout << "enter no.1" << endl;
+   cin >> a;
+   int b;
+   cout << "enter no.2" << endl;
+   cin >> b;
+   
+   int count=0;
+   int val=0;
+   while(count<3)
+   {
+   	 val=val*10;
+   	 int rem = a%10;
+   	 a=a/10;
+   	 val += rem;
+   	 count++; 
+   }
+   count = 0;
+   //append val to 3 digit b at the front 
+   //val=764 b=311 
+  
+   while(count < 3)
+   {
+   	 val*=10;
+   	 count++;
+   }
+   val+=b;
+   cout << "front appended value is:" << endl;
+   cout << val;
+	
+}

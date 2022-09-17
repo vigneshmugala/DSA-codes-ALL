@@ -1,0 +1,53 @@
+//Return all those subsets from (1 to N) who sum up to a value = k
+// And also has subset size is fixed = s
+//Generate subsets with particular size s that sum to a fixed value k
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void sgenerate(int num, int bound, int sum, int size, vector<int> &subset, vector<vector<int>> &ans)
+{
+   if(num>bound)return;
+   
+   if(size==0)
+   {
+   	 if(sum==0)
+   	 {
+   	 	ans.push_back(subset);
+   	 	return;
+	 }
+	 return;
+   }
+   subset.push_back(num);
+   sgenerate(num+1,bound,sum-num,size-1,subset,ans);
+   
+   subset.pop_back();
+   sgenerate(num+1,bound,sum,size,subset,ans);
+}
+int main()
+{
+	int n;
+	cout<<"Enter upper bound: "<<endl;
+	cin>>n;
+	
+	int sum;
+	cout<<"Enter target sum value: "<<endl;
+	cin>>sum;
+	
+	int size;
+	cout<<"Enter target size: "<<endl;
+	cin>>size;
+	vector<int> subset;
+	vector<vector<int>> ans;
+	
+	sgenerate(1,n,sum,size,subset,ans);
+	
+	for(vector<int> x: ans)
+	{
+		for(int y: x)
+		{
+			cout<<y<<" ";
+		}
+	  cout<<endl;
+	}
+}

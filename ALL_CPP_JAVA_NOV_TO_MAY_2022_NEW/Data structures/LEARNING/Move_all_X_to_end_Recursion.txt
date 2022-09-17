@@ -1,0 +1,46 @@
+/* Move all x to end of the string using RECURSION 
+
+kixetfxwd  -> kietfwdxx*/
+
+#include<bits/stdc++.h>
+using namespace std;
+void X(int x)
+{
+	if(x == 0)
+	{
+		return;
+	}
+	
+	else
+	{
+		cout<<'x';
+		X(x-1);
+	}
+}
+void shift(string s,int in , int x)
+{
+	if(in > s.length()-1)
+	{
+		X(x);
+		return;
+	}
+	
+	else
+	{
+	   if(s[in]=='x')
+	   {
+	   	  shift(s,in+1,x+1);
+	   }
+	   else
+	   {
+	   	  cout<<s[in];
+	   	  shift(s,in+1,x);
+	   }
+	}
+}
+int main()
+{
+	string s;
+	cin>>s;
+	shift(s,0,0);
+}
