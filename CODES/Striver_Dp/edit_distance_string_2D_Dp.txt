@@ -1,0 +1,41 @@
+Leetcode  #72 Hard
+
+class Solution {
+public:
+    
+    int minEditMoves(int i, int j, string &word1, string &word2, vector<vector<int>> &dp)
+    { 
+        if(i<0)
+        {
+            if(j>=0) return j+1;
+            else return 0;
+        }
+        if(j<0)
+        {
+            if(i>=0) return i+1;
+            else return 0;
+        }
+        //if word1[i] = word2[j] then make no change.
+        if(word1[i] == word2[j])
+        {
+            //just move pointers forward no changes done literally
+            return minEditMoves(i-1,j-1,word1,word2,dp);
+        }
+         if(dp[i][j] != -1) return dp[i][j];
+         //word1[i] != word2[j] then try 3 possible options.(insert, delete, replace)
+        int insert = 1 + minEditMoves(i,j-1,word1,word2,dp);
+        int del = 1 + minEditMoves(i-1,j,word1,word2,dp);
+        int replace = 1 + minEditMoves(i-1,j-1,word1,word2,dp);
+        return dp[i][j] = min(del, min(insert,replace));
+    }
+    
+    int minDistance(string word1, string word2) {
+        //Convert word1 to word2
+        //3 operations ->
+        // Replace , Delete, Insert.
+        int m = word1.length();
+        int n = word2.length();
+        vector<vector<int>> dp(m,vector<int>(n,-1));
+        return minEditMoves(m-1,n-1,word1,word2,dp);
+    }
+};
