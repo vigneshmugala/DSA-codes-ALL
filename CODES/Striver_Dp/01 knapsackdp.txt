@@ -19,3 +19,30 @@ int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight)
 }
 ----------------------------------------------------------------------------------------------------------------------
 Method 2: Tabulation
+
+
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+     int dp[n][maxWeight+1];
+      
+     for(int i=0; i<n; i++)
+         for(int j=0; j<=maxWeight; j++)
+             dp[i][j] = 0;
+    
+     
+     for(int c=weight[0]; c<=maxWeight; c++)
+         dp[0][c] = value[0];
+     
+     for(int i=1; i<n; i++)
+     {
+         for(int c=0; c<=maxWeight; c++)
+         {
+             int pick = -1e9;
+             int notPick = dp[i-1][c];
+             if(c-weight[i]>=0)
+                 pick = value[i] + dp[i-1][c-weight[i]];
+             dp[i][c]=max(pick,notPick);
+         }
+     }
+     return dp[n-1][maxWeight];
+}

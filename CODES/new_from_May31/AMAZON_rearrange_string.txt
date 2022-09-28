@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string reorganizeString(string s) {
+        //store count of Each character occurence in a Unordererd Map
+        unordered_map<char,int> ump;
+        for(auto ch: s) ump[ch]++;
+        //Now use priority Queue to sort those characters by priority
+        priority_queue<pair<int,char>> pq;
+        for(auto bg: ump)
+        {
+            pq.push(make_pair(bg.second,bg.first));
+        }
+        string ans="";
+        while(pq.size() > 1)
+        {
+            auto a = pq.top(); //first entry
+            pq.pop();
+            auto b = pq.top(); // second entry
+            pq.pop();
+            ans+=a.second; //add first char 
+            ans+=b.second; // add second char alternatively
+            a.first--; //decrease count
+            b.first--;
+            if(a.first > 0) pq.push(a); //if count is still active push again into pq to use again
+            if(b.first > 0) pq.push(b);
+        }
+        if(!pq.empty()) //if there are still more characters left
+        { 
+            if(pq.top().first > 1) return ""; //if that is not a single character then false
+            else
+                ans+=pq.top().second; // else append it
+        }
+        return ans; //return ans
+    }
+};

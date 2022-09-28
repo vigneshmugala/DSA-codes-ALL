@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if(nums.size() == 1) return nums[0];
+        if(nums.size() == 2) return max(nums[0] , max(nums[0]+nums[1],nums[1]));
+        int totsum = 0;
+        for(int i=0; i<nums.size(); i++) totsum += nums[i];
+        int fromNtoLastSum = INT_MIN;
+        int frontCheckPoint = 0;
+        fromNtoLastSum = max(fromNtoLastSum , totsum);
+        int runningSum = totsum;
+        for(int i=0; i<nums.size()-1; i++)
+        {
+            runningSum -= nums[i];
+            //fromNtoLastSum = max(fromNtoLastSum , runningSum);
+            if(fromNtoLastSum <= runningSum)
+            {
+                fromNtoLastSum = runningSum;
+                frontCheckPoint = i;
+            }
+        }
+        int maxSumFromBehind = max(fromNtoLastSum, INT_MIN);
+        runningSum = fromNtoLastSum;
+        //if(frontCheckPoint+1 == nums.size()-1) return maxSumFromBehind;
+        for(int j=nums.size()-1; j>frontCheckPoint; j--)
+        {
+            runningSum -= nums[j];
+            maxSumFromBehind = max(maxSumFromBehind, runningSum);
+        }
+        return maxSumFromBehind;
+    }
+};
