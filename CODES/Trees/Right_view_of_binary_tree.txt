@@ -1,0 +1,16 @@
+class Solution {
+public:
+    void rightV(TreeNode *root, int lev, vector<int> &ans)
+    {
+        if(root == NULL) return;
+        if(ans.size() == lev) ans.push_back(root->val);
+        rightV(root->right, lev+1, ans);
+        rightV(root->left, lev+1, ans);
+    }
+    
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        rightV(root,0,ans);
+        return ans;
+    }
+};

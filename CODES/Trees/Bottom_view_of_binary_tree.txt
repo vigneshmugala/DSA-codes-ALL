@@ -1,0 +1,32 @@
+class Solution {
+  public:
+    vector <int> bottomView(Node *root) {
+        if(root == NULL) return {};
+        vector<int> finAns;
+        map<int,int> lineAndValues;
+        queue<pair<Node*,int>> q;
+        q.push({root,0});
+        while(!q.empty())
+        {
+            auto pairObj = q.front();
+            Node *n = pairObj.first;
+            int currLevel = pairObj.second;
+            q.pop();
+            lineAndValues[currLevel] = n->data;
+            if(n->left != NULL) 
+            {
+               q.push({n->left,currLevel-1});    
+            }
+     
+            if(n->right != NULL)
+            {
+                q.push({n->right,currLevel+1});
+            }
+        }
+        for(auto bg: lineAndValues) 
+        {
+            finAns.push_back(bg.second);
+        }
+        return finAns;
+    }
+};

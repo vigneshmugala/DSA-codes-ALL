@@ -1,0 +1,63 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> ans;
+        
+        vector<string> ref = strs;
+        
+        for(int i=0; i<ref.size(); i++)
+        {
+            sort(ref[i].begin(),ref[i].end());
+        }
+        
+        unordered_multimap<string,string> um;
+        
+        for(int i=0; i<strs.size(); i++)
+        {
+            um.insert(pair<string,string>(ref[i],strs[i]));
+        }
+        
+        for(auto h: um){
+            cout<<h.first <<" ---->" <<h.second;
+            cout<<endl;
+        }
+        
+       sort(ref.begin(),ref.end());
+        
+        for(auto g : ref) cout<<g<<endl;
+       
+        vector<string> temp;
+        string prev = "";
+        int ptr = 0;
+        
+        for(auto g: um)
+        {
+            if(ptr == 0)
+            {
+                temp.push_back(g.second);
+                ptr++;
+                prev = g.first;
+            }
+            else
+            {
+                if(prev == g.first)
+                {
+                    temp.push_back(g.second);
+                    ptr++;
+                    prev=g.first;
+                }
+                else
+                {
+                    ans.push_back(temp);
+                    temp.clear();
+                    temp.push_back(g.second);
+                    ptr++;
+                    prev=g.first;
+                }
+            }
+        }
+        ans.push_back(temp);
+        
+        return ans;
+    }
+};

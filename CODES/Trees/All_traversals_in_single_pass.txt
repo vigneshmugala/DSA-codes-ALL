@@ -1,0 +1,48 @@
+vector<vector<int>> getTreeTraversal(BinaryTreeNode<int> *root){
+    vector<vector<int>> allTreeTrav(3);
+    
+    vector<int> pre;
+    vector<int> pos;
+    vector<int> in;
+    
+    stack<pair<BinaryTreeNode<int>*,int>> st;
+    if(root == NULL) return {{}};
+    st.push({root,1});
+    while(!st.empty())
+    {
+        auto obj = st.top();
+        int num = obj.second;
+        st.pop();
+        
+        if(num == 1) //means node is been visited only 1 time
+        {
+            pre.push_back(obj.first->data);
+            obj.second++;
+            st.push(obj);
+            
+            if(obj.first->left != NULL)
+            {
+                st.push({obj.first->left , 1});
+            }
+        }
+        else if(num == 2) //means node is been visited twise
+        {
+            in.push_back(obj.first->data);
+            obj.second++;
+            st.push(obj);
+            if(obj.first->right != NULL)
+            {
+                st.push({obj.first->right ,1});
+            }
+        }
+        
+        else  // means node is been visited thrice which is max limit
+        {
+            pos.push_back(obj.first->data);
+        }
+    }
+    allTreeTrav.push_back(in);
+    allTreeTrav.push_back(pre);
+    allTreeTrav.push_back(pos);
+    return allTreeTrav;
+}

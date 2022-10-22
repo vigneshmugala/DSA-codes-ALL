@@ -1,0 +1,33 @@
+class Solution {
+public:
+    void backtrack(string s, int i, int step, string test, vector<string> &ans)
+    {
+        if(s.length() > 12) return;
+        if(i==s.size() && step == 4)
+        {
+            test.erase(test.end()-1);
+            ans.push_back(test);
+            return;
+        }
+        if(s.size()-i > (4-step)*3) return;
+        if(s.size()-i < (4-step)) return;
+        int val = 0;
+        for(int j=i; j<i+3; j++)
+        {
+            val *= 10;
+            val += s[j]-'0';
+            if(val <= 255)
+            {
+                test += s[j];
+                backtrack(s, j+1, step+1, test+'.', ans);
+            }
+            if(val == 0) break;
+        }  
+    }
+    vector<string> restoreIpAddresses(string s) {
+        string test;
+        vector<string> ans;
+        backtrack(s,0,0,test,ans);
+        return ans;
+    } 
+};
